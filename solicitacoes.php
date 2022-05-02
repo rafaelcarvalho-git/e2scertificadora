@@ -14,6 +14,7 @@
 <body class="bg-light">
 
 <nav class="navbar navbar-light bg-primary">
+<!--<img class="logo-img" src="img/logo.png" alt="" width='50px'>-->
   <form class="container-fluid justify-content-start">
     <button type="button" class="btn btn-warning">Warning</button>
     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModalCad">Cadastrar Usuário</button>
@@ -42,16 +43,6 @@
               <option value="Administrador">Administrador</option>
               <option value="Contador">Contador</option>
               </select>
-          </div><br>
-
-          <div class="form-floating">
-            <input type="email" class="form-control" name="email" required>
-            <label>E-mail</label>
-          </div><br>
-
-          <div class="form-floating">
-            <input type="text" class="form-control"  name="login" required>
-            <label>Login</label>
           </div><br>
 
           <div class="form-floating">
@@ -132,12 +123,9 @@
            <hr>
            <h4>CEP</h4>
            <h3><?php echo $rows_solicitacoes['cep']; ?></h3>
-           <h4>Bairro</h4>
-           <h3><?php echo $rows_solicitacoes['bairro']; ?></h3>
-           <h4>Rua</h4>
-           <h3><?php echo $rows_solicitacoes['rua']; ?></h3>
-           <h4>Número</h4>
-           <h3><?php echo $rows_solicitacoes['num']; ?></h3>
+           <h4>Endereço</h4>
+           <h3><?php echo $rows_solicitacoes['endereco']; ?></h3>
+    
            <hr>
            <h4>Observações</h4>
            <h3><?php echo $rows_solicitacoes['observacoes']; ?></h3>
@@ -160,7 +148,7 @@
 
 <footer class="my-5 pt-5 text-muted text-center text-small">
   <p class="mb-1">&copy; 2022 - E2S Corretora de Seguros LTDA-ME</p>
-  <p>Site desenvolvido por<a href="https://www.linkedin.com/in/rafaelcarvalho-ti"> Rafael Carvalho</a></p>
+  <p>Site desenvolvido por <a href="https://www.linkedin.com/in/rafaelcarvalho-ti">Rafael Carvalho</a></p>
 </footer>
 </div>
 

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="pt-br">
 <head>
@@ -26,6 +29,7 @@
       </div>
   </main>
   <?php 
+        include_once('conexao.php');
         $tipo_certificado = $_POST["tipo-certificado"];
         $nome = strtoupper($_POST["nome"]);
         $cpf = $_POST["cpf"];
@@ -41,7 +45,13 @@
         $bairro = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"),$bairro);
         $bairro = strtoupper($bairro);
         $num = $_POST["num"];
-        $rua = strtoupper($_POST["rua"]);
+        $rua = $_POST["rua"];
+        $rua = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"),$rua);
+        $rua = strtoupper($rua);
+        
+        $endereco = "{$rua}, {$num} - {$bairro}";
+        
+
         $observacoes = strtoupper($_POST["observacoes"]);
         /*$doc_empresa = $_POST[""];*/
 
@@ -52,10 +62,19 @@
         echo "<br>email ",$email;
         echo "<br>tel ",$telefone;
         echo "<br>cep ",$cep;
-        echo "<br>bairro ",$bairro;
-        echo "<br>num ",$num;
-        echo "<br>rua ",$rua;
+        echo "<br>endereco ",$endereco;
         echo "<br>obs ",$observacoes;
+
+        $result_solicitar = "INSERT INTO solicitacoes(tipo_certificado, nome, cpf, data_nascimento, email, telefone, cep, endereco, observacoes, data_solicitacao, situacao_solicitacao,	contador) VALUES ('$tipo_certificado', '$nome', $cpf, '$data_nascimento', '$email', '$telefone', '$cep', '$endereco', '$observacoes', NOW(), 'PROCESSANDO',	'GEONE')";
+	      $resultado_solicitar= mysqli_query($connect, $result_solicitar);
+
+        $_SESSION['sucesso'] = 'SOLICITAÇÃO ENVIADA COM SUCESSO';
+
+
+
+        header("Location: solicitar.php");
+        echo "<br>obs ",$_SESSION['sucesso'];
+        
         ?>
 <footer class="my-5 pt-5 text-muted text-center text-small">
   <p class="mb-1">&copy; 2022 - E2S Corretora de Seguros LTDA-ME</p>
