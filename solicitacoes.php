@@ -1,4 +1,5 @@
 <?php
+  session_start();
   include_once("conexao.php");
   $solicitar_dados = "SELECT * FROM SOLICITACOES";
   $solicitacoes = mysqli_query($connect, $solicitar_dados);
@@ -16,7 +17,6 @@
 <nav class="navbar navbar-light bg-primary">
 <!--<img class="logo-img" src="img/logo.png" alt="" width='50px'>-->
   <form class="container-fluid justify-content-start">
-    <button type="button" class="btn btn-warning">Warning</button>
     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModalCad">Cadastrar Usuário</button>
   </form>
 </nav>
