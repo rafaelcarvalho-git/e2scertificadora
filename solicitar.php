@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="pt-br">
 <head>
@@ -150,7 +153,7 @@
         <div class="invalid-feedback">Insira o número do endereço.</div>
       </div>
 
-      <div class="col-md-11 mx-auto"><!--NUM DO CLIENTE-->
+      <div class="col-md-11 mx-auto"><!--RUA DO CLIENTE-->
         <label for="rua-cliente" class="form-label">Rua (Logradouro)</label>
         <input name="rua" type="text" id="rua" class="form-control" size="60" required/>    
         <div class="invalid-feedback">Insira a rua do cliente.</div>
@@ -160,10 +163,15 @@
         <label for="obs-cliente" class="form-label">OBSERVACOES</label>
         <input name="observacoes" type="textarea" class="form-control" id="obs-cliente">
       </div>
-
+      <?php
+        if (isset($_SESSION['msg'])) {
+            echo $_SESSION['msg'];
+            unset($_SESSION['msg']);
+        }
+        ?>
       <div class="col-sm-10 mx-auto text-center"><!--DOC. PESSOAL DO CLIENTE-->
         <label for="doc-cliente" class="form-label">Anexar documento pessoal (CNH, RG ou DNI) e documentos da empresa ou pessoa jurídica (no caso de E-cnpj) </label>
-        <input type="file" class="form-control" id="doc-cliente" name="sendDocs" required>
+        <input type="file" name="documentos[]" multiple="multiple" class="form-control" id="doc-cliente" name="sendDocs" required>
         <div class="invalid-feedback">É necessário anexar o documento pessoal do cliente.</div>
       </div><hr class="my-4">
       <input class="w-100 btn btn-lg btn-primary" type="submit" name="btnSolicitar" value="Solicitar Certificado">
