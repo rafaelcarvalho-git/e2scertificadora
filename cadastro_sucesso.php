@@ -1,14 +1,10 @@
 <?php
 	include_once('conexao.php');	
     $usuario = $_POST['usuario'];
-	$privilegio = $_POST['privilegio'];
-    $email = $_POST['email'];
-    $login = $_POST['login'];
-	$senha = $_POST['senha'];
-	
-	$result_msg_login = "INSERT INTO usuarios(usuario, privilegio, email, login, senha) VALUES ('$usuario', '$privilegio', '$email', '$login', '$senha')";
-	$resultado_msg_login= mysqli_query($connect, $result_msg_login)
-
+    $senha = $_POST['senha'];
+	  $privilegio = $_POST['privilegio'];		
+	  $result_cadastro = "INSERT INTO usuarios(usuario, senha, privilegio) VALUES ('$usuario', '$senha', '$privilegio')";
+	  $resultado_cadastro= mysqli_query($connect, $result_cadastro);
 ?>
 
 <!doctype html>
