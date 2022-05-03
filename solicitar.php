@@ -75,6 +75,13 @@ session_start();
   <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
 </header>
 <h2>Seja bem vindo, CONTADOR</h2>
+</div>
+<?php
+  if (isset($_SESSION['msg'])) {
+      echo $_SESSION['msg'];
+      unset($_SESSION['msg']);
+  }
+  ?>
 <form class="needs-validation" method="post" action="" enctype="multipart/form-data" novalidate>
     <!--ESCOLHAS PARA O TIPO E VALOR DO CERTIFICADO SELECIONADO-->
     <div class="col-md-9 mx-auto text-center">
@@ -163,12 +170,7 @@ session_start();
         <label for="obs-cliente" class="form-label">OBSERVACOES</label>
         <input name="observacoes" type="textarea" class="form-control" id="obs-cliente">
       </div>
-      <?php
-        if (isset($_SESSION['msg'])) {
-            echo $_SESSION['msg'];
-            unset($_SESSION['msg']);
-        }
-        ?>
+
       <div class="col-sm-10 mx-auto text-center"><!--DOC. PESSOAL DO CLIENTE-->
         <label for="doc-cliente" class="form-label">Anexar documento pessoal (CNH, RG ou DNI) e documentos da empresa ou pessoa jurídica (no caso de E-cnpj) </label>
         <input type="file" name="documentos[]" multiple="multiple" class="form-control" id="doc-cliente" name="sendDocs" required>
@@ -186,7 +188,13 @@ session_start();
 <script src="js/form-validation.js"></script>
 <?php 
         include_once('conexao.php');
+        
         $tipo_certificado = $_POST["tipo-certificado"];
+/*
+        if (isset($tipo_certificado)) {
+          $confirmaId = true;
+        }*/
+
         $nome = strtoupper($_POST["nome"]);
         $cpf = $_POST["cpf"];
         $cpf = preg_replace("/[^0-9]/", "", $cpf);
@@ -203,36 +211,14 @@ session_start();
         $num = $_POST["num"];
         $rua = $_POST["rua"];
         $rua = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"),$rua);
-        $rua = strtoupper($rua);
-        
-        $endereco = "{$rua}, {$num} - {$bairro}";
-        
-
+        $rua = strtoupper($rua);        
+        $endereco = "{$rua}, {$num} - {$bairro}";        
         $observacoes = strtoupper($_POST["observacoes"]);
-        /*$doc_empresa = $_POST[""];*/
-/*
-        echo "tipo  ",$tipo_certificado;
-        echo "<br>nome ",$nome;
-        echo "<br>cpf ",$cpf;
-        echo "<br>data ",$data_nascimento;
-        echo "<br>email ",$email;
-        echo "<br>tel ",$telefone;
-        echo "<br>cep ",$cep;
-        echo "<br>endereco ",$endereco;
-        echo "<br>obs ",$observacoes;*/
-
         $result_solicitar = "INSERT INTO solicitacoes(tipo_certificado, nome, cpf, data_nascimento, email, telefone, cep, endereco, observacoes, data_solicitacao, situacao_solicitacao, contador, documentos) VALUES ('$tipo_certificado', '$nome', $cpf, '$data_nascimento', '$email', '$telefone', '$cep', '$endereco', '$observacoes', NOW(), 'PROCESSANDO',	'GEONE', 'documentos')";
 	      $resultado_solicitar= mysqli_query($connect, $result_solicitar);
-
-        echo 'deu tudo certo';
-/*
-        $_SESSION['sucesso'] = 'SOLICITAÇÃO ENVIADA COM SUCESSO';
-
-
-
-        /*header("Location: solicitar.php");*//*
-        echo "<br>obs ",$_SESSION['sucesso'];*/
-        
+        $_SESSION['msg'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+        Certificado Digital solicitado com sucesso! Iremos realizar o cadastro do cliente e o atendimento. Aguarde nosso contato.
+        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";     
         ?>
 </body>
 </html>
