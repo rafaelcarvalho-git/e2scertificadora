@@ -16,7 +16,7 @@
 <body class="bg-light">
 <nav class="navbar navbar-light bg-primary">
     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModalCad">Cadastrar Usuário</button>
-    <button type="button" class="btn btn-success" action="usuarios_cadastrados.php">Usuários Cadastrados</button>
+    <a href="usuarios_cadastrados.php"><button type="button" class="btn btn-success">Usuários Cadastrados</button></a> 
 </nav>
 <!-- Janela Cadastrar Usuário -->
 <div class="modal fade" id="myModalCad" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
