@@ -35,11 +35,11 @@
       <h2>Solicitações de Certificados Digitais</h2>
       <p class="lead">Lista com todas as solicitações feitas por contadores ou administradores de sistema.</p>
     </div>  
-    <?php
-    if(isset($_SESSION['solicitacaoExcluida'])){
-      echo $_SESSION['solicitacaoExcluida'];
-      unset($_SESSION['solicitacaoExcluida']);
-    }
+<?php
+  if(isset($_SESSION['solicitacaoExcluida'])){
+    echo $_SESSION['solicitacaoExcluida'];
+    unset($_SESSION['solicitacaoExcluida']);
+  }
 ?>
     <table class="table table-hover">
       <thead class="thead-dark">
