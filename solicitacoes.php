@@ -3,6 +3,18 @@
   include_once("conexao.php");
   $solicitar_dados = "SELECT * FROM SOLICITACOES";
   $solicitacoes = mysqli_query($connect, $solicitar_dados);
+  $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+  if (isset($id)) {
+    $confirmaId = true;
+  }else {
+    $confirmaId = false;
+  }
+  if ($confirmaId==true) {
+    $apagar_solicitacao = "DELETE FROM solicitacoes WHERE id='$id'";
+	  $apagar = mysqli_query($connect, $apagar_solicitacao);
+    header("Location: solicitacoes.php");    
+    $confirmaId = false;
+  }
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -15,47 +27,20 @@
 </head>
 <body class="bg-light">
 <nav class="navbar navbar-light bg-primary">
-    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModalCad">Cadastrar Usuário</button>
-    <a href="usuarios_cadastrados.php"><button type="button" class="btn btn-success">Usuários</button></a> 
+    <img class="d-block mx-auto mb-4" src="img/logo.png" alt="" width="50" height="50">
+    <a href="usuarios.php"><button type="button" class="btn btn-success">Usuários</button></a> 
 </nav>
-<!-- Janela Cadastrar Usuário -->
-<div class="modal fade" id="myModalCad" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Cadastrar Usuário</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <form method="post" action="cadastro_sucesso.php">
-        <div class="form-floating">
-          <input type="text" class="form-control" name="usuario" required>
-          <label>Nome Usuario</label>
-        </div><br>
-        <div class="form-floating">
-          <input type="text" class="form-control" name="senha" required>
-          <label>Senha</label>
-        </div><br>
-        <div class="form-floating">              
-          <select class="form-select" name="privilegio" required>
-            <option value="Administrador">Administrador</option>
-            <option value="Contador">Contador</option>
-          </select>
-          <label class="form-label">Privilégio de Sistema</label>
-        </div><br>          
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Cadastrar</button>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!--------------------------------->
 <main class="container">
     <div class="py-5 text-center">
-      <img class="d-block mx-auto mb-4" src="img/logo.png" alt="" width="80" height="50">
       <h2>Solicitações de Certificados Digitais</h2>
       <p class="lead">Lista com todas as solicitações feitas por contadores ou administradores de sistema.</p>
     </div>  
+    <?php
+    if(isset($_SESSION['solicitacaoExcluida'])){
+      echo $_SESSION['solicitacaoExcluida'];
+      unset($_SESSION['solicitacaoExcluida']);
+    }
+?>
     <table class="table table-hover">
       <thead class="thead-dark">
         <tr>
@@ -79,7 +64,7 @@
           <td><?php echo $rows_solicitacoes['data_solicitacao']; ?></td>                  
           <td><?php echo $rows_solicitacoes['contador']; ?></td>
           <td><button type="button" class="btn btn-primary">Baixar</button></td>
-          <td><button type="button" class="btn btn-primary">X</button> <button type="button" class="btn btn-primary">V</button></td>
+          <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#excluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>">Excluir</button></td>
         </tr>
 <!-- Janela Visualizar Informações Cliente -->
 <div class="modal fade" id="myModal<?php echo $rows_solicitacoes['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -113,6 +98,25 @@
         </div>
       </div>
     </div>
+</div>
+<!------------------------------>
+<!-- Janela Confirma Apagar Solicitação -->
+<div class="modal fade" id="excluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Deletar Usuário</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Deseja excluir a solicitação de <?php echo $rows_solicitacoes['nome']; ?>?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <?php echo "<a href='solicitacoes.php?id=" . $rows_solicitacoes['id'] . "' data-confirm='Tem certeza de que deseja excluir o item selecionado?' style='color: white;'><button type='button' class='btn btn-primary'>Excluir</button></a>";?>
+      </div>
+    </div>
+  </div>
 </div>
 <!------------------------------><?php } ?>
 </tbody>

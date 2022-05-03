@@ -15,21 +15,58 @@
 </head>
 <body class="bg-light">
 <nav class="navbar navbar-light bg-primary">
-    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModalCad">Cadastrar Usuário</button>
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModalCad">Usuários Cadastrados</button>
+    <img class="d-block mx-auto mb-4" src="img/logo.png" alt="" width="50" height="50">
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModalCad">Cadastrar Usuário</button>
+    <a href="solicitacoes.php"><button type="button" class="btn btn-success">Solicitações</button></a> 
 </nav>
+<!-- Janela Cadastrar Usuário -->
+<div class="modal fade" id="myModalCad" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Cadastrar Usuário</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form method="post" action="cadastro_sucesso.php">
+        <div class="form-floating">
+          <input type="text" class="form-control" name="usuario" required>
+          <label>Nome Usuario</label>
+        </div><br>
+        <div class="form-floating">
+          <input type="text" class="form-control" name="senha" required>
+          <label>Senha</label>
+        </div><br>
+        <div class="form-floating">              
+          <select class="form-select" name="privilegio" required>
+            <option value="Administrador">Administrador</option>
+            <option value="Contador">Contador</option>
+          </select>
+          <label class="form-label">Privilégio de Sistema</label>
+        </div><br>          
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Cadastrar</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--------------------------------->
 <main class="container">
 <div class="py-5 text-center">
-  <img class="d-block mx-auto mb-4" src="img/logo.png" alt="" width="80" height="50">
   <h2>Usuários do Sistema</h2>
   <p class="lead">Lista de usuários do sistema, incluido contadores e administradores.</p>
 </div>
+<?php
+    if(isset($_SESSION['msg'])){
+      echo $_SESSION['msg'];
+      unset($_SESSION['msg']);
+    }
+?>
 <table class="table table-hover">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Id</th>
       <th scope="col">Usuário</th>
-      <th scope="col">Senha</th>
       <th scope="col">Privilégio</th>
       <th scope="col">Excluir</th>
     </tr>
@@ -39,7 +76,6 @@
   <tr>
     <td><?php echo $rows_usuarios['id']; ?></td>
     <td><?php echo $rows_usuarios['usuario']; ?></td>
-    <td><?php echo $rows_usuarios['senha']; ?></td>
     <td><?php echo $rows_usuarios['privilegio']; ?></td> 
     <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#excluirUsuario<?php echo $rows_usuarios['id']; ?>" >X</button></td>                                                  
   </tr>
@@ -56,7 +92,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <?php echo "<a href='apagar_usuario.php?id=" . $rows_usuarios['id'] . "' data-confirm='Tem certeza de que deseja excluir o item selecionado?' style='color: white;'><button type='button' class='btn btn-primary'>Save changes</button></a>";?>
+        <?php echo "<a href='apagar_usuario.php?id=" . $rows_usuarios['id'] . "' data-confirm='Tem certeza de que deseja excluir o item selecionado?' style='color: white;'><button type='button' class='btn btn-primary'>Excluir</button></a>";?>
       </div>
     </div>
   </div>
