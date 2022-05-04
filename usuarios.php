@@ -14,7 +14,7 @@
   if ($confirmaId==true) {
     $apagar_usuario = "DELETE FROM usuarios WHERE id='$id'";
     $apagar = mysqli_query($connect, $apagar_usuario);
-    $_SESSION['apagarUsuario'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+    $_SESSION['apagarUsuario'] = "<div class='alert alert-info alert-dismissible fade show' role='alert'>
       Usuário excluido com sucesso!
       <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";   
     header("Location: usuarios.php");    
@@ -43,7 +43,7 @@
         <li class="nav-item">          
           <div class="nav-link">          
             <div class="dropdown">
-              <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 Solicitações
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -54,7 +54,7 @@
           </div> 
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModalCad">Cadastrar Usuário</button></a>          
+          <a class="nav-link" href="#"><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#myModalCad">Cadastrar Usuário</button></a>          
         </li>
       </ul>
     </div>

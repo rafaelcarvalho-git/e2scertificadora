@@ -54,7 +54,7 @@
         <li class="nav-item">          
           <div class="nav-link">          
             <div class="dropdown">
-              <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 Solicitações
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -65,7 +65,7 @@
           </div> 
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="usuarios.php"><button type="button" class="btn btn-success">Usuários</button></a>          
+          <a class="nav-link" href="usuarios.php"><button type="button" class="btn btn-info">Usuários</button></a>          
         </li>        
       </ul>
     </div>
