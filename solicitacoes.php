@@ -3,18 +3,6 @@
   include_once("conexao.php");
   $solicitar_dados = "SELECT * FROM SOLICITACOES";
   $solicitacoes = mysqli_query($connect, $solicitar_dados);
-  $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-  if (isset($id)) {
-    $confirmaId = true;
-  }else {
-    $confirmaId = false;
-  }
-  if ($confirmaId==true) {
-    $apagar_solicitacao = "DELETE FROM solicitacoes WHERE id='$id'";
-	  $apagar = mysqli_query($connect, $apagar_solicitacao);
-    header("Location: solicitacoes.php");    
-    $confirmaId = false;
-  }
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -26,13 +14,38 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.1/css/bootstrap.min.css" integrity="sha512-6KY5s6UI5J7SVYuZB4S/CZMyPylqyyNZco376NM2Z8Sb8OxEdp02e1jkKk/wZxIEmjQ6DRCEBhni+gpr9c4tvA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body class="bg-light">
-<nav class="navbar navbar-light bg-primary">
-    <img class="d-block mx-auto mb-4" src="img/logo.png" alt="" width="50" height="50">
-    <a href="usuarios.php"><button type="button" class="btn btn-success">Usuários</button></a> 
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#" style="color: white;" ><img src="img/logo.png" alt="" width="50" height="30" class="d-inline-block align-text-top">
+    AR E2S CORRETORA DE SEGUROS LTDA-ME</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">          
+          <div class="nav-link">          
+            <div class="dropdown">
+              <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Solicitações
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="solicitacoes.php">Ativas</a></li>
+                <li><a class="dropdown-item" href="solicitacoes_concluidas.php">Concluidas</a></li>
+              </ul>
+            </div>
+          </div> 
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="usuarios.php"><button type="button" class="btn btn-success">Usuários</button></a>          
+        </li>        
+      </ul>
+    </div>
+  </div>
 </nav>
 <main class="container">
     <div class="py-5 text-center">
-      <h2>Solicitações de Certificados Digitais</h2>
+      <h2>Solicitações de Certificados Digitais Ativas</h2>
       <p class="lead">Lista com todas as solicitações feitas por contadores ou administradores de sistema.</p>
     </div>  
 <?php
@@ -64,6 +77,7 @@
           <td><?php echo $rows_solicitacoes['data_solicitacao']; ?></td>                  
           <td><?php echo $rows_solicitacoes['contador']; ?></td>
           <td><button type="button" class="btn btn-primary">Baixar</button></td>
+          <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#concluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>">Concluir</button></td>
           <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#excluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>">Excluir</button></td>
         </tr>
 <!-- Janela Visualizar Informações Cliente -->
@@ -113,7 +127,27 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <?php echo "<a href='solicitacoes.php?id=" . $rows_solicitacoes['id'] . "' data-confirm='Tem certeza de que deseja excluir o item selecionado?' style='color: white;'><button type='button' class='btn btn-primary'>Excluir</button></a>";?>
+        <?php echo "<a href='apagar_solicitacao.php?id=" . $rows_solicitacoes['id'] . "' style='color: white;'><button type='button' class='btn btn-primary'>Excluir</button></a>";?>
+      </div>
+    </div>
+  </div>
+</div>
+<!------------------------------>
+<!-- Janela Confirma Concluir Solicitação -->
+<div class="modal fade" id="concluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Concluir Certificado Digital</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Deseja Concluir a solicitação de <?php echo $rows_solicitacoes['nome']; ?>?
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <?php echo "<a href='solicitacoes.php?id=" . $rows_solicitacoes['id'] . "' style='color: white;'><button type='button' class='btn btn-primary'>Excluir</button></a>";?>
       </div>
     </div>
   </div>

@@ -31,10 +31,34 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.1/css/bootstrap.min.css" integrity="sha512-6KY5s6UI5J7SVYuZB4S/CZMyPylqyyNZco376NM2Z8Sb8OxEdp02e1jkKk/wZxIEmjQ6DRCEBhni+gpr9c4tvA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body class="bg-light">
-<nav class="navbar navbar-light bg-primary">
-    <img class="d-block mx-auto mb-4" src="img/logo.png" alt="" width="50" height="50">
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModalCad">Cadastrar Usuário</button>
-    <a href="solicitacoes.php"><button type="button" class="btn btn-success">Solicitações</button></a> 
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#" style="color: white;" ><img src="img/logo.png" alt="" width="50" height="30" class="d-inline-block align-text-top">
+    AR E2S CORRETORA DE SEGUROS LTDA-ME</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">          
+          <div class="nav-link">          
+            <div class="dropdown">
+              <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Solicitações
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="solicitacoes.php">Ativas</a></li>
+                <li><a class="dropdown-item" href="solicitacoes_concluidas.php">Concluidas</a></li>
+              </ul>
+            </div>
+          </div> 
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModalCad">Cadastrar Usuário</button></a>          
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
 <!-- Janela Cadastrar Usuário -->
 <div class="modal fade" id="myModalCad" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
