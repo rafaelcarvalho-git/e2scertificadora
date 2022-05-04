@@ -12,35 +12,32 @@
   <title>E2S</title>    
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.1/css/bootstrap.min.css" integrity="sha512-6KY5s6UI5J7SVYuZB4S/CZMyPylqyyNZco376NM2Z8Sb8OxEdp02e1jkKk/wZxIEmjQ6DRCEBhni+gpr9c4tvA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-light">
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#" style="color: white;" ><img src="img/logo.png" alt="" width="50" height="30" class="d-inline-block align-text-top">
-    AR E2S CORRETORA DE SEGUROS LTDA-ME</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">          
-          <div class="nav-link">          
-            <div class="dropdown">
-              <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Solicitações
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="solicitacoes.php">Ativas</a></li>
-                <li><a class="dropdown-item" href="solicitacoes_concluidas.php">Concluidas</a></li>
-              </ul>
-            </div>
-          </div> 
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="usuarios.php"><button type="button" class="btn btn-info">Usuários</button></a>          
-        </li>        
-      </ul>
-    </div>
+    AR E2S CORRETORA DE SEGUROS LTDA-ME</a>   
+    <ul class="navbar-nav">
+      <li class="nav-item">          
+        <div class="nav-link">          
+          <div class="dropdown">
+            <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Solicitações
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="solicitacoes.php">Ativas</a></li>
+              <li><a class="dropdown-item" href="solicitacoes_concluidas.php">Concluidas</a></li>
+            </ul>
+          </div>
+        </div> 
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="usuarios.php"><button type="button" class="btn btn-info">Usuários</button></a>          
+      </li>        
+    </ul>   
   </div>
 </nav>
 <main class="container">
@@ -48,12 +45,12 @@
       <h2>Solicitações de Certificados Digitais Ativas</h2>
       <p class="lead">Lista com todas as solicitações feitas por contadores ou administradores de sistema.</p>
     </div>  
-<?php
-  if(isset($_SESSION['solicitacaoExcluida'])){
-    echo $_SESSION['solicitacaoExcluida'];
-    unset($_SESSION['solicitacaoExcluida']);
-  }
-?>
+    <?php
+      if(isset($_SESSION['apagarSolicitacao'])){
+        echo $_SESSION['apagarSolicitacao'];
+        unset($_SESSION['apagarSolicitacao']);
+      }
+    ?>
     <table class="table table-hover">
       <thead class="thead-dark">
         <tr>
@@ -77,8 +74,8 @@
           <td><?php echo $rows_solicitacoes['data_solicitacao']; ?></td>                  
           <td><?php echo $rows_solicitacoes['contador']; ?></td>
           <td><button type="button" class="btn btn-primary">Baixar</button></td>
-          <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#concluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>">Concluir</button></td>
-          <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#excluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>">Excluir</button></td>
+          <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#concluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>"><i class="bi bi-check2-circle"></i></button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#excluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>"><i class="bi bi-trash"></i></button></td>
         </tr>
 <!-- Janela Visualizar Informações Cliente -->
 <div class="modal fade" id="myModal<?php echo $rows_solicitacoes['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -144,11 +141,10 @@
       </div>
       <div class="modal-body">
         Deseja Concluir a solicitação de <?php echo $rows_solicitacoes['nome']; ?>?
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <?php echo "<a href='solicitacoes.php?id=" . $rows_solicitacoes['id'] . "' style='color: white;'><button type='button' class='btn btn-primary'>Excluir</button></a>";?>
+        <?php echo "<a href='concluir_solicitacoes.php?id=" . $rows_solicitacoes['id'] . "' style='color: white;'><button type='button' class='btn btn-primary'>Concluir</button></a>";?>
       </div>
     </div>
   </div>
