@@ -51,6 +51,12 @@
         unset($_SESSION['apagarSolicitacao']);
       }
     ?>
+    <?php
+      if(isset($_SESSION['concluirSolicitacao'])){
+        echo $_SESSION['concluirSolicitacao'];
+        unset($_SESSION['concluirSolicitacao']);
+      }
+    ?>
     <table class="table table-hover">
       <thead class="thead-dark">
         <tr>
@@ -136,15 +142,15 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Concluir Certificado Digital</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Concluir Solicitação</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Deseja Concluir a solicitação de <?php echo $rows_solicitacoes['nome']; ?>?
+        Deseja Concluir a solicitação de <?php echo $rows_solicitacoes['nome']; ?>? <br>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <?php echo "<a href='concluir_solicitacoes.php?id=" . $rows_solicitacoes['id'] . "' style='color: white;'><button type='button' class='btn btn-primary'>Concluir</button></a>";?>
+        <?php echo "<a href='concluir_solicitacao.php?id=" . $rows_solicitacoes['id'] . "' style='color: white;'><button type='button' class='btn btn-primary'>Excluir</button></a>";?>
       </div>
     </div>
   </div>
