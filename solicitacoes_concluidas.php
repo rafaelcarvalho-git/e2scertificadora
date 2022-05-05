@@ -3,34 +3,6 @@
   include_once("conexao.php");
   $solicitar_dados = "SELECT * FROM SOLICITACOES_CONCLUIDAS";
   $solicitacoes = mysqli_query($connect, $solicitar_dados);
-/*
-  echo $id_solicitacao;
-  echo $tipo;
-  echo $nome;
-  echo $data1;
-  echo $cont;*/
-
-/*
-
-  $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-  if (isset($id)) {
-    echo $id;
-    $confirmaId = true;
-  }else {
-    $confirmaId = false;
-  }
-  if ($confirmaId==true) {
-    $id_solicitacao = $rows_solicitacoes['id'];
-    $tipo = $rows_solicitacoes['tipo_certificado'];
-    $nome = $rows_solicitacoes['nome'];
-    $data1 = $rows_solicitacoes['data_solicitacao'];
-    $cont = $rows_solicitacoes['contador'];
-    $solicitacao_concluida = "INSERT INTO solicitacoes_concluidas(id, tipo_certificado, nome, data_solicitacao, contador, data_conclusao) VALUES ('$id_solicitacao', '$tipo', '$nome', '$data1', '$cont', NOW())";
-	$solicitacao = mysqli_query($connect, $solicitacao_concluida);
-    header("Location: solicitacoes.php");    
-    $confirmaId = false;
-  }*/
-
 ?>
 <!doctype html>
 <html lang="pt-br">
