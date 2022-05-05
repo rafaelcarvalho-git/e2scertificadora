@@ -1,8 +1,11 @@
 <?php /*exibir usuarios*/
   session_start();
   include_once("conexao.php");
-  $listar_usuarios = "SELECT * FROM USUARIOS";
+  $listar_usuarios = "SELECT * FROM usuarios";
   $usuarios = mysqli_query($connect, $listar_usuarios);
+  if($usuarios === FALSE) { 
+    die(mysqli_error($connect));
+  }
   ?>
   <?php /*Apagar usuario*/
   $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
