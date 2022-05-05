@@ -9,18 +9,9 @@ session_start();
     <title>E2S</title>    
     <link href="css/bootstrap.min.css" rel="stylesheet"><!-- Bootstrap core CSS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }@media (min-width: 768px) {.bd-placeholder-img-lg{font-size:3.5rem;}}
-      main {max-width:800px;padding:25px;margin: auto;}
-      #formulario {margin: auto;}p a{text-decoration: none;}
-    </style>
+    <link href="css/style.css" rel="stylesheet">
     <!-- Javascript para CEP -->
+    <link rel="shortcut icon" type="imagex/png" href="img/icone.ico">
 <script>
     function limpa_formulário_cep() { //Limpa valores do formulário de cep.           
             document.getElementById('rua').value=("");
@@ -84,7 +75,7 @@ session_start();
   ?>
 <form class="needs-validation" method="post" action="solicitar_sucesso.php" enctype="multipart/form-data" novalidate>
     <!--ESCOLHAS PARA O TIPO E VALOR DO CERTIFICADO SELECIONADO-->
-    <div class="col-md-9 mx-auto text-center">
+    <div class="select-cert">
       <label for="type-cpf" class="form-label">Tipo do Certificado</label>
       <select name="tipo-certificado" class="form-select" id="type-cpf" required>
         <option>Escolha o certificado</option>
@@ -117,56 +108,64 @@ session_start();
         <div class="invalid-feedback">Insira o nome do cliente.</div>
       </div>
 
-      <div class="col-sm-5 mx-auto"><!--CPF DO CLIENTE-->
-        <label for="cpf-cliente" class="form-label">CPF</label>
-        <input name="cpf" type="text" class="form-control" id="cpf-cliente" required>
-        <div class="invalid-feedback">Insira o CPF do cliente.</div>
-      </div>
+      <section>
+        <div class="input-info"><!--CPF DO CLIENTE-->
+          <label for="cpf-cliente" class="form-label">CPF</label>
+          <input name="cpf" type="text" class="form-control" id="cpf-cliente" required>
+          <div class="invalid-feedback">Insira o CPF do cliente.</div>
+        </div>
 
-      <div class="col-sm-5 ms-0 mx-auto"><!--DATA NASCIMENTO DO CLIENTE-->
-        <label for="data-cliente" class="form-label">Data Nascimento</label>
-        <input name="data-nascimento" type="date" class="form-control" id="data-cliente" required>
-        <div class="invalid-feedback">Insira a data de nascimento do cliente.</div>
-      </div>
+        <div class="input-info"><!--DATA NASCIMENTO DO CLIENTE-->
+          <label for="data-cliente" class="form-label">Data Nascimento</label>
+          <input name="data-nascimento" type="date" class="form-control" id="data-cliente" required>
+          <div class="invalid-feedback">Insira a data de nascimento do cliente.</div>
+        </div>
+      </section>
 
-      <div class="col-sm-6 mx-auto"><!--EMAIL DO CLIENTE-->
-        <label for="email-cliente" class="form-label">Email</label>
-        <input name="email" type="email" class="form-control" id="email-cliente" required>
-        <div class="invalid-feedback">Insira o email do cliente.</div>
-      </div>
+      <section>
+        <div class="input-info"><!--EMAIL DO CLIENTE-->
+          <label for="email-cliente" class="form-label">Email</label>
+          <input name="email" type="email" class="form-control" id="email-cliente" required>
+          <div class="invalid-feedback">Insira o email do cliente.</div>
+        </div>
 
-      <div class="col-sm-4 ms-0 mx-auto"><!--TELEFONE DO CLIENTE-->
-        <label for="endereco-cliente" class="form-label">Telefone</label>
-        <input name="telefone" type="text" class="form-control" id="telefone-cliente" required>
-        <div class="invalid-feedback">Insira o telefone do cliente.</div>
-      </div>
-  
-      <div class="col-4 mx-auto"><!--CEP DO CLIENTE-->
-        <label for="cep-cliente" class="form-label">CEP<span class="text-muted"></span></label>
-        <input name="cep" type="text" id="cep" class="form-control" value="" size="10" maxlength="9"
-               onblur="pesquisacep(this.value);" required/>   
-        <div class="invalid-feedback">Insira um CEP válido.</div>
-      </div>
+        <div class="input-info"><!--TELEFONE DO CLIENTE-->
+          <label for="endereco-cliente" class="form-label">Telefone</label>
+          <input name="telefone" type="text" class="form-control" id="telefone-cliente" required>
+          <div class="invalid-feedback">Insira o telefone do cliente.</div>
+        </div>
+      </section>
 
-      <div class="col-4 ms-0 mx-auto"><!--BAIRRO DO CLIENTE-->
-        <label for="bairro-cliente" class="form-label">Bairro<span class="text-muted"></span></label>
-        <input name="bairro" type="text" id="bairro" class="form-control" size="40" required/>
-        <div class="invalid-feedback">Insira o Bairro.</div>
-      </div>
+      <section>
+        <div class="input-info"><!--CEP DO CLIENTE-->
+          <label for="cep-cliente" class="form-label">CEP<span class="text-muted"></span></label>
+          <input name="cep" type="text" id="cep" class="form-control" value="" size="10" maxlength="9"
+                  onblur="pesquisacep(this.value);" required/>   
+          <div class="invalid-feedback">Insira um CEP válido.</div>
+        </div>
 
-      <div class="col-2 ms-0 mx-auto"><!--NUM DO CLIENTE-->
-        <label for="num-cliente" class="form-label">N°<span class="text-muted"></span></label>
-        <input name="num" type="number" class="form-control" id="num-cliente" required>
-        <div class="invalid-feedback">Insira o número do endereço.</div>
-      </div>
+        <div class="input-info"><!--BAIRRO DO CLIENTE-->
+          <label for="bairro-cliente" class="form-label">Bairro<span class="text-muted"></span></label>
+          <input name="bairro" type="text" id="bairro" class="form-control" size="40" required/>
+          <div class="invalid-feedback">Insira o Bairro.</div>
+        </div>
+      </section>
 
-      <div class="col-md-11 mx-auto"><!--RUA DO CLIENTE-->
-        <label for="rua-cliente" class="form-label">Rua (Logradouro)</label>
-        <input name="rua" type="text" id="rua" class="form-control" size="60" required/>    
-        <div class="invalid-feedback">Insira a rua do cliente.</div>
-      </div>
+      <section>
+        <div class="input-info" id="rua"><!--RUA DO CLIENTE-->
+          <label for="rua-cliente" class="form-label">Rua (Logradouro)</label>
+          <input name="rua" type="text" id="rua" class="form-control" size="60" required/>    
+          <div class="invalid-feedback">Insira a rua do cliente.</div>
+        </div>
+
+        <div class="input-info" id="num"><!--NUM DO CLIENTE-->
+          <label for="num-cliente" class="form-label">N°<span class="text-muted"></span></label>
+          <input name="num" type="number" class="form-control" id="num-cliente" required>
+          <div class="invalid-feedback">Insira o número do endereço.</div>
+        </div>        
+      </section>
            
-      <div class="col-md-11 mx-auto"><!--OBSERVACOES CLIENTE-->
+      <div class="observacoes"><!--OBSERVACOES CLIENTE-->
         <label for="obs-cliente" class="form-label">OBSERVACOES</label>
         <input name="observacoes" type="textarea" class="form-control" id="obs-cliente">
       </div>

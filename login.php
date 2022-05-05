@@ -13,6 +13,7 @@ session_start();
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sign-in/">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/signin.css" rel="stylesheet">
+    <link rel="shortcut icon" type="imagex/png" href="img/icone.ico">
 </head>
 <body class="text-center">
 <main class="form-signin">

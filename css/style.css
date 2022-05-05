@@ -1,11 +1,38 @@
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}@media (min-width: 768px) {.bd-placeholder-img-lg{font-size:3.5rem;}}
+main {max-width:720px;padding:25px;margin: auto;}
+#formulario {margin: auto;}p a{text-decoration: none;}
+.navbar-brand, .navbar-nav {margin: auto;}
 
-
-.navbar-brand {
-  margin: auto;
+section {
+  display: flex;
 }
 
-.navbar-nav {
+.input-info {
+  width: 48%;
   margin: auto;
-    
-    
-  }
+  padding: 10px;
+}
+#rua {
+  width: 86%;
+}
+
+#num {
+  width: 12%;
+}
+
+#obs-cliente {
+  height: 80px;
+}
+
+.select-cert {
+  text-align: center;
+  width: 75%;
+  margin: auto;
+  padding: 20px;
+}
