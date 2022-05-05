@@ -1,8 +1,11 @@
 <?php
   session_start();
   include_once("conexao.php");
-  $solicitar_dados = "SELECT * FROM SOLICITACOES";
+  $solicitar_dados = "SELECT * FROM solicitacoes";
   $solicitacoes = mysqli_query($connect, $solicitar_dados);
+  if($solicitacoes === FALSE) { 
+    die(mysqli_error($connect));
+  }
 ?>
 <!doctype html>
 <html lang="pt-br">
