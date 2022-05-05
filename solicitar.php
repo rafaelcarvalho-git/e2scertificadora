@@ -214,7 +214,7 @@ session_start();
         $rua = strtoupper($rua);        
         $endereco = "{$rua}, {$num} - {$bairro}";        
         $observacoes = strtoupper($_POST["observacoes"]);
-        $result_solicitar = "INSERT INTO solicitacoes(tipo_certificado, nome, cpf, data_nascimento, email, telefone, cep, endereco, observacoes, data_solicitacao, situacao_solicitacao, contador, documentos) VALUES ('$tipo_certificado', '$nome', $cpf, '$data_nascimento', '$email', '$telefone', '$cep', '$endereco', '$observacoes', NOW(), 'PROCESSANDO',	'GEONE', 'documentos')";
+        $result_solicitar = "INSERT INTO solicitacoes(tipo_certificado, nome, cpf, data_nascimento, email, telefone, cep, endereco, observacoes, data_solicitacao, contador, documentos) VALUES ('$tipo_certificado', '$nome', $cpf, '$data_nascimento', '$email', '$telefone', '$cep', '$endereco', '$observacoes', NOW(), 'GEONE', 'documentos')";
 	      $resultado_solicitar= mysqli_query($connect, $result_solicitar);
         $_SESSION['msg'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
         Certificado Digital solicitado com sucesso! Iremos realizar o cadastro do cliente e o atendimento. Aguarde nosso contato.
