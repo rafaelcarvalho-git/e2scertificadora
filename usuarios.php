@@ -6,23 +6,6 @@
   if($usuarios === FALSE) { 
     die(mysqli_error($connect));
   }
-  ?>
-  <?php /*Apagar usuario*/
-  $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-  if (isset($id)) {
-    $confirmaId = true;
-  }else {
-    $confirmaId = false;
-  }
-  if ($confirmaId==true) {
-    $apagar_usuario = "DELETE FROM usuarios WHERE id='$id'";
-    $apagar = mysqli_query($connect, $apagar_usuario);
-    $_SESSION['apagarUsuario'] = "<div class='alert alert-info alert-dismissible fade show' role='alert'>
-      Usuário excluido com sucesso!
-      <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";   
-    header("Location: usuarios.php");    
-    $confirmaId = false;
-  }
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -98,9 +81,9 @@
   <p class="lead">Lista de usuários do sistema, incluido contadores e administradores.</p>
 </div>
 <?php
-    if(isset($_SESSION['msg'])){
-      echo $_SESSION['msg'];
-      unset($_SESSION['msg']);
+    if(isset($_SESSION['apagarUsuario'])){
+      echo $_SESSION['apagarUsuario'];
+      unset($_SESSION['apagarUsuario']);
     }
 ?>
 <table class="table table-hover">
@@ -133,7 +116,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <?php echo "<a href='usuarios.php?id=" . $rows_usuarios['id'] . "' data-confirm='Tem certeza de que deseja excluir o item selecionado?' style='color: white;'><button type='button' class='btn btn-primary'>Excluir</button></a>";?>
+        <?php echo "<a href='excluir_usuario.php?id=" . $rows_usuarios['id'] . "' data-confirm='Tem certeza de que deseja excluir o item selecionado?' style='color: white;'><button type='button' class='btn btn-primary'>Excluir</button></a>";?>
       </div>
     </div>
   </div>
