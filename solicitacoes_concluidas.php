@@ -1,5 +1,15 @@
 <?php
-  session_start();
+    session_start();
+    include_once('conexao.php');
+    if((!isset($_SESSION['usuario']) == true) and (!isset($_SESSION['senha']) == true)) {
+        unset($_SESSION['usuario']);
+        unset($_SESSION['senha']);
+        $_SESSION['erroLogin'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>É necessário realizar o login!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";    
+        header('Location: login.php');
+    }
+    $logado = $_SESSION['usuario'];
+?>
+<?php
   include_once("conexao.php");
   $solicitar_dados = "SELECT * FROM solicitacoes_concluidas";
   $solicitacoes = mysqli_query($connect, $solicitar_dados);
@@ -41,7 +51,7 @@
         <a class="nav-link" href="usuarios.php"><button type="button" class="btn btn-info">Usuários</button></a>          
       </li>    
       <li class="nav-item">
-        <a class="nav-link" href="sair.php"><button type="button" class="btn btn-danger">Sair</button></a>          
+        <a class="nav-link"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#sairSistema">Sair</button></a>       
       </li>      
     </ul>   
   </div>
@@ -74,6 +84,25 @@
         </tr><?php } ?>
 </tbody>
 </table>
+<!-- Janela Confirma Sair do Sistema (logout) -->
+<div class="modal fade" id="sairSistema" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Sair do Sistema</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Deseja sair do sistema e ir para tela de login? <br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <a href="sair.php"><button type='button' class='btn btn-primary'>Sair</button></a> 
+      </div>
+    </div>
+  </div>
+</div>
+<!------------------------------>
 </main>
 <footer class="my-5 pt-5 text-muted text-center text-small">
   <p class="mb-1">&copy; 2022 - E2S Corretora de Seguros LTDA-ME</p>

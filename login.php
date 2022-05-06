@@ -1,9 +1,3 @@
-<?php
-
-session_start();
-
-?>
-
 <!doctype html>
 <html lang="pt-br">
 <head>
@@ -25,12 +19,11 @@ session_start();
     <h1 class="h3 mb-3 fw-normal">Login</h1>
 
     <?php
-        if(isset($_SESSION['msg'])) {
-            echo($_SESSION['msg']);
-            unset($_SESSION['msg']);
+        if(isset($_SESSION['log'])){
+          echo $_SESSION['log'];
+          unset($_SESSION['log']);
         }
     ?>
-
     <div class="form-floating">
       <input type="text" class="form-control"  name="usuario" required>
       <label>Usuário</label>

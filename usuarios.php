@@ -1,5 +1,15 @@
-<?php /*exibir usuarios*/
-  session_start();
+<?php
+    session_start();
+    include_once('conexao.php');
+    if((!isset($_SESSION['usuario']) == true) and (!isset($_SESSION['senha']) == true)) {
+        unset($_SESSION['usuario']);
+        unset($_SESSION['senha']);
+        $_SESSION['erroLogin'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>É necessário realizar o login!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";    
+        header('Location: login.php');
+    }
+    $logado = $_SESSION['usuario'];
+?>
+<?php
   include_once("conexao.php");
   $listar_usuarios = "SELECT * FROM usuarios";
   $usuarios = mysqli_query($connect, $listar_usuarios);
@@ -38,16 +48,16 @@
         </div> 
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#myModalCad">Cadastrar Usuário</button></a>          
+        <a class="nav-link" href="#"><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#cadastrarUsuario">Cadastrar Usuário</button></a>          
       </li>   
       <li class="nav-item">
-        <a class="nav-link" href="sair.php"><button type="button" class="btn btn-danger">Sair</button></a>          
+      <a class="nav-link"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#sairSistema">Sair</button></a>              
       </li>       
     </ul>   
   </div>
 </nav>
 <!-- Janela Cadastrar Usuário -->
-<div class="modal fade" id="myModalCad" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="cadastrarUsuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -84,9 +94,13 @@
   <p class="lead">Lista de usuários do sistema, incluido contadores e administradores.</p>
 </div>
 <?php
-    if(isset($_SESSION['apagarUsuario'])){
-      echo $_SESSION['apagarUsuario'];
-      unset($_SESSION['apagarUsuario']);
+    if(isset($_SESSION['excluirUsuario'])){
+      echo $_SESSION['excluirUsuario'];
+      unset($_SESSION['excluirUsuario']);
+    }
+    if(isset($_SESSION['usuarioCadastrado'])){
+      echo $_SESSION['usuarioCadastrado'];
+      unset($_SESSION['usuarioCadastrado']);
     }
 ?>
 <table class="table table-hover">
@@ -106,12 +120,12 @@
     <td><?php echo $rows_usuarios['privilegio']; ?></td> 
     <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#excluirUsuario<?php echo $rows_usuarios['id']; ?>" >X</button></td>                                                  
   </tr>
-<!-- Janela Confirma Apagar Usuário -->
+<!-- Janela Confirma excluir Usuário -->
 <div class="modal fade" id="excluirUsuario<?php echo $rows_usuarios['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Deletar Usuário</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Excluir Usuário</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -127,6 +141,25 @@
 <!------------------------------><?php } ?>
 </tbody>
 </table>
+<!-- Janela Confirma Sair do Sistema (logout) -->
+<div class="modal fade" id="sairSistema" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Sair do Sistema</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Deseja sair do sistema e ir para tela de login? <br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <a href="sair.php"><button type='button' class='btn btn-primary'>Sair</button></a> 
+      </div>
+    </div>
+  </div>
+</div>
+<!------------------------------>
 </main>
 <footer class="my-5 pt-5 text-muted text-center text-small">
   <p class="mb-1">&copy; 2022 - E2S Corretora de Seguros LTDA-ME</p>

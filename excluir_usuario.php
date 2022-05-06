@@ -1,4 +1,4 @@
-<?php /*Apagar usuario*/
+<?php
   session_start();
   include_once("conexao.php");
   $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
@@ -8,9 +8,9 @@
     $confirmaId = false;
   }
   if ($confirmaId==true) {
-    $apagar_usuario = "DELETE FROM usuarios WHERE id='$id'";
-    $apagar = mysqli_query($connect, $apagar_usuario);
-    $_SESSION['apagarUsuario'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+    $excluir_usuario = "DELETE FROM usuarios WHERE id='$id'";
+    $excluir = mysqli_query($connect, $excluir_usuario);
+    $_SESSION['excluirUsuario'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
       Usuário excluido com sucesso!
       <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";   
     header("Location: usuarios.php");    

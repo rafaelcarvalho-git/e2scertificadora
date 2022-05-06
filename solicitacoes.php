@@ -1,5 +1,15 @@
 <?php
-  session_start();
+    session_start();
+    include_once('conexao.php');
+    if((!isset($_SESSION['usuario']) == true) and (!isset($_SESSION['senha']) == true)) {
+        unset($_SESSION['usuario']);
+        unset($_SESSION['senha']);
+        $_SESSION['erroLogin'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>É necessário realizar o login!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";    
+        header('Location: login.php');
+    }
+    $logado = $_SESSION['usuario'];
+?>
+<?php
   include_once("conexao.php");
   $solicitar_dados = "SELECT * FROM solicitacoes";
   $solicitacoes = mysqli_query($connect, $solicitar_dados);
@@ -42,7 +52,7 @@
         <a class="nav-link" href="usuarios.php"><button type="button" class="btn btn-info">Usuários</button></a>          
       </li>    
       <li class="nav-item">
-        <a class="nav-link" href="sair.php"><button type="button" class="btn btn-danger">Sair</button></a>          
+        <a class="nav-link"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#sairSistema">Sair</button></a>  
       </li>      
     </ul>   
   </div>
@@ -53,12 +63,10 @@
       <p class="lead">Lista com todas as solicitações feitas por contadores ou administradores de sistema.</p>
     </div>  
     <?php
-      if(isset($_SESSION['apagarSolicitacao'])){
-        echo $_SESSION['apagarSolicitacao'];
-        unset($_SESSION['apagarSolicitacao']);
+      if(isset($_SESSION['excluirSolicitacao'])){
+        echo $_SESSION['excluirSolicitacao'];
+        unset($_SESSION['excluirSolicitacao']);
       }
-    ?>
-    <?php
       if(isset($_SESSION['concluirSolicitacao'])){
         echo $_SESSION['concluirSolicitacao'];
         unset($_SESSION['concluirSolicitacao']);
@@ -83,7 +91,7 @@
           <td><?php echo $rows_solicitacoes['id']; ?></td>
           <td><?php echo $rows_solicitacoes['nome']; ?></td>
           <td><?php echo $rows_solicitacoes['tipo_certificado']; ?></td>
-          <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal<?php echo $rows_solicitacoes['id']; ?>">Visualizar</button></td>
+          <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#visualizarSolicitacao<?php echo $rows_solicitacoes['id']; ?>">Visualizar</button></td>
           <td><?php echo $rows_solicitacoes['data_solicitacao']; ?></td>                  
           <td><?php echo $rows_solicitacoes['contador']; ?></td>
           <td><button type="button" class="btn btn-primary">Baixar</button></td>
@@ -91,11 +99,11 @@
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#excluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>"><i class="bi bi-trash"></i></button></td>
         </tr>
 <!-- Janela Visualizar Informações Cliente -->
-<div class="modal fade" id="myModal<?php echo $rows_solicitacoes['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="visualizarSolicitacao<?php echo $rows_solicitacoes['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="visualizarSolicitacaoLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" id="myModalLabel">Informações do cliente</h4>
+          <h4 class="modal-title" id="visualizarSolicitacaoLabel">Informações do cliente</h4>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -124,7 +132,7 @@
     </div>
 </div>
 <!------------------------------>
-<!-- Janela Confirma Apagar Solicitação -->
+<!-- Janela Confirma Excluir Solicitação -->
 <div class="modal fade" id="excluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -138,7 +146,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <?php echo "<a href='apagar_solicitacao.php?id=" . $rows_solicitacoes['id'] . "' style='color: white;'><button type='button' class='btn btn-primary'>Excluir</button></a>";?>
+        <?php echo "<a href='excluir_solicitacao.php?id=" . $rows_solicitacoes['id'] . "' style='color: white;'><button type='button' class='btn btn-primary'>Excluir</button></a>";?>
       </div>
     </div>
   </div>
@@ -165,6 +173,25 @@
 <!------------------------------><?php } ?>
 </tbody>
 </table>
+<!-- Janela Confirma Sair do Sistema (logout) -->
+<div class="modal fade" id="sairSistema" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Sair do Sistema</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Deseja sair do sistema e ir para tela de login? <br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <a href="sair.php"><button type='button' class='btn btn-primary'>Sair</button></a> 
+      </div>
+    </div>
+  </div>
+</div>
+<!------------------------------>
 </main>
 <footer class="my-5 pt-5 text-muted text-center text-small">
   <p class="mb-1">&copy; 2022 - E2S Corretora de Seguros LTDA-ME</p>
