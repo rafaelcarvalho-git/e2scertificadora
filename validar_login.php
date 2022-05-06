@@ -1,34 +1,36 @@
 <?php
-session_start();
-include_once("conexao.php");
-$btnLogin = filter_input(INPUT_POST, 'btnLogin', FILTER_SANITIZE_STRING);
-if($btnLogin){
-	$usuario = filter_input(INPUT_POST, 'usuario', FILTER_SANITIZE_STRING);
-	$senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_STRING);
-	//echo "$usuario - $senha";
-	if((!empty($usuario)) AND (!empty($senha))){
-		//Gerar a senha criptografa
-		//echo password_hash($senha, PASSWORD_DEFAULT);
-		//Pesquisar o usuário no BD
-		$result_usuario = "SELECT id, nome, email, senha FROM usuarios WHERE usuario='$usuario' LIMIT 1";
-		$resultado_usuario = mysqli_query($connect, $result_usuario);
-		if($resultado_usuario){
-			$row_usuario = mysqli_fetch_assoc($resultado_usuario);
-			if(password_verify($senha, $row_usuario['senha'])){
-				$_SESSION['id'] = $row_usuario['id'];
-				$_SESSION['nome'] = $row_usuario['nome'];
-				$_SESSION['email'] = $row_usuario['email'];
-				header("Location: solicitar.php");
-			}else{
-				$_SESSION['msg'] = "Login e senha incorreto!";
-				header("Location: login.php");
-			}
+	include_once("conexao.php");
+	/*print_r($_REQUEST);*/
+	if(isset($_POST['btnLogin']) && !empty($_POST['usuario']) && !empty($_POST['senha'])) {
+		$_SESSION['msg'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>Solicitação concluida com sucesso!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
+
+		$usuario = $_POST['usuario'];
+		$senha = $_POST['senha'];
+
+		$consultar_usuarios = "SELECT * FROM usuarios WHERE usuario = '$usuario' AND senha = '$senha'";
+  		$usuarios = mysqli_query($connect, $consultar_usuarios);
+
+/*FAZER IF E SELECT PARA DIFERENCIAR LOGIN DE CONTADOR E ADMINISTRADOR*/
+
+		if(mysqli_num_rows($usuarios) < 1)
+		{
+			/*unset($_SESSION['usuario']);
+			unset($_SESSION['senha']);*/
+			header('Location: login.php');
+			print_r('nao existe');
 		}
-	}else{
-		$_SESSION['msg'] = "Login e senha incorreto!";
-		header("Location: login.php");
+		else
+		{
+			/*$_SESSION['usuario'] = $usuario;
+			$_SESSION['senha'] = $senha;*/
+			header('Location: solicitacoes.php');
+			print_r('existe');
+		}
+	}else {
+		$_SESSION['msg'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>Solicitação concluida com sucesso!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";    
+		header('Location: login.php');
 	}
-}else{
-	$_SESSION['msg'] = "Página não encontrada";
-	header("Location: login.php");
-}
+
+
+
+?>

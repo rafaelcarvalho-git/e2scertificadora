@@ -38,8 +38,11 @@
         </div> 
       </li>
       <li class="nav-item">
-      <a class="nav-link" href="#"><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#myModalCad">Cadastrar Usuário</button></a>          
-      </li>        
+        <a class="nav-link" href="#"><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#myModalCad">Cadastrar Usuário</button></a>          
+      </li>   
+      <li class="nav-item">
+        <a class="nav-link" href="sair.php"><button type="button" class="btn btn-danger">Sair</button></a>          
+      </li>       
     </ul>   
   </div>
 </nav>

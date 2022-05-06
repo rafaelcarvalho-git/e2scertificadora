@@ -39,7 +39,10 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="usuarios.php"><button type="button" class="btn btn-info">Usuários</button></a>          
-      </li>        
+      </li>    
+      <li class="nav-item">
+        <a class="nav-link" href="sair.php"><button type="button" class="btn btn-danger">Sair</button></a>          
+      </li>      
     </ul>   
   </div>
 </nav>
