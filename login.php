@@ -24,6 +24,12 @@
           unset($_SESSION['log']);
         }
     ?>
+    <?php
+        if(isset($_SESSION['erroLogin'])){
+          echo $_SESSION['erroLogin'];
+          unset($_SESSION['erroLogin']);
+        }
+    ?>
     <div class="form-floating">
       <input type="text" class="form-control"  name="usuario" required>
       <label>Usuário</label>
