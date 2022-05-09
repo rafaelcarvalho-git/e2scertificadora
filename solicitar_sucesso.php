@@ -21,7 +21,6 @@
     $endereco = "{$rua}, {$num} - {$bairro}";        
     $observacoes = strtoupper($_POST["observacoes"]);
     $contador = $_SESSION['usuario'];
-
 //documentos
 $diretorio = "documentos/";
 
@@ -44,13 +43,8 @@ if(!is_dir($diretorio)){
                     unlink($destino);
                 }
             }                                         
-            echo $destino;
-			echo "Upload realizado com sucesso<br>"; 
-		}else{
-			echo "Erro ao realizar upload";
 		}
 	}
-
 }
     $result_solicitar = "INSERT INTO solicitacoes(tipo_certificado, nome, cpf, data_nascimento, email, telefone, cep, endereco, observacoes, data_solicitacao, contador, documentos) VALUES ('$tipo_certificado', '$nome', $cpf, '$data_nascimento', '$email', '$telefone', '$cep', '$endereco', '$observacoes', NOW(), '$contador', '$fileName')";
     $resultado_solicitar= mysqli_query($connect, $result_solicitar);

@@ -160,9 +160,9 @@
       </section>
 
       <section>
-        <div class="input-info" id="rua"><!--RUA DO CLIENTE-->
+        <div class="input-info"><!--RUA DO CLIENTE-->
           <label for="rua-cliente" class="form-label">Rua (Logradouro)</label>
-          <input name="rua" type="text" id="rua" class="form-control" size="60" required/>    
+          <input name="rua" type="text" id="rua" class="form-control" size="80" required/>    
           <div class="invalid-feedback">Insira a rua do cliente.</div>
         </div>
 
