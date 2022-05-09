@@ -9,10 +9,10 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="shortcut icon" type="imagex/png" href="img/icone.ico">
 </head>
-<body class="bg-light"><form action="index2.php" method="post" enctype="multipart/form-data">
+<body class="bg-light"><form action="upload.php" method="post" enctype="multipart/form-data">
   <div class="form-group">
     <label for="exampleFormControlFile1">Exemplo de input de arquivo</label>
-    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="imagem">
+    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="documentos[]" multiple="multiple">
 
     <button type="submit">AAA</button>
   </div>

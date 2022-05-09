@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    session_start();/*
     include_once('conexao.php');
     if ((!isset($_SESSION['usuario']) == true) and (!isset($_SESSION['senha']) == true) and (!isset($_SESSION['privilegio']) == true) and (isset($_SESSION['privilegio']) != 'Administrador')) {
         unset($_SESSION['usuario']);
@@ -7,7 +7,7 @@
         unset($_SESSION['privilegio']);
         header('Location: login.php');
     }
-    $logado = $_SESSION['usuario'];
+    $logado = $_SESSION['usuario'];*/
 ?>
 <?php
   include_once("conexao.php");
