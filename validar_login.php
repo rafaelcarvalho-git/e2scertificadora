@@ -10,25 +10,25 @@
 			unset($_SESSION['usuario']);
 			unset($_SESSION['senha']);
 			echo "<br><strong>usuario nao existe no banco de dados</strong>";
-			$_SESSION['log'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>Solicitação concluida com sucesso!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";    
-			header('Location: login.php');
+			//header('Location: login.php');
 		}else {
-			$_SESSION['usuario'] = $usuario;
-			$_SESSION['senha'] = $senha;
-			echo "<br><strong>usuario EXISTE no banco de dados</strong>";
+			echo "<br><strong>usuario EXISTE no banco de dados</strong><br>";
 			$consultar_privilegio = "SELECT privilegio FROM `usuarios` WHERE usuario = '$usuario'";
   			$privilegio_usuario = mysqli_query($connect, $consultar_privilegio);
 			$privilegio = mysqli_fetch_assoc($privilegio_usuario); 
+			$_SESSION['usuario'] = $usuario;
+			$_SESSION['senha'] = $senha;
 			$_SESSION['privilegio'] = $privilegio['privilegio'];
 			echo $_SESSION['privilegio'];
 			if ($_SESSION['privilegio'] =='Administrador') {
+				echo "<br>adm {$_SESSION['privilegio']} <br";
 				header('Location: solicitacoes.php');
-			}else {
+			}else if ($_SESSION['privilegio'] =='Contador'){
+				echo "cont", $_SESSION['privilegio'];
 				header('Location: solicitar.php');
 			}	
 		}
-	}else {
-		$_SESSION['log'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>Solicitação concluida com sucesso!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";    
+	}else {   
 		header('Location: login.php');
 	}
 ?>

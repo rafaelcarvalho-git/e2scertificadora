@@ -34,6 +34,9 @@
     <a class="navbar-brand" href="#" style="color: white;" ><img src="img/logo.png" alt="" width="50" height="30" class="d-inline-block align-text-top">
     AR E2S CORRETORA DE SEGUROS LTDA-ME</a>   
     <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="solicitar.php"><button type="button" class="btn btn-info">Nova Solicitação</button></a>          
+      </li>    
       <li class="nav-item">          
         <div class="nav-link">          
           <div class="dropdown">

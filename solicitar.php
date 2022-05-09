@@ -1,5 +1,13 @@
 <?php
-session_start();
+    session_start();
+    include_once('conexao.php');
+    if((!isset($_SESSION['usuario']) == true) and (!isset($_SESSION['senha']) == true) and (!isset($_SESSION['privilegio']) == true)) {
+        unset($_SESSION['usuario']);
+        unset($_SESSION['senha']);
+        unset($_SESSION['privilegio']);
+        header('Location: login.php');
+    }
+    $logado = $_SESSION['usuario'];
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -65,7 +73,7 @@ session_start();
   <h2>Solicitação de Certificado Digital</h2>
   <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
 </header>
-<h2>Seja bem vindo, CONTADOR</h2>
+<h2>Olá, <?php echo $logado; ?></h2>
 </div>
 <?php
   if (isset($_SESSION['solicitacaoSucesso'])) {

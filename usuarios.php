@@ -1,10 +1,10 @@
 <?php
     session_start();
     include_once('conexao.php');
-    if((!isset($_SESSION['usuario']) == true) and (!isset($_SESSION['senha']) == true)) {
+    if((!isset($_SESSION['usuario']) == true) and (!isset($_SESSION['senha']) == true) and (!isset($_SESSION['privilegio']) == true)) {
         unset($_SESSION['usuario']);
         unset($_SESSION['senha']);
-        $_SESSION['erroLogin'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>É necessário realizar o login!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";    
+        unset($_SESSION['privilegio']);
         header('Location: login.php');
     }
     $logado = $_SESSION['usuario'];
@@ -34,6 +34,9 @@
     <a class="navbar-brand" href="#" style="color: white;" ><img src="img/logo.png" alt="" width="50" height="30" class="d-inline-block align-text-top">
     AR E2S CORRETORA DE SEGUROS LTDA-ME</a>   
     <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="solicitar.php"><button type="button" class="btn btn-info">Nova Solicitação</button></a>          
+      </li>    
       <li class="nav-item">          
         <div class="nav-link">          
           <div class="dropdown">
