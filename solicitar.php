@@ -69,11 +69,14 @@
 <body class="bg-light">
 <main>
 <header class="py-5 text-center"><!--TOPO DA PÁGINA-->
-  <img class="d-block mx-auto mb-4" src="img/logo.png" alt="" width="80" height="50">
-  <h2>Solicitação de Certificado Digital</h2>
+  <div class="logomarca"> 
+    <img class="d-block mx-auto mb-4" src="img/logo.png" alt="" width="85" height="50">
+    <h4>AR E2S CORRETORA DE SEGUROS LTDA-ME</h4>
+  </div>
+  <h2>Solicitar Certificado Digital</h2>
   <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
 </header>
-<h2>Olá, <?php echo $logado; ?></h2>
+<h2>Olá, <?php echo $logado; ?>.</h2>
 </div>
 <?php
   if (isset($_SESSION['solicitacaoSucesso'])) {
@@ -187,7 +190,7 @@
     </form>
 </main>  
 <footer class="my-5 pt-5 text-muted text-center text-small">
-  <p class="mb-1">&copy; 2022 - E2S Corretora de Seguros LTDA-ME</p>
+  <p class="mb-1">&copy; <?php echo date("Y");?> - AR E2S Corretora de Seguros LTDA-ME</p>
   <p>Site desenvolvido por<a href="https://www.linkedin.com/in/rafaelcarvalho-ti"> Rafael Carvalho</a></p>
 </footer>
 </div>

@@ -165,8 +165,8 @@
 <!------------------------------>
 </main>
 <footer class="my-5 pt-5 text-muted text-center text-small">
-  <p class="mb-1">&copy; 2022 - E2S Corretora de Seguros LTDA-ME</p>
-  <p>Site desenvolvido por <a href="https://www.linkedin.com/in/rafaelcarvalho-ti">Rafael Carvalho</a></p>
+  <p class="mb-1">&copy; <?php echo date("Y");?> - AR E2S Corretora de Seguros LTDA-ME</p>
+  <p>Site desenvolvido por<a href="https://www.linkedin.com/in/rafaelcarvalho-ti"> Rafael Carvalho</a></p>
 </footer>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

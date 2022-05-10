@@ -1,0 +1,14 @@
+body {background: #d8e9f2;}
+main{margin: 80px auto auto auto;height: 768px;}
+.logomarca{width: 500px;margin: auto;margin-bottom: 40px;}
+form {
+    width: 500px;
+    height: 420px;
+    border-radius: 20px;
+    margin: 40px auto auto auto;
+    background: white;
+    box-shadow: 0px 2px 15px rgb(0 0 0 / 35%);
+}
+h2 {padding: 15px;}
+.form-floating, .btn{margin: auto;width: 400px;}
+.btn {margin-top: 30px;box-shadow: 0px 2px 15px rgb(0 0 0 / 35%);}
