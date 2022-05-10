@@ -97,7 +97,7 @@
               Solicitações
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="solicitacoes.php">Ativas</a></li>
+              <li><a class="dropdown-item" href="solicitacoes_ativas.php">Ativas</a></li>
               <li><a class="dropdown-item" href="solicitacoes_concluidas.php">Concluidas</a></li>
             </ul>
           </div>
@@ -159,7 +159,7 @@
 
       function searchData()
       {
-          window.location = 'solicitacoes.php?search='+search.value;
+          window.location = 'solicitacoes_ativas.php?search='+search.value;
       }
     </script>
  

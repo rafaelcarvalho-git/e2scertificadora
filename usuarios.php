@@ -33,10 +33,10 @@
   <div class="container-fluid">
     <a class="navbar-brand" href="#" style="color: white;" ><img src="img/logo.png" alt="" width="50" height="30" class="d-inline-block align-text-top">
     AR E2S CORRETORA DE SEGUROS LTDA-ME</a>   
-    <ul class="navbar-nav">
+    <ul class="navbar-nav">   
       <li class="nav-item">
-        <a class="nav-link" href="solicitar.php"><button type="button" class="btn btn-info">Nova Solicitação</button></a>          
-      </li>    
+        <a class="nav-link" href="#"><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#cadastrarUsuario">Cadastrar Usuário</button></a>          
+      </li>   
       <li class="nav-item">          
         <div class="nav-link">          
           <div class="dropdown">
@@ -44,15 +44,12 @@
               Solicitações
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="solicitacoes.php">Ativas</a></li>
+              <li><a class="dropdown-item" href="solicitacoes_ativas.php">Ativas</a></li>
               <li><a class="dropdown-item" href="solicitacoes_concluidas.php">Concluidas</a></li>
             </ul>
           </div>
         </div> 
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#cadastrarUsuario">Cadastrar Usuário</button></a>          
-      </li>   
       <li class="nav-item">
       <a class="nav-link"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#sairSistema">Sair</button></a>              
       </li>       
