@@ -10,8 +10,15 @@
     $logado = $_SESSION['usuario'];
 ?>
 <?php
-  include_once("conexao.php");
-  $solicitar_dados = "SELECT * FROM solicitacoes_concluidas";
+  include_once("conexao.php");      
+  if(!empty($_GET['search'])) {
+    $mes = $_GET['search'];
+    $ano = date("Y");
+    $solicitar_dados = "SELECT * FROM solicitacoes_concluidas WHERE MONTH(data_solicitacao) = '$mes' AND YEAR(data_solicitacao) = '$ano'";
+  }
+  else {
+    $solicitar_dados = "SELECT * FROM solicitacoes_concluidas";
+  }
   $solicitacoes = mysqli_query($connect, $solicitar_dados);
   if($solicitacoes === FALSE) { 
     die(mysqli_error($connect));
@@ -64,6 +71,39 @@
       <h2>Solicitações Concluídas</h2>
       <p class="lead">Lista com todas as solicitações feitas por contadores ou administradores de sistema.</p>
     </div>  
+    <section class="periodo-consulta">     
+        <div class="col-sm-2 mx-auto text-center">
+          <label for="mes" class="form-label">Mês de consulta</label>
+          <select name="mes-consulta" class="form-select" id="mes">
+            <option value="">(Todos)</option>
+            <option value="01">Janeiro</option>
+            <option value="02 ">Fevereiro</option>
+            <option value="03">Março</option>
+            <option value="04">Abril</option>
+            <option value="05">Maio</option>
+            <option value="06">Junho</option>
+            <option value="07">Julho</option>
+            <option value="08">Agosto</option>
+            <option value="09">Setembro</option>
+            <option value="10">Outubro</option>
+            <option value="11">Novembro</option>
+            <option value="12">Dezembro</option>            
+          </select>
+        </div>
+     <button onclick="searchData()">AA</button>
+    </section>
+    <script>
+      var search = document.getElementById('mes');
+      search.addEventListener("keydown", function(event) {
+          if (event.key === "Enter") 
+          {
+              searchData();
+          }
+      });
+      function searchData() {
+          window.location = 'solicitacoes_concluidas.php?search='+search.value;
+      }
+    </script>
     <table class="table table-hover">
       <thead class="thead-dark">
         <tr>

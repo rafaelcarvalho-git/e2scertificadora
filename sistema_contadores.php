@@ -24,6 +24,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>E2S</title>    
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="css/style.css">
   <link rel="shortcut icon" type="imagex/png" href="img/icone.ico">
@@ -113,6 +114,7 @@
         <th scope="col">Cliente</th>
         <th scope="col">Certificado</th>
         <th scope="col">Data da solicitação</th>
+        <th scope="col">Excluir</th>
       </tr>
     </thead>
     <tbody>
@@ -121,8 +123,29 @@
         <td><?php echo $rows_solicitacoes['id']; ?></td>
         <td><?php echo $rows_solicitacoes['nome']; ?></td>
         <td><?php echo $rows_solicitacoes['tipo_certificado']; ?></td>        
-        <td><?php echo $rows_solicitacoes['data_solicitacao']; ?></td>                           
-      </tr><?php } ?>
+        <td><?php echo $rows_solicitacoes['data_solicitacao']; ?></td>   
+        <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#excluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>"><i class="bi bi-trash"></i></button></td>                        
+      </tr>
+<!-- Janela Confirma Excluir Solicitação -->
+<div class="modal fade" id="excluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Excluir Usuário</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Deseja excluir a solicitação de <?php echo $rows_solicitacoes['nome']; ?>? <br>
+        Esta ação será irreversível.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <?php echo "<a href='excluir_solicitacao.php?id=" . $rows_solicitacoes['id'] . "' style='color: white;'><button type='button' class='btn btn-primary'>Excluir</button></a>";?>
+      </div>
+    </div>
+  </div>
+</div>
+<!------------------------------><?php } ?>
 </tbody>
 </table>
 </main>
