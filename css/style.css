@@ -1,50 +1,17 @@
-main {max-width:720px;padding:25px;margin: auto;}
+/*main {max-width:720px;padding:25px;margin: auto;}*/
 p a{text-decoration: none;}.navbar-brand, .navbar-nav {margin: auto;}
-.logomarca {padding-bottom: 20px;}
+.logomarca {padding-bottom: 10px;}
+.heading {
 
+  margin: 45px auto 25px auto;
+  
+}
+.heading ul {
+  text-align: left;
+ 
+}
 section {
   display: flex;
-  width: 650px;
-  background: rgb(124, 124, 226);
-}
-.select-cert {
-  text-align: center;
-  width: 500px;
-  margin: auto;
-  padding: 15px;
-}
-
-
-
-
-.input-info {
-  margin: auto;
+ 
   padding: 5px;
-  padding-bottom: 10px;
-
-
 }
-
-#cpf-cliente, #data-cliente, #cep, #bairro {
-  width: 250px;
-}
-
-
-#email-cliente {
-  width: 400px;
-}
-#telefone-cliente {
-  width: 200px;
-}
-
-#rua {
-  width: 480px;
-}
-#num-cliente {
-  width: 120px;
-}
-/*
-form {
-  background: blue;
-
-}*/
