@@ -15,10 +15,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>E2S</title>    
-    <link href="css/bootstrap.min.css" rel="stylesheet"><!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <link href="css/style.css" rel="stylesheet">
-    <!-- Javascript para CEP -->
     <link rel="shortcut icon" type="imagex/png" href="img/icone.ico">
 <script>
     function limpa_formulário_cep() { //Limpa valores do formulário de cep.           
@@ -73,10 +72,25 @@
     <img class="d-block mx-auto mb-4" src="img/logo.png" alt="" width="85" height="50">
     <h4>AR E2S CORRETORA DE SEGUROS LTDA-ME</h4>
   </div>
-  <h2>Solicitar Certificado Digital</h2>
-  <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+  <div class="heading">
+    <h2>Solicitar Certificado Digital</h2>
+    <p class="lead">Faça a solicitação do certificado digital para seus clientes. Lembre de preencher todos os campos e conferir as informações.</p>    
+    <p class="lead">Orientações:</p>
+    <ul >
+      <li>Preencha todos os campos obrigatórios.</li>
+      <li>Confira se os dados estão corretos.</li>
+      <li>Envie todos os documentos requisitados.</li>
+    </ul>
+  </div> 
+
+  <style>
+    .heading {
+
+  margin: 45px auto 25px auto;
+}
+  </style>
 </header>
-<h2>Olá, <?php echo $logado; ?>.</h2>
+<h2 class="text-center">Olá, <strong><?php echo $logado; ?></strong>. Seja bem vindo(a).</h2>
 </div>
 <?php
   if (isset($_SESSION['solicitacaoSucesso'])) {
@@ -89,7 +103,7 @@
     <div class="select-cert">
       <label for="type-cpf" class="form-label">Tipo do Certificado</label>
       <select name="tipo-certificado" class="form-select" id="type-cpf" required>
-        <option>Escolha o certificado</option>
+        <option value="">Escolha o certificado</option>
         <option>R$ 135,00 E-CPF A1 Mídia Digital</option>
         <option>R$ 190,00 E-CPF A3 Cartão 1 ano</option>
         <option>R$ 230,00 E-CPF A3 Cartão 2 anos</option>
@@ -184,7 +198,7 @@
       <div class="col-sm-10 mx-auto text-center"><!--DOC. PESSOAL DO CLIENTE-->
         <label for="doc-cliente" class="form-label">Anexar documento pessoal (CNH, RG ou DNI) e documentos da empresa ou pessoa jurídica (no caso de E-cnpj) </label>
         <input type="file" name="documentos[]" multiple="multiple" class="form-control" id="doc-cliente" name="sendDocs" required>
-        <div class="invalid-feedback">É necessário anexar o documento pessoal do cliente.</div>
+        <div class="invalid-feedback">É necessário anexar os documentos do cliente.</div>
       </div><hr class="my-4">
       <input class="w-100 btn btn-lg btn-primary" type="submit" name="btnSolicitar" value="Solicitar Certificado">
     </form>
@@ -194,7 +208,6 @@
   <p>Site desenvolvido por<a href="https://www.linkedin.com/in/rafaelcarvalho-ti"> Rafael Carvalho</a></p>
 </footer>
 </div>
-<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/form-validation.js"></script>
 </body>
 </html>
