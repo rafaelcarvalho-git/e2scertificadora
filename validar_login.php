@@ -25,7 +25,7 @@
 				header('Location: solicitacoes.php');
 			}else if ($_SESSION['privilegio'] =='Contador'){
 				echo "cont", $_SESSION['privilegio'];
-				header('Location: solicitar.php');
+				header('Location: sistema_contadores.php');
 			}	
 		}
 	}else {   

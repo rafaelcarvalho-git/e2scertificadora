@@ -23,9 +23,7 @@
     $contador = $_SESSION['usuario'];
 //documentos
 $diretorio = "documentos/";
-
 $cliente_documentos = $nome;
-
 if(!is_dir($diretorio)){ 
 	echo "Pasta $diretorio nao existe";
 }else{
@@ -48,8 +46,10 @@ if(!is_dir($diretorio)){
 }
     $result_solicitar = "INSERT INTO solicitacoes(tipo_certificado, nome, cpf, data_nascimento, email, telefone, cep, endereco, observacoes, data_solicitacao, contador, documentos) VALUES ('$tipo_certificado', '$nome', $cpf, '$data_nascimento', '$email', '$telefone', '$cep', '$endereco', '$observacoes', NOW(), '$contador', '$fileName')";
     $resultado_solicitar= mysqli_query($connect, $result_solicitar);
+    $result_solicitar = "INSERT INTO solicitacoes_contadores(tipo_certificado, nome, data_solicitacao) VALUES ('$tipo_certificado', '$nome', NOW())";
+    $resultado_solicitar= mysqli_query($connect, $result_solicitar);
     $_SESSION['solicitacaoSucesso'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
     Certificado Digital solicitado com sucesso! Iremos realizar o cadastro do cliente e o atendimento. Aguarde nosso contato. <a href='solicitacoes.php'>ÁREA DO ADMINISTRADOR</a>
     <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";  
-    header("Location: solicitar.php");     
+    header("Location: sistema_contadores.php");     
 ?>
