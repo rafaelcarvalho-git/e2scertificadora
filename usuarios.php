@@ -66,7 +66,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <form method="post" action="cadastro_sucesso.php">
+      <form method="post" action="cadastrar_usuario.php">
         <div class="form-floating">
           <input type="text" class="form-control" name="usuario" required>
           <label>Nome Usuario</label>
@@ -88,60 +88,6 @@
     </div>
   </div>
 </div>
-<!--------------------------------->
-<main class="container">
-<div class="py-5 text-center">
-  <h2>Usuários do Sistema</h2>
-  <p class="lead">Lista de usuários do sistema, incluido contadores e administradores.</p>
-</div>
-<?php
-  if(isset($_SESSION['excluirUsuario'])){
-    echo $_SESSION['excluirUsuario'];
-    unset($_SESSION['excluirUsuario']);
-  }
-  if(isset($_SESSION['usuarioCadastrado'])){
-    echo $_SESSION['usuarioCadastrado'];
-    unset($_SESSION['usuarioCadastrado']);
-  }
-?>
-<table class="table table-hover">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Usuário</th>
-      <th scope="col">Privilégio</th>
-      <th scope="col">Excluir</th>
-    </tr>
-  </thead>
-  <tbody>
-  <?php while($rows_usuarios = mysqli_fetch_assoc($usuarios)){ ?>
-  <tr>
-    <td><?php echo $rows_usuarios['id']; ?></td>
-    <td><?php echo $rows_usuarios['usuario']; ?></td>
-    <td><?php echo $rows_usuarios['privilegio']; ?></td> 
-    <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#excluirUsuario<?php echo $rows_usuarios['id']; ?>" >X</button></td>                                                  
-  </tr>
-<!-- Janela Confirma excluir Usuário -->
-<div class="modal fade" id="excluirUsuario<?php echo $rows_usuarios['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Excluir Usuário</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Deseja excluir o usuário <?php echo $rows_usuarios['usuario']; ?>?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <?php echo "<a href='excluir_usuario.php?id=" . $rows_usuarios['id'] . "' data-confirm='Tem certeza de que deseja excluir o item selecionado?' style='color: white;'><button type='button' class='btn btn-primary'>Excluir</button></a>";?>
-      </div>
-    </div>
-  </div>
-</div>
-<!------------------------------><?php } ?>
-</tbody>
-</table>
 <!-- Janela Confirma Sair do Sistema (logout) -->
 <div class="modal fade" id="sairSistema" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -160,7 +106,50 @@
     </div>
   </div>
 </div>
-<!------------------------------>
+<main class="container">
+  <div class="py-5 text-center">
+    <h2>Usuários do Sistema</h2>
+    <p class="lead">Lista de usuários do sistema, cria e exclui usuários, define o tipo de acesso (privilégio).</p>
+    <p><strong>Contador:</strong> Apenas faz solicitações de certificados digitais.<br><strong>Administrador:</strong> Tem acesso a todas as funções do sistema.</p> 
+  </div>
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Usuário</th>
+        <th scope="col">Privilégio</th>
+        <th scope="col">Excluir</th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php while($rows_usuarios = mysqli_fetch_assoc($usuarios)){ ?>
+    <tr>
+      <td><?php echo $rows_usuarios['id']; ?></td>
+      <td><?php echo $rows_usuarios['usuario']; ?></td>
+      <td><?php echo $rows_usuarios['privilegio']; ?></td> 
+      <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#excluirUsuario<?php echo $rows_usuarios['id']; ?>" >X</button></td>                                                  
+    </tr>
+  <!-- Janela Confirma excluir Usuário -->
+  <div class="modal fade" id="excluirUsuario<?php echo $rows_usuarios['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Excluir Usuário</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Deseja excluir o usuário <?php echo $rows_usuarios['usuario']; ?>?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <?php echo "<a href='excluir_usuario.php?id=" . $rows_usuarios['id'] . "' data-confirm='Tem certeza de que deseja excluir o item selecionado?' style='color: white;'><button type='button' class='btn btn-primary'>Excluir</button></a>";?>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!------------------------------><?php } ?>
+  </tbody>
+  </table>
 </main>
 <footer class="my-5 pt-5 text-muted text-center text-small">
   <p class="mb-1">&copy; <?php echo date("Y");?> - AR E2S Corretora de Seguros LTDA-ME</p>

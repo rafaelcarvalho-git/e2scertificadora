@@ -184,12 +184,12 @@
       </div>
       <div class="modal-body">
       <ul >
-      <li>Preencha todos os campos obrigatórios.</li>
-      <li>Confira se os dados estão corretos.</li>
-      <li>Envie todos os documentos requisitados.</li>
-      <li>Documentos apenas ORIGINAIS, em bom estado e foto de boa qualidade sem cobrir informações.</li>
-      <li>Insira sempre os dados do CLIENTE, caso insira qualquer informação do contador o certificado poderá ser revogado.</li>
-    </ul>
+        <li>Preencha todos os campos obrigatórios.</li>
+        <li>Confira se os dados estão corretos.</li>
+        <li>Envie todos os documentos requisitados.</li>
+        <li>Documentos apenas ORIGINAIS, em bom estado e foto de boa qualidade sem cobrir informações.</li>
+        <li>Insira sempre os dados do CLIENTE, caso insira qualquer informação do contador o certificado poderá ser revogado.</li>
+      </ul>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>
