@@ -1,7 +1,7 @@
 <?php
   session_start();
 	include_once('conexao.php');	
-  $usuario = $_POST['usuario'];
+  $usuario = strtoupper($_POST['usuario']);
   $senha = $_POST['senha'];
   $privilegio = $_POST['privilegio'];	
   //$senha_criptografada = md5($senha);	

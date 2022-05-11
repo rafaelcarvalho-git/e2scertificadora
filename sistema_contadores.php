@@ -1,4 +1,4 @@
-<?php
+<?php/*
     session_start();
     include_once('conexao.php');
     if((!isset($_SESSION['usuario']) == true) and (!isset($_SESSION['senha']) == true) and (!isset($_SESSION['privilegio']) == true)) {
@@ -7,16 +7,26 @@
         unset($_SESSION['privilegio']);
         header('Location: login.php');
     }
-    $logado = $_SESSION['usuario'];
+    $logado = $_SESSION['usuario'];*/
 ?>
 <?php
   include_once("conexao.php");
-  $solicitar_dados = "SELECT * FROM solicitacoes WHERE contador = '$logado'";
+  if(!empty($_GET['search'])) {
+    $mes = $_GET['search'];
+    $ano = date("Y");
+    $solicitar_dados = "SELECT * FROM solicitacoes WHERE contador = 'geone' AND MONTH(data_solicitacao) = '$mes' AND YEAR(data_solicitacao) = '$ano' ORDER BY id DESC";
+  }
+  else {
+    $solicitar_dados = "SELECT * FROM solicitacoes WHERE contador = 'geone' ORDER BY id DESC";
+  }
   $solicitacoes = mysqli_query($connect, $solicitar_dados);
   if($solicitacoes === FALSE) { 
     die(mysqli_error($connect));
   }
 ?>
+
+
+
 <!doctype html>
 <html lang="pt-br">
 <head>
@@ -91,14 +101,7 @@
 <header class="py-5 text-center"><!--TOPO DA PÁGINA-->    
     <h2 class="text-center">Olá, <strong><?php echo $logado; ?></strong>. Seja bem vindo(a).</h2>
     <h2>Solicitar Certificado Digital</h2>
-    <p class="lead">Faça a solicitação do certificado digital para seus clientes. Lembre de preencher todos os campos e conferir as informações.</p>    
-    <p class="lead">Orientações:</p>
-    <ul >
-      <li>Preencha todos os campos obrigatórios.</li>
-      <li>Confira se os dados estão corretos.</li>
-      <li>Envie todos os documentos requisitados.</li>
-      <li>Insira sempre os dados do CLIENTE, caso insira qualquer informação do contador o certificado poderá ser revogado.</li>
-    </ul>
+    <p class="lead">Faça a solicitação do certificado digital para seus clientes. Lembre de preencher todos os campos e conferir as informações.</p>        
 </header>
 <?php
   if (isset($_SESSION['solicitacaoSucesso'])) {
@@ -107,6 +110,30 @@
   }
 ?>
 <main class="container">
+<div class="componentes-contadores">
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orientacoes">Orientações Importantes</button>      
+  <section class="periodo-consulta">       
+      <div>          
+        <select name="mes-consulta" class="form-select" id="mes">
+          <option value="">Período</option>
+          <option value="01">Janeiro</option>
+          <option value="02">Feveireiro</option>
+          <option value="03">Março</option>
+          <option value="04">Abril</option>
+          <option value="05">Maio</option>
+          <option value="06">Junho</option>
+          <option value="07">Julho</option>
+          <option value="08">Agosto</option>
+          <option value="09">Setembro</option>
+          <option value="10">Outubro</option>
+          <option value="11">Novembro</option>
+          <option value="12">Dezembro</option>            
+        </select>          
+        <button id="bt-consulta" class="btn btn-primary" onclick="searchDataContador()"><i class="bi bi-search"></i></button>
+      </div>               
+  </section>
+</div>
+
   <table class="table table-hover">
     <thead class="thead-dark">
       <tr>
@@ -114,7 +141,6 @@
         <th scope="col">Cliente</th>
         <th scope="col">Certificado</th>
         <th scope="col">Data da solicitação</th>
-        <th scope="col">Excluir</th>
       </tr>
     </thead>
     <tbody>
@@ -123,8 +149,7 @@
         <td><?php echo $rows_solicitacoes['id']; ?></td>
         <td><?php echo $rows_solicitacoes['nome']; ?></td>
         <td><?php echo $rows_solicitacoes['tipo_certificado']; ?></td>        
-        <td><?php echo $rows_solicitacoes['data_solicitacao']; ?></td>   
-        <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#excluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>"><i class="bi bi-trash"></i></button></td>                        
+        <td><?php echo $rows_solicitacoes['data_solicitacao']; ?></td>                        
       </tr>
 <!-- Janela Confirma Excluir Solicitação -->
 <div class="modal fade" id="excluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -149,6 +174,30 @@
 </tbody>
 </table>
 </main>
+<!-- Janela Orientacoes -->
+<div class="modal fade" id="orientacoes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Orientações para solicitar o Certificado Digital</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <ul >
+      <li>Preencha todos os campos obrigatórios.</li>
+      <li>Confira se os dados estão corretos.</li>
+      <li>Envie todos os documentos requisitados.</li>
+      <li>Documentos apenas ORIGINAIS, em bom estado e foto de boa qualidade sem cobrir informações.</li>
+      <li>Insira sempre os dados do CLIENTE, caso insira qualquer informação do contador o certificado poderá ser revogado.</li>
+    </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!------------------------------>
 <!-- Janela Nova Solicitação -->
 <div class="modal fade" id="solicitarCertificado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -249,7 +298,7 @@
     
             <div class="col-sm-2 mx-auto" id="num"><!--NUM DO CLIENTE-->
               <label for="num-cliente" class="form-label">N°<span class="text-muted"></span></label>
-              <input name="num" type="number" class="form-control" id="num-cliente" required>
+              <input name="num" type="number" class="form-control" id="num-cliente" min="0" required>
               <div class="invalid-feedback">Insira o número.</div>
             </div>        
           </section>

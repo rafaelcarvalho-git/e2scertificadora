@@ -20,11 +20,14 @@
 })()
 
 //SCRIPT PARA FAZER A CONSULTA POR MES
-var search = document.getElementById('mes');
-search.addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {searchData();}
-});
-function searchData() {window.location = 'solicitacoes_ativas.php?search='+search.value;}
+var searchAtiva = document.getElementById('mes');
+function searchDataAtivas() {window.location = 'solicitacoes_ativas.php?search='+searchAtiva.value;}
+
+var searchConcluida = document.getElementById('mes');
+function searchDataConcluidas() {window.location = 'solicitacoes_concluidas.php?search='+searchConcluida.value;}
+
+var searchContador = document.getElementById('mes');
+function searchDataContador() {window.location = 'sistema_contadores.php?search='+searchContador.value;}
 
 //SCRIPT PARA PREENCHER ENDERECO
 function limpa_formulário_cep() { //Limpa valores do formulário de cep.           

@@ -15,10 +15,10 @@
   if(!empty($_GET['search'])) {
     $mes = $_GET['search'];
     $ano = date("Y");
-    $solicitar_dados = "SELECT * FROM solicitacoes WHERE MONTH(data_solicitacao) = '$mes' AND YEAR(data_solicitacao) = '$ano'";
+    $solicitar_dados = "SELECT * FROM solicitacoes WHERE MONTH(data_solicitacao) = '$mes' AND YEAR(data_solicitacao) = '$ano' ORDER BY id DESC";
   }
   else {
-    $solicitar_dados = "SELECT * FROM solicitacoes";
+    $solicitar_dados = "SELECT * FROM solicitacoes ORDER BY id DESC";
   }
   $solicitacoes = mysqli_query($connect, $solicitar_dados);
   if($solicitacoes === FALSE) { 
@@ -83,13 +83,12 @@
     unset($_SESSION['concluirSolicitacao']);
   }
 ?>
-    <section class="periodo-consulta">    
-        <label for="mes" class="form-label">Mês de consulta</label> 
+    <section class="periodo-consulta">       
         <div>          
           <select name="mes-consulta" class="form-select" id="mes">
-            <option value="">(Todos)</option>
+            <option value="">Período</option>
             <option value="01">Janeiro</option>
-            <option value="02 ">Feveireiro</option>
+            <option value="02">Feveireiro</option>
             <option value="03">Março</option>
             <option value="04">Abril</option>
             <option value="05">Maio</option>
@@ -101,7 +100,7 @@
             <option value="11">Novembro</option>
             <option value="12">Dezembro</option>            
           </select>          
-          <button id="bt-consulta" class="btn btn-primary" onclick="searchData()"><i class="bi bi-search"></i></button>
+          <button id="bt-consulta" class="btn btn-primary" onclick="searchDataAtivas()"><i class="bi bi-search"></i></button>
         </div>               
     </section>
     <table class="table table-hover">
@@ -111,7 +110,7 @@
           <th scope="col">Cliente</th>
           <th scope="col">Certificado</th>
           <th scope="col">Informações</th>
-          <th scope="col">Data da solicitação</th>
+          <th scope="col">Data</th>
           <th scope="col">Contador</th>
           <th scope="col">Documentos</th>
           <th scope="col">Situação</th>
@@ -127,8 +126,8 @@
           <td><?php echo $rows_solicitacoes['data_solicitacao']; ?></td>                  
           <td><?php echo $rows_solicitacoes['contador']; ?></td>
           <td><a href="documentos/<?php echo $rows_solicitacoes['documentos']; ?>"><button type="button" class="btn btn-primary">Baixar</button></a></td>
-          <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#concluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>"><i class="bi bi-check2-circle"></i></button>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#excluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>"><i class="bi bi-trash"></i></button></td>
+          <td><div class="situacao"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#concluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>"><i class="bi bi-check2-circle"></i></button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#excluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>"><i class="bi bi-trash"></i></button></div></td>
         </tr>
 <!-- Janela Visualizar Informações Cliente -->
 <div class="modal fade" id="visualizarSolicitacao<?php echo $rows_solicitacoes['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="visualizarSolicitacaoLabel">

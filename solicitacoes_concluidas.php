@@ -14,10 +14,10 @@
   if(!empty($_GET['search'])) {
     $mes = $_GET['search'];
     $ano = date("Y");
-    $solicitar_dados = "SELECT * FROM solicitacoes_concluidas WHERE MONTH(data_solicitacao) = '$mes' AND YEAR(data_solicitacao) = '$ano'";
+    $solicitar_dados = "SELECT * FROM solicitacoes_concluidas WHERE MONTH(data_solicitacao) = '$mes' AND YEAR(data_solicitacao) = '$ano' ORDER BY id DESC";
   }
   else {
-    $solicitar_dados = "SELECT * FROM solicitacoes_concluidas";
+    $solicitar_dados = "SELECT * FROM solicitacoes_concluidas ORDER BY id DESC";
   }
   $solicitacoes = mysqli_query($connect, $solicitar_dados);
   if($solicitacoes === FALSE) { 
@@ -72,13 +72,12 @@
       <h2>Solicitações Concluídas</h2>
       <p class="lead">Lista com todas as solicitações feitas por contadores ou administradores de sistema.</p>
     </div>  
-    <section class="periodo-consulta">    
-        <label for="mes" class="form-label">Mês de consulta</label> 
+    <section class="periodo-consulta">       
         <div>          
           <select name="mes-consulta" class="form-select" id="mes">
-            <option value="">(Todos)</option>
+            <option value="">Período</option>
             <option value="01">Janeiro</option>
-            <option value="02 ">Feveireiro</option>
+            <option value="02">Feveireiro</option>
             <option value="03">Março</option>
             <option value="04">Abril</option>
             <option value="05">Maio</option>
@@ -90,7 +89,7 @@
             <option value="11">Novembro</option>
             <option value="12">Dezembro</option>            
           </select>          
-          <button id="bt-consulta" class="btn btn-primary" onclick="searchData()"><i class="bi bi-search"></i></button>
+          <button id="bt-consulta" class="btn btn-primary" onclick="searchDataConcluidas()"><i class="bi bi-search"></i></button>
         </div>               
     </section>
     <table class="table table-hover">

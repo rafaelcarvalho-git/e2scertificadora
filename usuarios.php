@@ -11,7 +11,7 @@
 ?>
 <?php
   include_once("conexao.php");
-  $listar_usuarios = "SELECT * FROM usuarios";
+  $listar_usuarios = "SELECT * FROM usuarios ORDER BY id DESC";
   $usuarios = mysqli_query($connect, $listar_usuarios);
   if($usuarios === FALSE) { 
     die(mysqli_error($connect));
@@ -167,6 +167,7 @@
   <p>Site desenvolvido por<a href="https://www.linkedin.com/in/rafaelcarvalho-ti"> Rafael Carvalho</a></p>
 </footer>
 </body>
+<script src="js/script.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.1/js/bootstrap.min.js" integrity="sha512-ewfXo9Gq53e1q1+WDTjaHAGZ8UvCWq0eXONhwDuIoaH8xz2r96uoAYaQCm1oQhnBfRXrvJztNXFsTloJfgbL5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
