@@ -8,28 +8,28 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.1/css/bootstrap.min.css" integrity="sha512-6KY5s6UI5J7SVYuZB4S/CZMyPylqyyNZco376NM2Z8Sb8OxEdp02e1jkKk/wZxIEmjQ6DRCEBhni+gpr9c4tvA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link href="css/login.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <link rel="shortcut icon" type="imagex/png" href="img/icone.ico">
 </head>
 <body class="text-center bg-light">
-<main>
-  <div class="logomarca">
+<main class="login">
+  <div id="loginLogomarca" class="logomarca">
     <img class="d-block mx-auto mb-4" src="img/logo.png" alt="" width="85" height="50">
     <h4>AR E2S CORRETORA DE SEGUROS LTDA-ME</h4>
   </div>
   <h1>Sistema para solicitar Certificados Digitais</h1>
-  <form method="post" action="validar_login.php">
+  <form id="formLogin" method="post" action="validar_login.php">
     <h2>Login</h2>
-    <div class="form-floating">
+    <div id="loginUsuario" class="form-floating">
       <input type="text" class="form-control"  name="usuario" required>
       <label>Usuário</label>
     </div><br>
 
-    <div class="form-floating">
+    <div id="loginSenha" class="form-floating">
       <input type="password" class="form-control" name="senha" required>
       <label>Senha</label>
     </div><br>
-    <input class="btn btn-lg btn-primary" type="submit" name="btnLogin" value="Acessar">
+    <input id="btnLogin" class="btn btn-lg btn-primary" type="submit" name="btnLogin" value="Acessar">
     <p class="mt-5 mb-3 text-muted">&copy; <?php echo date("Y");?> - AR E2S Corretora de Seguros LTDA-ME</p>
   </form>
 </main>

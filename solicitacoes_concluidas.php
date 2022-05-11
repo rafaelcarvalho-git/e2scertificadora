@@ -1,4 +1,4 @@
-<?php
+<?php/*
     session_start();
     include_once('conexao.php');
     if((!isset($_SESSION['usuario']) == true) and (!isset($_SESSION['senha']) == true)) {
@@ -7,7 +7,7 @@
         $_SESSION['erroLogin'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>É necessário realizar o login!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";    
         header('Location: login.php');
     }
-    $logado = $_SESSION['usuario'];
+    $logado = $_SESSION['usuario'];*/
 ?>
 <?php
   include_once("conexao.php");      
@@ -32,6 +32,7 @@
   <title>E2S</title>    
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.1/css/bootstrap.min.css" integrity="sha512-6KY5s6UI5J7SVYuZB4S/CZMyPylqyyNZco376NM2Z8Sb8OxEdp02e1jkKk/wZxIEmjQ6DRCEBhni+gpr9c4tvA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="shortcut icon" type="imagex/png" href="img/icone.ico">
 </head>
@@ -71,13 +72,13 @@
       <h2>Solicitações Concluídas</h2>
       <p class="lead">Lista com todas as solicitações feitas por contadores ou administradores de sistema.</p>
     </div>  
-    <section class="periodo-consulta">     
-        <div class="col-sm-2 mx-auto text-center">
-          <label for="mes" class="form-label">Mês de consulta</label>
+    <section class="periodo-consulta">    
+        <label for="mes" class="form-label">Mês de consulta</label> 
+        <div>          
           <select name="mes-consulta" class="form-select" id="mes">
             <option value="">(Todos)</option>
             <option value="01">Janeiro</option>
-            <option value="02 ">Fevereiro</option>
+            <option value="02 ">Feveireiro</option>
             <option value="03">Março</option>
             <option value="04">Abril</option>
             <option value="05">Maio</option>
@@ -88,22 +89,10 @@
             <option value="10">Outubro</option>
             <option value="11">Novembro</option>
             <option value="12">Dezembro</option>            
-          </select>
-        </div>
-     <button onclick="searchData()">AA</button>
+          </select>          
+          <button id="bt-consulta" class="btn btn-primary" onclick="searchData()"><i class="bi bi-search"></i></button>
+        </div>               
     </section>
-    <script>
-      var search = document.getElementById('mes');
-      search.addEventListener("keydown", function(event) {
-          if (event.key === "Enter") 
-          {
-              searchData();
-          }
-      });
-      function searchData() {
-          window.location = 'solicitacoes_concluidas.php?search='+search.value;
-      }
-    </script>
     <table class="table table-hover">
       <thead class="thead-dark">
         <tr>
@@ -278,6 +267,7 @@
   <p>Site desenvolvido por<a href="https://www.linkedin.com/in/rafaelcarvalho-ti"> Rafael Carvalho</a></p>
 </footer>
 </body>
+<script src="js/script.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.1/js/bootstrap.min.js" integrity="sha512-ewfXo9Gq53e1q1+WDTjaHAGZ8UvCWq0eXONhwDuIoaH8xz2r96uoAYaQCm1oQhnBfRXrvJztNXFsTloJfgbL5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

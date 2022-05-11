@@ -1,5 +1,5 @@
-<?php
-    session_start();/*
+<?php/*
+    session_start();
     include_once('conexao.php');
     if ((!isset($_SESSION['usuario']) == true) and (!isset($_SESSION['senha']) == true) and (!isset($_SESSION['privilegio']) == true) and (isset($_SESSION['privilegio']) != 'Administrador')) {
         unset($_SESSION['usuario']);
@@ -36,50 +36,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="shortcut icon" type="imagex/png" href="img/icone.ico">
-  <script>
-      function limpa_formulário_cep() { //Limpa valores do formulário de cep.           
-              document.getElementById('rua').value=("");
-              document.getElementById('bairro').value=("");
-      }
-      function meu_callback(conteudo) {
-          if (!("erro" in conteudo)) {//Atualiza os campos com os valores.
-              document.getElementById('rua').value=(conteudo.logradouro);
-              document.getElementById('bairro').value=(conteudo.bairro);
-          }
-          else {//CEP não Encontrado.            
-              limpa_formulário_cep();
-              alert("CEP não encontrado.");
-          }
-      }        
-      function pesquisacep(valor) {
-          //Nova variável "cep" somente com dígitos.
-          var cep = valor.replace(/\D/g, '');
-          //Verifica se campo cep possui valor informado.
-          if (cep != "") {
-              //Expressão regular para validar o CEP.
-              var validacep = /^[0-9]{8}$/;
-              //Valida o formato do CEP.
-              if(validacep.test(cep)) {
-                  //Preenche os campos com "..." enquanto consulta webservice.
-                  document.getElementById('rua').value="...";
-                  document.getElementById('bairro').value="...";
-                  //Cria um elemento javascript.
-                  var script = document.createElement('script');
-                  //Sincroniza com o callback.
-                  script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
-                  //Insere script no documento e carrega o conteúdo.
-                  document.body.appendChild(script);
-              }
-              else {//cep é inválido.
-                  limpa_formulário_cep();
-                  alert("Formato de CEP inválido.");
-              }
-          }
-          else { //cep sem valor, limpa formulário.
-              limpa_formulário_cep();
-          }
-      };
-  </script>
 </head>
 <body class="bg-light">
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
@@ -117,20 +73,21 @@
       <h2>Solicitações de Certificados Digitais Ativas</h2>
       <p class="lead">Lista com todas as solicitações feitas por contadores ou administradores de sistema.</p>
     </div>  
-    <?php
-      if(isset($_SESSION['excluirSolicitacao'])){
-        echo $_SESSION['excluirSolicitacao'];
-        unset($_SESSION['excluirSolicitacao']);
-      }
-      if(isset($_SESSION['concluirSolicitacao'])){
-        echo $_SESSION['concluirSolicitacao'];
-        unset($_SESSION['concluirSolicitacao']);
-      }
-    ?>
-    <section class="periodo-consulta">     
-        <div class="col-sm-2 mx-auto text-center">
-          <label for="mes" class="form-label">Mês de consulta</label>
+<?php
+  if(isset($_SESSION['excluirSolicitacao'])){
+    echo $_SESSION['excluirSolicitacao'];
+    unset($_SESSION['excluirSolicitacao']);
+  }
+  if(isset($_SESSION['concluirSolicitacao'])){
+    echo $_SESSION['concluirSolicitacao'];
+    unset($_SESSION['concluirSolicitacao']);
+  }
+?>
+    <section class="periodo-consulta">    
+        <label for="mes" class="form-label">Mês de consulta</label> 
+        <div>          
           <select name="mes-consulta" class="form-select" id="mes">
+            <option value="">(Todos)</option>
             <option value="01">Janeiro</option>
             <option value="02 ">Feveireiro</option>
             <option value="03">Março</option>
@@ -143,26 +100,10 @@
             <option value="10">Outubro</option>
             <option value="11">Novembro</option>
             <option value="12">Dezembro</option>            
-          </select>
-        </div>
-     <button onclick="searchData()">AA</button>
+          </select>          
+          <button id="bt-consulta" class="btn btn-primary" onclick="searchData()"><i class="bi bi-search"></i></button>
+        </div>               
     </section>
-    <script>
-      var search = document.getElementById('mes');
-
-      search.addEventListener("keydown", function(event) {
-          if (event.key === "Enter") 
-          {
-              searchData();
-          }
-      });
-
-      function searchData()
-      {
-          window.location = 'solicitacoes_ativas.php?search='+search.value;
-      }
-    </script>
- 
     <table class="table table-hover">
       <thead class="thead-dark">
         <tr>
@@ -364,7 +305,7 @@
     
             <div class="col-sm-2 mx-auto" id="num"><!--NUM DO CLIENTE-->
               <label for="num-cliente" class="form-label">N°<span class="text-muted"></span></label>
-              <input name="num" type="number" class="form-control" id="num-cliente" required>
+              <input name="num" type="number" class="form-control" id="num-cliente" min='0' required>
               <div class="invalid-feedback">Insira o número.</div>
             </div>        
           </section>
@@ -415,7 +356,7 @@
   <p>Site desenvolvido por<a href="https://www.linkedin.com/in/rafaelcarvalho-ti"> Rafael Carvalho</a></p>
 </footer>
 </body>
-<script src="js/form-validation.js"></script>
+<script src="js/script.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.1/js/bootstrap.min.js" integrity="sha512-ewfXo9Gq53e1q1+WDTjaHAGZ8UvCWq0eXONhwDuIoaH8xz2r96uoAYaQCm1oQhnBfRXrvJztNXFsTloJfgbL5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
