@@ -57,61 +57,15 @@
     </ul>   
   </div>
 </nav>
-<!-- Janela Cadastrar Usuário -->
-<div class="modal fade" id="cadastrarUsuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Cadastrar Usuário</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <form method="post" action="cadastrar_usuario.php">
-        <div class="form-floating">
-          <input type="text" class="form-control" name="usuario" required>
-          <label>Nome Usuario</label>
-        </div><br>
-        <div class="form-floating">
-          <input type="text" class="form-control" name="senha" required>
-          <label>Senha</label>
-        </div><br>
-        <div class="form-floating">              
-          <select class="form-select" name="privilegio" required>
-            <option value="Administrador">Administrador</option>
-            <option value="Contador">Contador</option>
-          </select>
-          <label class="form-label">Privilégio de Sistema</label>
-        </div><br>          
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Cadastrar</button>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Janela Confirma Sair do Sistema (logout) -->
-<div class="modal fade" id="sairSistema" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Sair do Sistema</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Deseja sair do sistema e ir para tela de login? <br>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <a href="sair.php"><button type='button' class='btn btn-primary'>Sair</button></a> 
-      </div>
-    </div>
-  </div>
-</div>
+<header class="py-4 text-center">
+  <div class="usuario bg-primary">
+    <h4 class="text-center mx-auto">Olá, <strong><?php echo 'GEONE'/*$logado*/; ?></strong>. Seja bem vindo(a).</h4>
+  </div>    
+  <h2>Usuários do Sistema</h2>
+  <p class="lead">Lista de usuários do sistema, cria e exclui usuários, define o tipo de acesso (privilégio).</p>
+    <p><strong>Contador:</strong> Apenas faz solicitações de certificados digitais.<br><strong>Administrador:</strong> Tem acesso a todas as funções do sistema.</p>       
+</header>
 <main class="container">
-  <div class="py-5 text-center">
-    <h2>Usuários do Sistema</h2>
-    <p class="lead">Lista de usuários do sistema, cria e exclui usuários, define o tipo de acesso (privilégio).</p>
-    <p><strong>Contador:</strong> Apenas faz solicitações de certificados digitais.<br><strong>Administrador:</strong> Tem acesso a todas as funções do sistema.</p> 
-  </div>
   <table class="table table-hover">
     <thead class="thead-dark">
       <tr>
@@ -121,14 +75,13 @@
         <th scope="col">Excluir</th>
       </tr>
     </thead>
-    <tbody>
-    <?php while($rows_usuarios = mysqli_fetch_assoc($usuarios)){ ?>
-    <tr>
-      <td><?php echo $rows_usuarios['id']; ?></td>
-      <td><?php echo $rows_usuarios['usuario']; ?></td>
-      <td><?php echo $rows_usuarios['privilegio']; ?></td> 
-      <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#excluirUsuario<?php echo $rows_usuarios['id']; ?>" >X</button></td>                                                  
-    </tr>
+    <tbody><?php while($rows_usuarios = mysqli_fetch_assoc($usuarios)){ ?>
+      <tr>
+        <td><?php echo $rows_usuarios['id']; ?></td>
+        <td><?php echo $rows_usuarios['usuario']; ?></td>
+        <td><?php echo $rows_usuarios['privilegio']; ?></td> 
+        <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#excluirUsuario<?php echo $rows_usuarios['id']; ?>" >X</button></td>                                                  
+      </tr>
   <!-- Janela Confirma excluir Usuário -->
   <div class="modal fade" id="excluirUsuario<?php echo $rows_usuarios['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -146,10 +99,58 @@
         </div>
       </div>
     </div>
-  </div>
-  <!------------------------------><?php } ?>
+  </div><?php } ?>
   </tbody>
   </table>
+  <!-- Janela Cadastrar Usuário -->
+  <div class="modal fade" id="cadastrarUsuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Cadastrar Usuário</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <form method="post" action="cadastrar_usuario.php">
+          <div class="form-floating">
+            <input type="text" class="form-control" name="usuario" required>
+            <label>Nome Usuario</label>
+          </div><br>
+          <div class="form-floating">
+            <input type="text" class="form-control" name="senha" required>
+            <label>Senha</label>
+          </div><br>
+          <div class="form-floating">              
+            <select class="form-select" name="privilegio" required>
+              <option value="Administrador">Administrador</option>
+              <option value="Contador">Contador</option>
+            </select>
+            <label class="form-label">Privilégio de Sistema</label>
+          </div><br>          
+          <button class="w-100 btn btn-lg btn-primary" type="submit">Cadastrar</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Janela Confirma Sair do Sistema (logout) -->
+  <div class="modal fade" id="sairSistema" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Sair do Sistema</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Deseja sair do sistema e ir para tela de login? <br>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <a href="sair.php"><button type='button' class='btn btn-primary'>Sair</button></a> 
+        </div>
+      </div>
+    </div>
+  </div>
 </main>
 <footer class="my-5 pt-5 text-muted text-center text-small">
   <p class="mb-1">&copy; <?php echo date("Y");?> - AR E2S Corretora de Seguros LTDA-ME</p>
