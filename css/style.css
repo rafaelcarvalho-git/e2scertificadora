@@ -41,6 +41,18 @@ section {
   flex-direction: row;
 }.situacao button{margin: auto auto auto 5px;}
 
+.usuario {
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 420px;
+  height: 52px;
+  color: white;
+  box-shadow: 0px 2px 15px rgb(0 0 0 / 35%);
+  margin-bottom: 30px;
+}
+
 .componentes-contadores {
   display: flex;
   flex-direction: row;

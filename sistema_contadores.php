@@ -38,50 +38,6 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="css/style.css">
   <link rel="shortcut icon" type="imagex/png" href="img/icone.ico">
-  <script>
-      function limpa_formulário_cep() { //Limpa valores do formulário de cep.           
-              document.getElementById('rua').value=("");
-              document.getElementById('bairro').value=("");
-      }
-      function meu_callback(conteudo) {
-          if (!("erro" in conteudo)) {//Atualiza os campos com os valores.
-              document.getElementById('rua').value=(conteudo.logradouro);
-              document.getElementById('bairro').value=(conteudo.bairro);
-          }
-          else {//CEP não Encontrado.            
-              limpa_formulário_cep();
-              alert("CEP não encontrado.");
-          }
-      }        
-      function pesquisacep(valor) {
-          //Nova variável "cep" somente com dígitos.
-          var cep = valor.replace(/\D/g, '');
-          //Verifica se campo cep possui valor informado.
-          if (cep != "") {
-              //Expressão regular para validar o CEP.
-              var validacep = /^[0-9]{8}$/;
-              //Valida o formato do CEP.
-              if(validacep.test(cep)) {
-                  //Preenche os campos com "..." enquanto consulta webservice.
-                  document.getElementById('rua').value="...";
-                  document.getElementById('bairro').value="...";
-                  //Cria um elemento javascript.
-                  var script = document.createElement('script');
-                  //Sincroniza com o callback.
-                  script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
-                  //Insere script no documento e carrega o conteúdo.
-                  document.body.appendChild(script);
-              }
-              else {//cep é inválido.
-                  limpa_formulário_cep();
-                  alert("Formato de CEP inválido.");
-              }
-          }
-          else { //cep sem valor, limpa formulário.
-              limpa_formulário_cep();
-          }
-      };
-  </script>
 </head>
 <body class="bg-light">
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
@@ -98,10 +54,12 @@
     </ul>   
   </div>
 </nav>
-<header class="py-5 text-center"><!--TOPO DA PÁGINA-->    
-    <h2 class="text-center">Olá, <strong><?php echo $logado; ?></strong>. Seja bem vindo(a).</h2>
-    <h2>Solicitar Certificado Digital</h2>
-    <p class="lead">Faça a solicitação do certificado digital para seus clientes. Lembre de preencher todos os campos e conferir as informações.</p>        
+<header class="py-4 text-center">
+  <div class="usuario bg-primary">
+    <h4 class="text-center mx-auto">Olá, <strong><?php echo 'GEONE'/*$logado*/; ?></strong>. Seja bem vindo(a).</h4>
+  </div>    
+  <h2>Solicitar Certificado Digital</h2>
+  <p class="lead">Faça a solicitação do certificado digital para seus clientes e acompanhe todas as solicitações feitas por você.</p>        
 </header>
 <?php
   if (isset($_SESSION['solicitacaoSucesso'])) {
@@ -110,30 +68,29 @@
   }
 ?>
 <main class="container">
-<div class="componentes-contadores">
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orientacoes">Orientações Importantes</button>      
-  <section class="periodo-consulta">       
-      <div>          
-        <select name="mes-consulta" class="form-select" id="mes">
-          <option value="">Período</option>
-          <option value="01">Janeiro</option>
-          <option value="02">Feveireiro</option>
-          <option value="03">Março</option>
-          <option value="04">Abril</option>
-          <option value="05">Maio</option>
-          <option value="06">Junho</option>
-          <option value="07">Julho</option>
-          <option value="08">Agosto</option>
-          <option value="09">Setembro</option>
-          <option value="10">Outubro</option>
-          <option value="11">Novembro</option>
-          <option value="12">Dezembro</option>            
-        </select>          
-        <button id="bt-consulta" class="btn btn-primary" onclick="searchDataContador()"><i class="bi bi-search"></i></button>
-      </div>               
-  </section>
-</div>
-
+  <div class="componentes-contadores">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orientacoes">Orientações Importantes</button>      
+    <section class="periodo-consulta">       
+        <div>          
+          <select name="mes-consulta" class="form-select" id="mes">
+            <option value="">Período</option>
+            <option value="01">Janeiro</option>
+            <option value="02">Feveireiro</option>
+            <option value="03">Março</option>
+            <option value="04">Abril</option>
+            <option value="05">Maio</option>
+            <option value="06">Junho</option>
+            <option value="07">Julho</option>
+            <option value="08">Agosto</option>
+            <option value="09">Setembro</option>
+            <option value="10">Outubro</option>
+            <option value="11">Novembro</option>
+            <option value="12">Dezembro</option>            
+          </select>          
+          <button id="bt-consulta" class="btn btn-primary" onclick="searchDataContador()"><i class="bi bi-search"></i></button>
+        </div>               
+    </section>
+  </div>
   <table class="table table-hover">
     <thead class="thead-dark">
       <tr>
@@ -143,36 +100,15 @@
         <th scope="col">Data da solicitação</th>
       </tr>
     </thead>
-    <tbody>
-    <?php while($rows_solicitacoes = mysqli_fetch_assoc($solicitacoes)){ ?>
+    <tbody><?php while($rows_solicitacoes = mysqli_fetch_assoc($solicitacoes)){ ?>
       <tr>
         <td><?php echo $rows_solicitacoes['id']; ?></td>
         <td><?php echo $rows_solicitacoes['nome']; ?></td>
         <td><?php echo $rows_solicitacoes['tipo_certificado']; ?></td>        
         <td><?php echo $rows_solicitacoes['data_solicitacao']; ?></td>                        
-      </tr>
-<!-- Janela Confirma Excluir Solicitação -->
-<div class="modal fade" id="excluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Excluir Usuário</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Deseja excluir a solicitação de <?php echo $rows_solicitacoes['nome']; ?>? <br>
-        Esta ação será irreversível.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <?php echo "<a href='excluir_solicitacao.php?id=" . $rows_solicitacoes['id'] . "' style='color: white;'><button type='button' class='btn btn-primary'>Excluir</button></a>";?>
-      </div>
-    </div>
-  </div>
-</div>
-<!------------------------------><?php } ?>
-</tbody>
-</table>
+      </tr><?php } ?>
+    </tbody>
+  </table>
 </main>
 <!-- Janela Orientacoes -->
 <div class="modal fade" id="orientacoes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -197,7 +133,6 @@
     </div>
   </div>
 </div>
-<!------------------------------>
 <!-- Janela Nova Solicitação -->
 <div class="modal fade" id="solicitarCertificado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
