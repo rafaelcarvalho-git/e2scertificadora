@@ -1,13 +1,18 @@
 <?php
-    session_start();/*
+    session_start();
     include_once('conexao.php');
-    if ((!isset($_SESSION['usuario']) == true) and (!isset($_SESSION['senha']) == true) and (!isset($_SESSION['privilegio']) == true) and (isset($_SESSION['privilegio']) != 'Administrador')) {
-        unset($_SESSION['usuario']);
-        unset($_SESSION['senha']);
-        unset($_SESSION['privilegio']);
-        header('Location: login.php');
+    if($_SESSION['privilegio'] != 'Administrador'){
+      $_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Acesso somente para Administradores!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
+      header("Location: login.php");
     }
-    $logado = $_SESSION['usuario'];*/
+    if((!isset($_SESSION['usuario']) == true) or (!isset($_SESSION['senha']) == true) or (!isset($_SESSION['privilegio']) == true)) {
+      unset($_SESSION['usuario']);
+      unset($_SESSION['senha']);
+      unset($_SESSION['privilegio']);
+      $_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Acesso restrito!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
+      header('Location: login.php');
+    }
+    $logado = $_SESSION['usuario'];
 ?>
 <?php
   include_once("conexao.php");  
@@ -69,7 +74,7 @@
 </nav>
 <header class="py-4 text-center">
   <div class="usuario bg-primary">
-    <h4 class="text-center mx-auto">Olá, <strong><?php echo 'GEONE'/*$logado*/; ?></strong>. Seja bem vindo(a).</h4>
+    <h4 class="text-center mx-auto">Olá, <strong><?php echo $logado; ?></strong>. Seja bem vindo(a).</h4>
   </div>    
   <h2>Solicitações de Certificados Digitais Ativas</h2>
   <p class="lead">Lista com todas as solicitações em edição ou processamento feitas por contadores, AGRs ou administradores de sistema.</p>        

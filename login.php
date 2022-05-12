@@ -23,9 +23,9 @@ session_start();
 <main class="login">
   <form id="formLogin" method="post" action="validar_login.php">
     <?php
-        if(isset($_SESSION['msg'])){
-          echo $_SESSION['msg'];
-          unset($_SESSION['msg']);
+        if(isset($_SESSION['msgLogin'])){
+          echo $_SESSION['msgLogin'];
+          unset($_SESSION['msgLogin']);
         }
     ?>
     <h2>Login</h2>
@@ -39,18 +39,6 @@ session_start();
       <label>Senha</label>
     </div><br>
 
-
-      <div class="form-check form-check-inline mx-auto px-4">
-        <input class="form-check-input" type="radio" name="privilegio" id="flexRadioDefault1" checked>
-        <label class="form-check-label" for="flexRadioDefault1">Contador</label>
-      </div>
-
-      <div class="form-check form-check-inline mx-auto px-4">
-        <input class="form-check-input" type="radio" name="privilegio" id="flexRadioDefault2">
-        <label class="form-check-label" for="flexRadioDefault2">Administrador</label>
-      </div>
-    </section>
-    
     <input id="btnLogin" class="btn btn-lg btn-primary" type="submit" name="btnLogin" value="Acessar">
     <p class="mt-5 mb-3 text-muted">&copy; <?php echo date("Y");?> - AR E2S Corretora de Seguros LTDA-ME</p>
   </form>

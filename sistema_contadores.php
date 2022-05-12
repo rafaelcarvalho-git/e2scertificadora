@@ -1,32 +1,34 @@
-<?php/*
+<?php
     session_start();
     include_once('conexao.php');
-    if((!isset($_SESSION['usuario']) == true) and (!isset($_SESSION['senha']) == true) and (!isset($_SESSION['privilegio']) == true)) {
+    if($_SESSION['privilegio'] != 'Contador'){
+      $_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Acesso somente para Contadores! <br> Realize o login para entrar no sistema.<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
+      header("Location: login.php");
+    }
+    if((!isset($_SESSION['usuario']) == true) or (!isset($_SESSION['senha']) == true) or (!isset($_SESSION['privilegio']) == true)) {
         unset($_SESSION['usuario']);
         unset($_SESSION['senha']);
         unset($_SESSION['privilegio']);
+        $_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Acesso restrito!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
         header('Location: login.php');
     }
-    $logado = $_SESSION['usuario'];*/
+    $logado = $_SESSION['usuario'];
 ?>
 <?php
   include_once("conexao.php");
   if(!empty($_GET['search'])) {
     $mes = $_GET['search'];
     $ano = date("Y");
-    $solicitar_dados = "SELECT * FROM solicitacoes WHERE contador = 'geone' AND MONTH(data_solicitacao) = '$mes' AND YEAR(data_solicitacao) = '$ano' ORDER BY id DESC";
+    $solicitar_dados = "SELECT * FROM solicitacoes WHERE contador = '$logado' AND MONTH(data_solicitacao) = '$mes' AND YEAR(data_solicitacao) = '$ano' ORDER BY id DESC";
   }
   else {
-    $solicitar_dados = "SELECT * FROM solicitacoes WHERE contador = 'geone' ORDER BY id DESC";
+    $solicitar_dados = "SELECT * FROM solicitacoes WHERE contador = '$logado' ORDER BY id DESC";
   }
   $solicitacoes = mysqli_query($connect, $solicitar_dados);
   if($solicitacoes === FALSE) { 
     die(mysqli_error($connect));
   }
 ?>
-
-
-
 <!doctype html>
 <html lang="pt-br">
 <head>
@@ -56,7 +58,7 @@
 </nav>
 <header class="py-4 text-center">
   <div class="usuario bg-primary">
-    <h4 class="text-center mx-auto">Olá, <strong><?php echo 'GEONE'/*$logado*/; ?></strong>. Seja bem vindo(a).</h4>
+    <h4 class="text-center mx-auto">Olá, <strong><?php echo $_SESSION['usuario']; ?></strong>. Seja bem vindo(a).</h4>
   </div>    
   <h2>Solicitar Certificado Digital</h2>
   <p class="lead">Faça a solicitação do certificado digital para seus clientes e acompanhe todas as solicitações feitas por você.</p>        

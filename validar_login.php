@@ -1,35 +1,37 @@
+
 <?php
 	session_start();
 	include_once("conexao.php");
-	if(isset($_POST['btnLogin']) && !empty($_POST['usuario']) && !empty($_POST['senha'])) {
-		$usuario = $_POST['usuario'];
-		$senha = $_POST['senha'];
-		$privilegio = $_POST['privilegio'];
-		$consultar_usuarios = "SELECT * FROM usuarios WHERE usuario = '$usuario' AND senha = '$senha'";
-  		$usuarios = mysqli_query($connect, $consultar_usuarios);
-		if(mysqli_num_rows($usuarios) < 1) {
-			unset($_SESSION['usuario']);
-			unset($_SESSION['senha']);
-			$_SESSION['msg'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>Usuário ou senha incorretos!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";    
-			header('Location: login.php');
-		}else {
-			echo "<br><strong>usuario EXISTE no banco de dados</strong><br>";
-			$consultar_privilegio = "SELECT privilegio FROM `usuarios` WHERE usuario = '$usuario'";
-  			$privilegio_usuario = mysqli_query($connect, $consultar_privilegio);
-			$privilegio = mysqli_fetch_assoc($privilegio_usuario); 
-			$_SESSION['usuario'] = $usuario;
-			$_SESSION['senha'] = $senha;
-			$_SESSION['privilegio'] = $privilegio['privilegio'];
-			echo $_SESSION['privilegio'];
-			if ($_SESSION['privilegio'] =='Administrador') {
-				echo "<br>adm {$_SESSION['privilegio']} <br";
-				header('Location: solicitacoes.php');
-			}else if ($_SESSION['privilegio'] =='Contador'){
-				echo "cont", $_SESSION['privilegio'];
-				header('Location: sistema_contadores.php');
-			}	
+	$btnLogin = filter_input(INPUT_POST, 'btnLogin', FILTER_SANITIZE_STRING);
+	if($btnLogin){
+		$usuario = filter_input(INPUT_POST, 'usuario', FILTER_SANITIZE_STRING);
+		$senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_STRING);
+		if((!empty($usuario)) AND (!empty($senha))){
+			$result_usuario = "SELECT id, usuario, senha, privilegio FROM usuarios WHERE usuario='$usuario' LIMIT 1";
+			$resultado_usuario = mysqli_query($connect, $result_usuario);
+			if($resultado_usuario){
+				$row_usuario = mysqli_fetch_assoc($resultado_usuario);
+				if(password_verify($senha, $row_usuario['senha'])){
+					$_SESSION['id'] = $row_usuario['id'];
+					$_SESSION['usuario'] = $row_usuario['usuario'];
+					$_SESSION['senha'] = $row_usuario['senha'];
+					$_SESSION['privilegio'] = $row_usuario['privilegio'];
+					if($_SESSION['privilegio'] == 'Administrador'){
+						header("Location: solicitacoes_ativas.php");
+					}else {
+						header("Location: sistema_contadores.php");
+					}
+				}else{
+					$_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Login ou senha incorretos!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
+					header("Location: login.php");
+				}
+			}
+		}else{
+			$_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Login ou senha incorretos!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
+			header("Location: login.php");
 		}
-	}else {   
-		header('Location: login.php');
+	}else{
+		$_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Página não encontrada ou acesso restrito!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
+		header("Location: login.php");
 	}
 ?>
