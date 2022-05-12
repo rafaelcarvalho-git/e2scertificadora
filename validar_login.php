@@ -4,13 +4,14 @@
 	if(isset($_POST['btnLogin']) && !empty($_POST['usuario']) && !empty($_POST['senha'])) {
 		$usuario = $_POST['usuario'];
 		$senha = $_POST['senha'];
+		$privilegio = $_POST['privilegio'];
 		$consultar_usuarios = "SELECT * FROM usuarios WHERE usuario = '$usuario' AND senha = '$senha'";
   		$usuarios = mysqli_query($connect, $consultar_usuarios);
 		if(mysqli_num_rows($usuarios) < 1) {
 			unset($_SESSION['usuario']);
 			unset($_SESSION['senha']);
-			echo "<br><strong>usuario nao existe no banco de dados</strong>";
-			//header('Location: login.php');
+			$_SESSION['msg'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>Usuário ou senha incorretos!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";    
+			header('Location: login.php');
 		}else {
 			echo "<br><strong>usuario EXISTE no banco de dados</strong><br>";
 			$consultar_privilegio = "SELECT privilegio FROM `usuarios` WHERE usuario = '$usuario'";

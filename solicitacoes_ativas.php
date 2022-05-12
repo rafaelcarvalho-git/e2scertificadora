@@ -39,8 +39,8 @@
 <body class="bg-light">
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#" style="color: white;" ><img src="img/logo.png" alt="" width="50" height="30" class="d-inline-block align-text-top">
-    AR E2S CORRETORA DE SEGUROS LTDA-ME</a>   
+    <a class="navbar-brand" href="http://e2scertificadoradigital.com.br/" style="color: white;" target="_blank"><img src="img/logo.png" alt="" width="50" height="30" class="d-inline-block align-text-top">
+    AR E2S CORRETORA DE SEGUROS LTDA-ME</a>    
     <ul class="navbar-nav">
       <li class="nav-item">
       <a class="nav-link"><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#solicitarCertificado">Nova Solicitação</button></a>                   
