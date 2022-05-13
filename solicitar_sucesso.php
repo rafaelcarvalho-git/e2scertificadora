@@ -1,6 +1,13 @@
 <?php 
     session_start();
     include_once('conexao.php');
+    if((!isset($_SESSION['usuario']) == true) or (!isset($_SESSION['senha']) == true) or (!isset($_SESSION['privilegio']) == true)) {
+        unset($_SESSION['usuario']);
+        unset($_SESSION['senha']);
+        unset($_SESSION['privilegio']);
+        $_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Acesso restrito!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
+        header('Location: login.php');
+    }
     $tipo_certificado = $_POST["tipo-certificado"];
     $nome = strtoupper($_POST["nome"]);
     $cpf = $_POST["cpf"];
@@ -43,9 +50,14 @@
         }
     }
     $result_solicitar = "INSERT INTO solicitacoes(tipo_certificado, nome, cpf, data_nascimento, email, telefone, cep, endereco, observacoes, data_solicitacao, contador, documentos) VALUES ('$tipo_certificado', '$nome', $cpf, '$data_nascimento', '$email', '$telefone', '$cep', '$endereco', '$observacoes', NOW(), '$contador', '$fileName')";
-    $resultado_solicitar= mysqli_query($connect, $result_solicitar);
-    $_SESSION['solicitacaoSucesso'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-    Certificado Digital solicitado com sucesso! Iremos realizar o cadastro do cliente e o atendimento. Aguarde nosso contato. <a href='solicitacoes.php'>ÁREA DO ADMINISTRADOR</a>
-    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";  
-    header("Location: sistema_contadores.php");     
+    $resultado_solicitar= mysqli_query($connect, $result_solicitar);    
+    if($_SESSION['privilegio'] == 'Administrador'){
+        $_SESSION['solicitacaoSucesso'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+        Certificado Digital solicitado com sucesso! Iremos realizar o cadastro do cliente e o atendimento. Aguarde nosso contato.<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";  
+        header("Location: solicitacoes_ativas.php");
+    }else {
+        $_SESSION['solicitacaoSucesso'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+        Certificado Digital solicitado com sucesso!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";  
+        header("Location: sistema_contadores.php");
+    }  
 ?>

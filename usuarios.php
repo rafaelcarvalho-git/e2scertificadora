@@ -64,7 +64,7 @@
 </nav>
 <header class="py-4 text-center">
   <div class="usuario bg-primary">
-    <h4 class="text-center mx-auto">Olá, <strong><?php echo 'GEONE'/*$logado*/; ?></strong>. Seja bem vindo(a).</h4>
+    <h4 class="text-center mx-auto">Olá, <strong><?php echo $logado; ?></strong>. Seja bem vindo(a).</h4>
   </div>    
   <h2>Usuários do Sistema</h2>
   <p class="lead">Lista de usuários do sistema, cria e exclui usuários, define o tipo de acesso (privilégio).</p>

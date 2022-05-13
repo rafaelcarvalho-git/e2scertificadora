@@ -63,13 +63,13 @@
   <h2>Solicitar Certificado Digital</h2>
   <p class="lead">Faça a solicitação do certificado digital para seus clientes e acompanhe todas as solicitações feitas por você.</p>        
 </header>
+<main class="container">
 <?php
   if (isset($_SESSION['solicitacaoSucesso'])) {
       echo $_SESSION['solicitacaoSucesso'];
       unset($_SESSION['solicitacaoSucesso']);
   }
 ?>
-<main class="container">
   <div class="componentes-contadores">
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orientacoes">Orientações Importantes</button>      
     <section class="periodo-consulta">       
