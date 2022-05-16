@@ -137,30 +137,30 @@
       </tr>
   <!-- Janela Visualizar Informações Cliente -->
   <div class="modal fade" id="visualizarSolicitacao<?php echo $rows_solicitacoes['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="visualizarSolicitacaoLabel">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title" id="visualizarSolicitacaoLabel">Informações do cliente</h4>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <h4>Nome</h4>
+          <h4 class="text-primary"><strong>Nome<strong></h4>
           <h3><?php echo $rows_solicitacoes['nome']; ?></h3>
-          <h4>CPF</h4>
+          <h4 class="text-primary"><strong>CPF<strong></h4>
           <h3><?php echo $rows_solicitacoes['cpf']; ?></h3>
-          <h4>Data de Nascimento</h4>
+          <h4 class="text-primary"><strong>Data de Nascimento<strong></h4>
           <h3><?php echo date("d/m/Y",strtotime($rows_solicitacoes['data_nascimento'])); ?></h3>
-          <h4>E-mail</h4>
+          <h4 class="text-primary"><strong>E-mail<strong></h4>
           <h3><?php echo $rows_solicitacoes['email']; ?></h3>
-          <h4>Telefone</h4>
+          <h4 class="text-primary"><strong>Telefone<strong></h4>
           <h3><?php echo $rows_solicitacoes['telefone']; ?></h3>
           <hr>
-          <h4>CEP</h4>
+          <h4 class="text-primary"><strong>CEP<strong></h4>
           <h3><?php echo $rows_solicitacoes['cep']; ?></h3>
-          <h4>Endereço</h4>
+          <h4 class="text-primary"><strong>Endereço<strong></h4>
           <h3><?php echo $rows_solicitacoes['endereco']; ?></h3>  
           <hr>
-          <h4>Observações</h4>
+          <h4 class="text-primary"><strong>Observações<strong></h4>
           <h3><?php echo $rows_solicitacoes['observacoes']; ?></h3>
         </div>
         <div class="modal-footer">
