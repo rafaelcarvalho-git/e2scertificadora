@@ -23,15 +23,15 @@
 					}
 				}else{
 					$_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Login ou senha incorretos!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
-					header("Location: login.php");
+					header("Location: index.php");
 				}
 			}
 		}else{
 			$_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Login ou senha incorretos!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
-			header("Location: login.php");
+			header("Location: index.php");
 		}
 	}else{
 		$_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Página não encontrada ou acesso restrito!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
-		header("Location: login.php");
+		header("Location: index.php");
 	}
 ?>
