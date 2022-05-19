@@ -1,18 +1,19 @@
 <?php
     session_start();
     include_once('conexao.php');
-    if($_SESSION['privilegio'] != 'Contador'){
+    if(isset($_SESSION['privilegio']) != 'Contador'){
       $_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Acesso somente para Contadores! <br> Realize o login para entrar no sistema.<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
       header("Location: index.php");
     }
     if((!isset($_SESSION['usuario']) == true) or (!isset($_SESSION['senha']) == true) or (!isset($_SESSION['privilegio']) == true)) {
         unset($_SESSION['usuario']);
         unset($_SESSION['senha']);
-        unset($_SESSION['privilegio']);
+        unset($_SESSION['privilegio']);        
         $_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Acesso restrito!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
-        header('Location: index.php');
-    }
-    $logado = $_SESSION['usuario'];
+        header('Location: index.php');        
+    }else {
+      $logado = $_SESSION['usuario'];
+    }    
 ?>
 <?php
   include_once("conexao.php");

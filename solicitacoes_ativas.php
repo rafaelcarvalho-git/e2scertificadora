@@ -1,7 +1,7 @@
 <?php
     session_start();
     include_once('conexao.php');
-    if($_SESSION['privilegio'] != 'Administrador'){
+    if(isset($_SESSION['privilegio']) != 'Administrador'){
       $_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Acesso somente para Administradores!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
       header("Location: index.php");
     }
@@ -11,8 +11,9 @@
       unset($_SESSION['privilegio']);
       $_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Acesso restrito!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
       header('Location: index.php');
-    }
-    $logado = $_SESSION['usuario'];
+    }else {
+      $logado = $_SESSION['usuario'];
+    }    
 ?>
 <?php
   include_once("conexao.php");  
