@@ -5,4 +5,5 @@
 	$dbname = "e2scertificadora";
 	//Criar a conexão
 	$connect = mysqli_connect($servidor, $usuario, $senha, $dbname);
+	header("Location: index.php");	
 ?>
