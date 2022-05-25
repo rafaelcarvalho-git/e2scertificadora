@@ -12,7 +12,12 @@
         $_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Acesso restrito!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
         header('Location: index.php');        
     }else {
-      $logado = $_SESSION['usuario'];
+      if(isset($_SESSION['privilegio']) == true and $_SESSION['privilegio'] != 'Contador'){
+        $_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Acesso somente para Contadores!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
+        header("Location: index.php");
+      }else {
+        $logado = $_SESSION['usuario'];
+      }      
     }    
 ?>
 <?php
