@@ -30,7 +30,7 @@
     $apagar_solicitacao = "DELETE FROM solicitacoes WHERE id='$id'";
 	  $apagar = mysqli_query($connect, $apagar_solicitacao);
     $_SESSION['concluirSolicitacao'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>Solicitação concluida com sucesso!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";    
-    header("Location: solicitacoes.php");  
+    header("Location: solicitacoes_ativas.php");  
     $confirmaId = false;
   }
 ?>

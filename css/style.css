@@ -27,11 +27,11 @@ section {
   margin-right: 12px;
   display: flex;
 }
-.situacao {
+.acao {
   display: flex;
   align-items: center;
   flex-direction: row;
-}.situacao button{margin: auto auto auto 5px;}
+}.acao button{margin: auto auto auto 5px;}
 
 .usuario {
   border-radius: 12px;

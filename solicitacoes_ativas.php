@@ -121,7 +121,7 @@
         <th scope="col">Data</th>
         <th scope="col">Contador</th>
         <th scope="col">Documentos</th>
-        <th scope="col">Situação</th>
+        <th scope="col">Ação</th>
       </tr>
     </thead>
     <tbody><?php while($rows_solicitacoes = mysqli_fetch_assoc($solicitacoes)){ ?>
@@ -133,8 +133,8 @@
         <td><?php echo $rows_solicitacoes['data_solicitacao']; ?></td>                  
         <td><?php echo $rows_solicitacoes['contador']; ?></td>
         <td><a href="documentos/<?php echo $rows_solicitacoes['documentos']; ?>"><button type="button" class="btn btn-primary">Baixar</button></a></td>
-        <td><div class="situacao"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#concluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>"><i class="bi bi-check2-circle"></i></button>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#excluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>"><i class="bi bi-trash"></i></button></div></td>
+        <td><div class="acao"><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#concluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>"><i class="bi bi-check2-circle"></i></button>
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#excluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>"><i class="bi bi-trash"></i></button></div></td>
       </tr>
   <!-- Janela Visualizar Informações Cliente -->
   <div class="modal fade" id="visualizarSolicitacao<?php echo $rows_solicitacoes['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="visualizarSolicitacaoLabel">
@@ -145,24 +145,24 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <h4 class="text-primary"><strong>Nome</strong></h4>
-          <h3><?php echo $rows_solicitacoes['nome']; ?></h3>
-          <h4 class="text-primary"><strong>CPF</strong></h4>
-          <h3><?php echo $rows_solicitacoes['cpf']; ?></h3>
-          <h4 class="text-primary"><strong>Data de Nascimento</strong></h4>
-          <h3><?php echo date("d/m/Y",strtotime($rows_solicitacoes['data_nascimento'])); ?></h3>
-          <h4 class="text-primary"><strong>E-mail</strong></h4>
-          <h3><?php echo $rows_solicitacoes['email']; ?></h3>
-          <h4 class="text-primary"><strong>Telefone</strong></h4>
-          <h3><?php echo $rows_solicitacoes['telefone']; ?></h3>
+          <h4><strong>Nome</strong></h4>
+          <h3 class="text-primary"><?php echo $rows_solicitacoes['nome']; ?></h3>
+          <h4><strong>CPF</strong></h4>
+          <h3 class="text-primary"><?php echo $rows_solicitacoes['cpf']; ?></h3>
+          <h4><strong>Data de Nascimento</strong></h4>
+          <h3 class="text-primary"><?php echo date("d/m/Y",strtotime($rows_solicitacoes['data_nascimento'])); ?></h3>
+          <h4><strong>E-mail</strong></h4>
+          <h3 class="text-primary"><?php echo $rows_solicitacoes['email']; ?></h3>
+          <h4><strong>Telefone</strong></h4>
+          <h3 class="text-primary"><?php echo $rows_solicitacoes['telefone']; ?></h3>
           <hr>
-          <h4 class="text-primary"><strong>CEP</strong></h4>
-          <h3><?php echo $rows_solicitacoes['cep']; ?></h3>
-          <h4 class="text-primary"><strong>Endereço</strong></h4>
-          <h3><?php echo $rows_solicitacoes['endereco']; ?></h3>  
+          <h4><strong>CEP</strong></h4>
+          <h3 class="text-primary"><?php echo $rows_solicitacoes['cep']; ?></h3>
+          <h4><strong>Endereço</strong></h4>
+          <h3 class="text-primary"><?php echo $rows_solicitacoes['endereco']; ?></h3>  
           <hr>
-          <h4 class="text-primary"><strong>Observações</strong></h4>
-          <h3><?php echo $rows_solicitacoes['observacoes']; ?></h3>
+          <h4><strong>Observações</strong></h4>
+          <h3 class="text-primary"><?php echo $rows_solicitacoes['observacoes']; ?></h3>
         </div>
         <div class="modal-footer">
         </div>
@@ -197,7 +197,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          Deseja Concluir a solicitação de <?php echo $rows_solicitacoes['nome']; ?>? <br>
+          Deseja concluir a solicitação de <?php echo $rows_solicitacoes['nome']; ?>? <br>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
