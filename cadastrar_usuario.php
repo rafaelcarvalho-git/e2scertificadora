@@ -1,6 +1,6 @@
 <?php
   session_start();
-	include_once('conexao.php');	
+  include_once("conexao.php");
   if((!isset($_SESSION['usuario']) == true) or (!isset($_SESSION['senha']) == true) or (!isset($_SESSION['privilegio']) == true)) {
     unset($_SESSION['usuario']);
     unset($_SESSION['senha']);
