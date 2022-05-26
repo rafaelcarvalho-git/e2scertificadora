@@ -8,6 +8,10 @@
         $_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Acesso restrito!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
         header('Location: index.php');
     }else {
+        if(!isset($_POST["tipo-certificado"])){
+            $_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Acesso somente para Administradores!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
+            header("Location: index.php");
+        }
         $tipo_certificado = $_POST["tipo-certificado"];
         $nome = strtoupper($_POST["nome"]);
         $cpf = $_POST["cpf"];
