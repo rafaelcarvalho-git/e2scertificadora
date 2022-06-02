@@ -78,6 +78,9 @@
         <th scope="col">Id</th>
         <th scope="col">Usuário</th>
         <th scope="col">Privilégio</th>
+        <th scope="col">Comissão</th>
+        <th scope="col">Telefone</th>
+        <th scope="col">E-mail</th>
         <th scope="col">Excluir</th>
       </tr>
     </thead>
@@ -85,7 +88,10 @@
       <tr>
         <td><?php echo $rows_usuarios['id']; ?></td>
         <td><?php echo $rows_usuarios['usuario']; ?></td>
-        <td><?php echo $rows_usuarios['privilegio']; ?></td> 
+        <td><?php echo $rows_usuarios['privilegio']; ?></td>         
+        <td><?php echo $rows_usuarios['comissao']; ?>%</td>
+        <td><?php echo $rows_usuarios['telefone']; ?></td>
+        <td><?php echo $rows_usuarios['email']; ?></td>
         <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#excluirUsuario<?php echo $rows_usuarios['id']; ?>" >X</button></td>                                                  
       </tr>
   <!-- Janela Confirma excluir Usuário -->
@@ -126,8 +132,24 @@
             <input type="text" class="form-control" name="senha" required>
             <label>Senha</label>
           </div><br>
+          <div id="iscontador">
+            <section>
+              <div class="form-floating mx-auto">
+                <input type="number" class="form-control" name="comissao">
+                <label>Comissão</label>
+              </div><br>
+              <div class="form-floating mx-auto">
+                <input type="text" class="form-control" name="telefone-contador">
+                <label>Telefone</label>
+              </div><br>
+            </section><br>
+            <div class="form-floating">
+              <input type="email" class="form-control" name="email-contador">
+              <label>E-mail</label>
+            </div><br>
+          </div>          
           <div class="form-floating">              
-            <select class="form-select" name="privilegio" required>
+            <select id="privilegio" class="form-select" name="privilegio" required>
               <option value="Administrador">Administrador</option>
               <option value="Contador">Contador</option>
             </select>
