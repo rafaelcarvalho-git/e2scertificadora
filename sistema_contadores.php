@@ -127,13 +127,25 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <ul >
-        <li>Preencha todos os campos obrigatórios.</li>
-        <li>Confira se os dados estão corretos.</li>
-        <li>Envie todos os documentos requisitados.</li>
-        <li>Documentos apenas ORIGINAIS, em bom estado e foto de boa qualidade sem cobrir informações.</li>
-        <li>Insira sempre os dados do CLIENTE, caso insira qualquer informação do contador o certificado poderá ser revogado.</li>
-      </ul>
+      <div class="documentos">
+          <h6>Documentos</h6>
+          <ul>
+            <li>Preencha todos os campos obrigatórios.</li>
+            <li>Confira se os dados estão corretos.</li>
+            <li>Envie todos os documentos requisitados.</li>
+            <li>Documentos apenas ORIGINAIS, em bom estado e foto de boa qualidade.</li>
+            <li>Não pode haver dedos ou qualquer outro objeto cobrindo as informações do documento.</li>
+            <li>Só faça a solicitação do certificado quando houver todos os dados e documentos em mãos.</li>
+            <li>Insira sempre os dados do CLIENTE, caso insira qualquer informação do contador o certificado poderá ser revogado.</li>
+          </ul>
+        </div>
+        <div class="certificados">
+          <h6>Certificados</h6>
+          <ul>
+            <li><b>Certificado A1</b> - Mídia Digital, instala em várias máquinas.</li>
+            <li><b>Certificado A3</b> - Mídia Física (Token ou Cartão).</li>
+          </ul>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>

@@ -90,7 +90,7 @@
         <td><?php echo $rows_usuarios['usuario']; ?></td>
         <td><?php echo $rows_usuarios['privilegio']; ?></td>         
         <td><?php echo $rows_usuarios['comissao']; ?>%</td>
-        <td><?php echo $rows_usuarios['telefone']; ?></td>
+        <td><a href="https://api.whatsapp.com/send/?phone=55<?php echo $rows_usuarios['telefone']; ?>&text&app_absent=0"><?php echo $rows_usuarios['telefone']; ?></a></td>
         <td><?php echo $rows_usuarios['email']; ?></td>
         <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#excluirUsuario<?php echo $rows_usuarios['id']; ?>" >X</button></td>                                                  
       </tr>
