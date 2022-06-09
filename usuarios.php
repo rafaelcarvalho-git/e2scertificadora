@@ -6,9 +6,7 @@
       header("Location: index.php");
     }
     if((!isset($_SESSION['usuario']) == true) or (!isset($_SESSION['senha']) == true) or (!isset($_SESSION['privilegio']) == true)) {
-      unset($_SESSION['usuario']);
-      unset($_SESSION['senha']);
-      unset($_SESSION['privilegio']);
+      unset($_SESSION['usuario'], $_SESSION['senha'], $_SESSION['privilegio']);
       $_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Acesso restrito!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
       header('Location: index.php');
     }else {
