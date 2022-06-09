@@ -51,7 +51,15 @@
                 }
             }
         }
-        $result_solicitar = "INSERT INTO solicitacoes(tipo_certificado, nome, cpf, data_nascimento, email, telefone, cep, endereco, observacoes, data_solicitacao, contador, documentos) VALUES ('$tipo_certificado', '$nome', $cpf, '$data_nascimento', '$email', '$telefone', '$cep', '$endereco', '$observacoes', NOW(), '$contador', '$fileName')";
+        $nome_cript = base64_encode($nome);
+        $cpf_cript = base64_encode($cpf);
+        $email_cript = base64_encode($email);
+        $telefone_cript = base64_encode($telefone);
+        $cep_cript = base64_encode($cep);
+        $endereco_cript = base64_encode($endereco);
+        $contador_cript = base64_encode($contador);
+        $fileName_cript = base64_encode($fileName);
+        $result_solicitar = "INSERT INTO solicitacoes(tipo_certificado, nome, cpf, data_nascimento, email, telefone, cep, endereco, observacoes, data_solicitacao, contador, documentos) VALUES ('$tipo_certificado', '$nome_cript', '$cpf_cript', '$data_nascimento', '$email_cript', '$telefone_cript', '$cep_cript', '$endereco_cript', '$observacoes', NOW(), '$contador_cript', '$fileName_cript')";
         $resultado_solicitar= mysqli_query($connect, $result_solicitar);    
         if($_SESSION['privilegio'] == 'Administrador'){
             $_SESSION['solicitacaoSucesso'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
