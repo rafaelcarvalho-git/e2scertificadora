@@ -86,8 +86,8 @@
     <tbody><?php while($rows_usuarios = mysqli_fetch_assoc($usuarios)){ ?>
       <tr>
         <td><?php echo $rows_usuarios['id']; ?></td>
-        <td><?php echo base64_decode($rows_usuarios['usuario']); ?></td>
-        <td><?php echo base64_decode($rows_usuarios['privilegio']); ?></td>         
+        <td><?php echo $rows_usuarios['usuario']; ?></td>
+        <td><?php echo $rows_usuarios['privilegio']; ?></td>         
         <td><?php echo $rows_usuarios['comissao']; ?>%</td>
         <td><a href="https://api.whatsapp.com/send/?phone=55<?php echo base64_decode($rows_usuarios['telefone']); ?>&text&app_absent=0" target="_blank"><?php echo base64_decode($rows_usuarios['telefone']); ?></a></td>
         <td><?php echo base64_decode($rows_usuarios['email']); ?></td>
