@@ -29,7 +29,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.1/css/bootstrap.min.css" integrity="sha512-6KY5s6UI5J7SVYuZB4S/CZMyPylqyyNZco376NM2Z8Sb8OxEdp02e1jkKk/wZxIEmjQ6DRCEBhni+gpr9c4tvA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="css/style.css">
   <link rel="shortcut icon" type="imagex/png" href="img/icone.ico">
 </head>
 <body class="bg-light">
@@ -61,9 +60,9 @@
   </div>
 </nav>
 <header class="py-4 text-center">
-  <div class="usuario bg-primary">
-    <h4 class="text-center mx-auto">Olá, <strong><?php echo $logado; ?></strong>. Seja bem vindo(a).</h4>
-  </div>    
+  <div class="usuario bg-primary d-flex mx-auto align-items-center rounded mb-4" style="max-width: 460px;height: 52px;">
+    <h4 class="text-center text-white mx-auto">Olá, <strong><?php echo $logado; ?></strong>. Seja bem vindo(a).</h4>
+  </div>     
   <h2>Usuários do Sistema</h2>
   <p class="lead">Lista de usuários do sistema, cria e exclui usuários, define o tipo de acesso (privilégio).</p>
     <p><strong>Contador:</strong> Apenas faz solicitações de certificados digitais.<br><strong>Administrador:</strong> Tem acesso a todas as funções do sistema.</p>       
@@ -120,40 +119,40 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-        <form method="post" action="cadastrar_usuario.php">
-          <div class="form-floating">
-            <input type="text" class="form-control" name="usuario" required>
-            <label>Nome Usuario</label>
-          </div><br>
-          <div class="form-floating">
-            <input type="text" class="form-control" name="senha" required>
-            <label>Senha</label>
-          </div><br>
-          <div id="iscontador">
-            <section>
-              <div class="form-floating mx-auto">
-                <input type="number" class="form-control" name="comissao">
-                <label>Comissão</label>
-              </div><br>
-              <div class="form-floating mx-auto">
-                <input type="text" class="form-control" name="telefone-contador">
-                <label>Telefone</label>
-              </div><br>
-            </section><br>
+          <form method="post" action="cadastrar_usuario.php">
             <div class="form-floating">
-              <input type="email" class="form-control" name="email-contador">
-              <label>E-mail</label>
+              <input type="text" class="form-control" name="usuario" required>
+              <label>Nome Usuario</label>
             </div><br>
-          </div>          
-          <div class="form-floating">              
-            <select id="privilegio" class="form-select" name="privilegio" required>
-              <option value="Administrador">Administrador</option>
-              <option value="Contador">Contador</option>
-            </select>
-            <label class="form-label">Privilégio de Sistema</label>
-          </div><br>          
-          <button class="w-100 btn btn-lg btn-primary" type="submit">Cadastrar</button>
-        </form>
+            <div class="form-floating">
+              <input type="text" class="form-control" name="senha" required>
+              <label>Senha</label>
+            </div><br>
+            <div id="iscontador">
+              <section class="d-flex py-2">
+                <div class="form-floating mx-auto">
+                  <input type="number" class="form-control" name="comissao">
+                  <label>Comissão</label>
+                </div><br>
+                <div class="form-floating mx-auto">
+                  <input type="text" class="form-control" name="telefone-contador">
+                  <label>Telefone</label>
+                </div><br>
+              </section><br>
+              <div class="form-floating">
+                <input type="email" class="form-control" name="email-contador">
+                <label>E-mail</label>
+              </div><br>
+            </div>          
+            <div class="form-floating">              
+              <select id="privilegio" class="form-select" name="privilegio" required>
+                <option value="Administrador">Administrador</option>
+                <option value="Contador">Contador</option>
+              </select>
+              <label class="form-label">Privilégio de Sistema</label>
+            </div><br>          
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Cadastrar</button>
+          </form>
         </div>
       </div>
     </div>
@@ -177,10 +176,6 @@
     </div>
   </div>
 </main>
-<footer class="my-5 pt-5 text-muted text-center text-small">
-  <p class="mb-1">&copy; <?php echo date("Y");?> - AR E2S Corretora de Seguros LTDA-ME</p>
-  <p>Site desenvolvido por<a href="https://www.linkedin.com/in/rafaelcarvalho-ti"> Rafael Carvalho</a></p>
-</footer>
 </body>
 <script src="js/script.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

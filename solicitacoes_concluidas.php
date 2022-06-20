@@ -38,7 +38,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.1/css/bootstrap.min.css" integrity="sha512-6KY5s6UI5J7SVYuZB4S/CZMyPylqyyNZco376NM2Z8Sb8OxEdp02e1jkKk/wZxIEmjQ6DRCEBhni+gpr9c4tvA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="css/style.css">
   <link rel="shortcut icon" type="imagex/png" href="img/icone.ico">
 </head>
 <body class="bg-light">
@@ -73,16 +72,16 @@
   </div>
 </nav>
 <header class="py-4 text-center">
-  <div class="usuario bg-primary">
-    <h4 class="text-center mx-auto">Olá, <strong><?php echo $logado; ?></strong>. Seja bem vindo(a).</h4>
-  </div>    
+  <div class="usuario bg-primary d-flex mx-auto align-items-center rounded mb-4" style="max-width: 460px;height: 52px;">
+    <h4 class="text-center text-white mx-auto">Olá, <strong><?php echo $logado; ?></strong>. Seja bem vindo(a).</h4>
+  </div>      
   <h2>Solicitações Concluídas</h2>
   <p class="lead">Lista com todas as solicitações que ja foram emitidas e concluídas.</p>        
 </header>
 <main class="container"> 
-  <section class="periodo-consulta">       
-    <div>          
-      <select name="mes-consulta" class="form-select" id="mes">
+  <section class="d-flex flex-row text-center mx-auto mb-4">       
+    <div class="d-flex mx-auto">          
+      <select name="mes-consulta" class="form-select me-2" id="mes" style="width:150px;">
         <option value="">Período</option>
         <option value="01">Janeiro</option>
         <option value="02">Feveireiro</option>
@@ -97,13 +96,12 @@
         <option value="11">Novembro</option>
         <option value="12">Dezembro</option>            
       </select>          
-      <button id="bt-consulta" class="btn btn-primary" onclick="searchDataConcluidas()"><i class="bi bi-search"></i></button>
+      <button class="btn btn-primary" onclick="searchDataAtivas()"><i class="bi bi-search"></i></button>
     </div>               
   </section>
   <table class="table table-hover">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">Id</th>
         <th scope="col">Cliente</th>
         <th scope="col">Certificado</th>
         <th scope="col">Data da solicitação</th>
@@ -113,7 +111,6 @@
     </thead>
     <tbody><?php while($rows_solicitacoes = mysqli_fetch_assoc($solicitacoes)){ ?>
       <tr>
-        <td><?php echo $rows_solicitacoes['id']; ?></td>
         <td><?php echo base64_decode($rows_solicitacoes['nome']); ?></td>
         <td><?php echo $rows_solicitacoes['tipo_certificado']; ?></td>        
         <td><?php echo $rows_solicitacoes['data_solicitacao']; ?></td>                           
@@ -133,7 +130,7 @@
         <div class="modal-body">
           <form class="needs-validation" method="post" action="solicitar_sucesso.php" enctype="multipart/form-data" novalidate>
             <!--ESCOLHAS PARA O TIPO E VALOR DO CERTIFICADO SELECIONADO-->
-            <section>          
+            <section class="d-flex py-2">          
               <div class="col-sm-12 mx-auto text-center">
                 <label for="type-cpf" class="form-label">Tipo do Certificado</label>
                 <select name="tipo-certificado" class="form-select" id="type-cpf" required>
@@ -162,7 +159,7 @@
               </div>
             </section>
             
-            <section>
+            <section class="d-flex py-2">
               <div class="col-sm-12 mx-auto"><!--NOME DO CLIENTE-->
                 <label for="nome-cliente" class="form-label">Nome Completo</label>
                 <input name="nome" type="text" class="form-control" id="nome-cliente" required>
@@ -170,7 +167,7 @@
               </div>
             </section>
 
-            <section>
+            <section class="d-flex py-2">
               <div class="col-sm-5 mx-auto"><!--CPF DO CLIENTE-->
                 <label for="cpf-cliente" class="form-label">CPF</label>
                 <input name="cpf" type="text" class="form-control" id="cpf-cliente" required>
@@ -184,7 +181,7 @@
               </div>
             </section>
         
-            <section>
+            <section class="d-flex py-2">
               <div class="col-sm-7 mx-auto"><!--EMAIL DO CLIENTE-->
                 <label for="email-cliente" class="form-label">Email</label>
                 <input name="email" type="email" class="form-control" id="email-cliente" required>
@@ -198,7 +195,7 @@
               </div>
             </section>
       
-            <section>
+            <section class="d-flex py-2">
               <div class="col-sm-5 mx-auto"><!--CEP DO CLIENTE-->
                 <label for="cep-cliente" class="form-label">CEP<span class="text-muted"></span></label>
                 <input name="cep" type="text" id="cep" class="form-control" value="" size="10" maxlength="9"
@@ -213,7 +210,7 @@
               </div>
             </section>
         
-            <section>
+            <section class="d-flex py-2">
               <div class="col-sm-9 mx-auto"><!--RUA DO CLIENTE-->
                 <label for="rua-cliente" class="form-label">Rua (Logradouro)</label>
                 <input name="rua" type="text" id="rua" class="form-control" size="80" required/>    
@@ -222,19 +219,19 @@
       
               <div class="col-sm-2 mx-auto" id="num"><!--NUM DO CLIENTE-->
                 <label for="num-cliente" class="form-label">N°<span class="text-muted"></span></label>
-                <input name="num" type="number" class="form-control" id="num-cliente" required>
+                <input name="num" type="number" class="form-control" id="num-cliente" min='0' required>
                 <div class="invalid-feedback">Insira o número.</div>
               </div>        
             </section>
                   
-            <section>        
+            <section class="d-flex py-2">        
               <div class="col-sm-12 mx-auto"><!--OBSERVACOES CLIENTE-->
-                <label for="obs-cliente" class="form-label">OBSERVACOES</label>
+                <label for="obs-cliente" class="form-label">OBSERVAÇÕES</label>
                 <input name="observacoes" type="textarea" class="form-control" id="obs-cliente">
               </div>
             </section>
             
-            <section>
+            <section class="d-flex py-2">
               <div class="col-sm-12 mx-auto text-center"><!--DOC. PESSOAL DO CLIENTE-->
                 <label for="doc-cliente" class="form-label">Anexar documento pessoal (CNH, RG ou DNI).</label>
                 <label for="doc-cliente" class="form-label">E documentos da empresa ou pessoa jurídica (E-CNPJ).</label>
@@ -267,10 +264,6 @@
     </div>
   </div>
 </main>
-<footer class="my-5 pt-5 text-muted text-center text-small">
-  <p class="mb-1">&copy; <?php echo date("Y");?> - AR E2S Corretora de Seguros LTDA-ME</p>
-  <p>Site desenvolvido por<a href="https://www.linkedin.com/in/rafaelcarvalho-ti"> Rafael Carvalho</a></p>
-</footer>
 </body>
 <script src="js/script.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
