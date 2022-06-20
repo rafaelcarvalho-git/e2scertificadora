@@ -145,20 +145,20 @@
         </div>
         <div class="modal-body">
           <h4><strong>Nome</strong></h4>
-          <h3 class="text-primary"><?php echo base64_decode($rows_solicitacoes['nome']); ?></h3>
+          <h3 class="text-primary user-select-auto"><?php echo base64_decode($rows_solicitacoes['nome']); ?></h3>
           <h4><strong>CPF</strong></h4>
-          <h3 class="text-primary"><?php echo base64_decode($rows_solicitacoes['cpf']); ?></h3>
+          <h3 class="text-primary user-select-auto"><?php echo base64_decode($rows_solicitacoes['cpf']); ?></h3>
           <h4><strong>Data de Nascimento</strong></h4>
-          <h3 class="text-primary"><?php echo date("d/m/Y",strtotime($rows_solicitacoes['data_nascimento'])); ?></h3>
+          <h3 class="text-primary user-select-auto"><?php echo date("d/m/Y",strtotime($rows_solicitacoes['data_nascimento'])); ?></h3>
           <h4><strong>E-mail</strong></h4>
-          <h3 class="text-primary"><?php echo base64_decode($rows_solicitacoes['email']); ?></h3>
+          <h3 class="text-primary user-select-auto"><?php echo base64_decode($rows_solicitacoes['email']); ?></h3>
           <h4><strong>Telefone</strong></h4>
-          <h3 class="text-primary"><?php echo base64_decode($rows_solicitacoes['telefone']); ?> <a href="https://api.whatsapp.com/send/?phone=55<?php echo base64_decode($rows_solicitacoes['telefone']); ?>&text&app_absent=0" target="_blank"><button type="button" class="btn btn-info text-white"><i class="bi bi-whatsapp"></i></button></a></h3>
+          <h3 class="text-primary user-select-auto"><?php echo base64_decode($rows_solicitacoes['telefone']); ?> <a href="https://api.whatsapp.com/send/?phone=55<?php echo base64_decode($rows_solicitacoes['telefone']); ?>&text&app_absent=0" target="_blank"><button type="button" class="btn btn-info text-white"><i class="bi bi-whatsapp"></i></button></a></h3>
           <hr>
           <h4><strong>CEP</strong></h4>
-          <h3 class="text-primary"><?php echo base64_decode($rows_solicitacoes['cep']); ?></h3>
+          <h3 class="text-primary user-select-auto"><?php echo base64_decode($rows_solicitacoes['cep']); ?></h3>
           <h4><strong>Endereço</strong></h4>
-          <h3 class="text-primary"><?php echo base64_decode($rows_solicitacoes['endereco']); ?></h3>  
+          <h3 class="text-primary user-select-auto"><?php echo base64_decode($rows_solicitacoes['endereco']); ?></h3>  
           <hr>
           <h4><strong>Observações</strong></h4>
           <h3 class="text-primary"><?php echo $rows_solicitacoes['observacoes']; ?></h3>
