@@ -1,8 +1,5 @@
 p a{text-decoration: none;}
-.heading {
-  margin: 45px auto 25px auto;
-}
-.heading ul {text-align: left;}
+.heading {margin: 45px auto 25px auto;}.heading ul {text-align: left;}
 section {display: flex;padding: 5px;}
 #bt-consulta {
   width: 40px;

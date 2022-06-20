@@ -21,8 +21,8 @@ session_start();
   </div>
 </nav>
 <h1 class="mt-5 mb-4">Sistema para solicitar Certificados Digitais</h1>
-<main class="login mx-auto">
-  <form id="formLogin" class="mx-auto" method="post" action="validar_login.php">
+<main class="mx-auto">
+  <form class="mx-auto" method="post" action="validar_login.php">
     <?php
         if(isset($_SESSION['msgLogin'])){
           echo $_SESSION['msgLogin'];
@@ -41,7 +41,6 @@ session_start();
     </div><br>
 
     <input id="btnLogin" class="btn btn-lg btn-primary mt-3" type="submit" name="btnLogin" value="Acessar"  style="width: 350px;">
-    <p class="mt-5 mb-3 text-muted">&copy; <?php echo date("Y");?> - AR E2S Corretora de Seguros LTDA-ME</p>
   </form>
 </main>
 </body>

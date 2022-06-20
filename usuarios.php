@@ -37,9 +37,9 @@
 <body class="bg-light">
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="http://e2scertificadoradigital.com.br/" style="color: white;" target="_blank"><img src="img/logo.png" alt="" width="50" height="30" class="d-inline-block align-text-top">
+    <a class="navbar-brand mx-auto" href="http://e2scertificadoradigital.com.br/" style="color: white;" target="_blank"><img src="img/logo.png" alt="" width="50" height="30" class="d-inline-block align-text-top">
     AR E2S CORRETORA DE SEGUROS LTDA-ME</a>    
-    <ul class="navbar-nav">   
+    <ul class="navbar-nav mx-auto">   
       <li class="nav-item">
         <a class="nav-link" href="#"><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#cadastrarUsuario">Cadastrar Usuário</button></a>          
       </li>   
