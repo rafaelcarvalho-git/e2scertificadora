@@ -1,15 +1,9 @@
-/*main {max-width:720px;padding:25px;margin: auto;}*/
-p a{text-decoration: none;}.navbar-brand, .navbar-nav {margin: auto;}
+p a{text-decoration: none;}
 .heading {
   margin: 45px auto 25px auto;
 }
-.heading ul {
-  text-align: left;
-}
-section {
-  display: flex;
-  padding: 5px;
-}
+.heading ul {text-align: left;}
+section {display: flex;padding: 5px;}
 #bt-consulta {
   width: 40px;
   height: 40px;
@@ -32,7 +26,6 @@ section {
   align-items: center;
   flex-direction: row;
 }.acao button{margin: auto auto auto 5px;}
-
 .usuario {
   border-radius: 12px;
   display: flex;
@@ -51,12 +44,4 @@ section {
   width: 580px;
   height: 48px;
   margin: auto;
-}.componentes-contadores button {margin: auto;}
-
-/*login*/
-.login{margin:auto;}
-#formLogin{width:500px;margin:20px auto auto auto;}
-#formLogin h2{padding-bottom:5px;}
-#loginUsuario, #loginSenha, #btnLogin{margin: auto;width: 400px;}
-#btnLogin{margin-top: 20px;box-shadow: 0px 2px 15px rgb(0 0 0 / 35%);}
-.h1-login{margin-top: 20px;margin-bottom: 10px;}
+}

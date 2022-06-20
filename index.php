@@ -16,31 +16,31 @@ session_start();
 <body class="text-center bg-light">
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="http://e2scertificadoradigital.com.br/" style="color: white;" target="_blank"><img src="img/logo.png" alt="" width="50" height="30" class="d-inline-block align-text-top">
+    <a class="navbar-brand mx-auto" href="http://e2scertificadoradigital.com.br/" style="color: white;" target="_blank"><img src="img/logo.png" alt="" width="50" height="30" class="d-inline-block align-text-top">
     AR E2S CORRETORA DE SEGUROS LTDA-ME</a>    
   </div>
 </nav>
-<h1 class="h1-login">Sistema para solicitar Certificados Digitais</h1>
-<main class="login">
-  <form id="formLogin" method="post" action="validar_login.php">
+<h1 class="mt-5 mb-4">Sistema para solicitar Certificados Digitais</h1>
+<main class="login mx-auto">
+  <form id="formLogin" class="mx-auto" method="post" action="validar_login.php">
     <?php
         if(isset($_SESSION['msgLogin'])){
           echo $_SESSION['msgLogin'];
           unset($_SESSION['msgLogin']);
         }
     ?>
-    <h2>Login</h2>
-    <div id="loginUsuario" class="form-floating">
+    <h2 class="py-1">Login</h2>
+    <div class="form-floating mx-auto" style="width: 350px;">
       <input type="text" class="form-control"  name="usuario" required>
       <label>Usuário</label>
     </div><br>
 
-    <div id="loginSenha" class="form-floating">
+    <div class="form-floating mx-auto" style="width: 350px;">
       <input type="password" class="form-control" name="senha" required>
       <label>Senha</label>
     </div><br>
 
-    <input id="btnLogin" class="btn btn-lg btn-primary" type="submit" name="btnLogin" value="Acessar">
+    <input id="btnLogin" class="btn btn-lg btn-primary mt-3" type="submit" name="btnLogin" value="Acessar"  style="width: 350px;">
     <p class="mt-5 mb-3 text-muted">&copy; <?php echo date("Y");?> - AR E2S Corretora de Seguros LTDA-ME</p>
   </form>
 </main>

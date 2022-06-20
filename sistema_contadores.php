@@ -76,7 +76,7 @@
   }
 ?>
   <div class="componentes-contadores">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orientacoes">Orientações Importantes</button>      
+    <button type="button" class="btn btn-primary mx-auto" data-bs-toggle="modal" data-bs-target="#orientacoes">Orientações Importantes</button>      
     <section class="periodo-consulta">       
         <div>          
           <select name="mes-consulta" class="form-select" id="mes">
