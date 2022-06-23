@@ -1,16 +1,4 @@
-<?php
-    session_start();
-    include_once('conexao.php');
-    if(isset($_SESSION['privilegio']) == true and $_SESSION['privilegio'] != 'Administrador'){
-      header("Location: index.php");
-    }
-    if((!isset($_SESSION['usuario']) == true) or (!isset($_SESSION['senha']) == true) or (!isset($_SESSION['privilegio']) == true)) {
-      unset($_SESSION['usuario'], $_SESSION['senha'], $_SESSION['privilegio']);
-      header('Location: index.php');
-    }else {
-      $logado = $_SESSION['usuario'];
-    }    
-?>
+<?php include('modals/verificar_acesso.php'); ?>
 <?php
   include_once("conexao.php");
   $listar_usuarios = "SELECT * FROM usuarios ORDER BY id DESC";
@@ -21,16 +9,9 @@
 ?>
 <!doctype html>
 <html lang="pt-br">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>E2S</title>  
-  <link rel="stylesheet" href="css/bootstrap.min.css">  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.1/css/bootstrap.min.css" integrity="sha512-6KY5s6UI5J7SVYuZB4S/CZMyPylqyyNZco376NM2Z8Sb8OxEdp02e1jkKk/wZxIEmjQ6DRCEBhni+gpr9c4tvA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-  <link rel="shortcut icon" type="imagex/png" href="img/icone.ico">
-</head>
+  <head>
+    <?php include('modals/head.php'); ?>
+  </head>
 <body class="bg-light">
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
   <div class="container-fluid">
@@ -157,24 +138,7 @@
       </div>
     </div>
   </div>
-  <!-- Janela Confirma Sair do Sistema (logout) -->
-  <div class="modal fade" id="sairSistema" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Sair do Sistema</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          Deseja sair do sistema e ir para tela de login? <br>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <a href="sair.php"><button type='button' class='btn btn-primary'>Sair</button></a> 
-        </div>
-      </div>
-    </div>
-  </div>
+<?php include('modals/sair_do_sistema.php'); ?>
 </main>
 </body>
 <script src="js/script.js"></script>
