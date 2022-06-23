@@ -23,10 +23,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
   <div class="container-fluid">
     <a class="navbar-brand mx-auto" href="http://e2scertificadoradigital.com.br/" style="color: white;" target="_blank"><img src="img/logo.png" alt="" width="50" height="30" class="d-inline-block align-text-top">
-    AR E2S CORRETORA DE SEGUROS LTDA-ME</a>  
+    AR E2S CORRETORA DE SEGUROS LTDA-ME</a>    
     <ul class="navbar-nav mx-auto">
       <li class="nav-item">
-      <a class="nav-link"><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#solicitarCertificado">Nova Solicitação</button></a>                  
+      <a class="nav-link"><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#solicitarCertificado">Nova Solicitação</button></a>                   
       </li>    
       <li class="nav-item">          
         <div class="nav-link">          
@@ -42,10 +42,13 @@
         </div> 
       </li>
       <li class="nav-item">
+        <a class="nav-link"><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#vencimentos">Vencimentos</button></a>                   
+      </li>   
+      <li class="nav-item">
         <a class="nav-link" href="usuarios.php"><button type="button" class="btn btn-info">Usuários</button></a>          
       </li>    
       <li class="nav-item">
-        <a class="nav-link"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#sairSistema">Sair</button></a>       
+        <a class="nav-link"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#sairSistema">Sair</button></a>  
       </li>      
     </ul>   
   </div>
@@ -84,6 +87,7 @@
         <th scope="col">Cliente</th>
         <th scope="col">Certificado</th>
         <th scope="col">Data da solicitação</th>
+        <th scope="col">Data do Vencimento</th>
         <th scope="col">Contador</th>
         <th scope="col">Data da conclusão</th>
       </tr>
@@ -92,13 +96,15 @@
       <tr>
         <td><?php echo base64_decode($rows_solicitacoes['nome']); ?></td>
         <td><?php echo $rows_solicitacoes['tipo_certificado']; ?></td>        
-        <td><?php echo $rows_solicitacoes['data_solicitacao']; ?></td>                           
+        <td><?php echo $rows_solicitacoes['data_solicitacao']; ?></td>   
+        <td><?php echo $rows_solicitacoes['data_solicitacao']; ?></td>                        
         <td><?php echo base64_decode($rows_solicitacoes['contador']); ?></td>
         <td><?php echo $rows_solicitacoes['data_conclusao'];?></td> 
       </tr><?php } ?>
     </tbody>
   </table>
 <?php include('modals/nova_solicitacao.php'); ?>
+<?php include('modals/vencimentos.php'); ?>
 <?php include('modals/sair_do_sistema.php'); ?>
 </main>
 </body>
