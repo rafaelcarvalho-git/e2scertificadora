@@ -13,33 +13,7 @@
     <?php include('modals/head.php'); ?>
   </head>
 <body class="bg-light">
-<nav class="navbar navbar-expand-lg navbar-light bg-primary">
-  <div class="container-fluid">
-    <a class="navbar-brand mx-auto" href="http://e2scertificadoradigital.com.br/" style="color: white;" target="_blank"><img src="img/logo.png" alt="" width="50" height="30" class="d-inline-block align-text-top">
-    AR E2S CORRETORA DE SEGUROS LTDA-ME</a>    
-    <ul class="navbar-nav mx-auto">   
-      <li class="nav-item">
-        <a class="nav-link" href="#"><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#cadastrarUsuario">Cadastrar Usuário</button></a>          
-      </li>   
-      <li class="nav-item">          
-        <div class="nav-link">          
-          <div class="dropdown">
-            <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              Solicitações
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="solicitacoes_ativas.php">Ativas</a></li>
-              <li><a class="dropdown-item" href="solicitacoes_concluidas.php">Concluidas</a></li>
-            </ul>
-          </div>
-        </div> 
-      </li>
-      <li class="nav-item">
-      <a class="nav-link"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#sairSistema">Sair</button></a>              
-      </li>       
-    </ul>   
-  </div>
-</nav>
+<?php include('modals/navbar.php'); ?>
 <header class="py-4 text-center">
   <div class="usuario bg-primary d-flex mx-auto align-items-center rounded mb-4" style="max-width: 460px;height: 52px;">
     <h4 class="text-center text-white mx-auto">Olá, <strong><?php echo $logado; ?></strong>. Seja bem vindo(a).</h4>
@@ -89,54 +63,6 @@
   </div><?php } ?>
   </tbody>
   </table>
-  <!-- Janela Cadastrar Usuário -->
-  <div class="modal fade" id="cadastrarUsuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Cadastrar Usuário</h4>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form method="post" action="cadastrar_usuario.php">
-            <div class="form-floating">
-              <input type="text" class="form-control" name="usuario" required>
-              <label>Nome Usuario</label>
-            </div><br>
-            <div class="form-floating">
-              <input type="text" class="form-control" name="senha" required>
-              <label>Senha</label>
-            </div><br>
-            <div id="iscontador">
-              <section class="d-flex py-2">
-                <div class="form-floating mx-auto">
-                  <input type="number" class="form-control" name="comissao">
-                  <label>Comissão</label>
-                </div><br>
-                <div class="form-floating mx-auto">
-                  <input type="text" class="form-control" name="telefone-contador">
-                  <label>Telefone</label>
-                </div><br>
-              </section><br>
-              <div class="form-floating">
-                <input type="email" class="form-control" name="email-contador">
-                <label>E-mail</label>
-              </div><br>
-            </div>          
-            <div class="form-floating">              
-              <select id="privilegio" class="form-select" name="privilegio" required>
-                <option value="Administrador">Administrador</option>
-                <option value="Contador">Contador</option>
-              </select>
-              <label class="form-label">Privilégio de Sistema</label>
-            </div><br>          
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Cadastrar</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-<?php include('modals/sair_do_sistema.php'); ?>
 </main>
 </body>
 <script src="js/script.js"></script>

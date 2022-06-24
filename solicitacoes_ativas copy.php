@@ -1,5 +1,5 @@
-<?php include('modals/verificar_acesso.php'); ?>
-<?php
+<?php //include('modals/verificar_acesso.php'); ?>
+<?php/*
   include_once("conexao.php");  
   if(!empty($_GET['search'])) {
     $mes = $_GET['search'];
@@ -12,54 +12,15 @@
   $solicitacoes = mysqli_query($connect, $solicitar_dados);
   if($solicitacoes === FALSE) { 
     die(mysqli_error($connect));
-  }
+  }*/
 ?>
 <!doctype html>
 <html lang="pt-br">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>E2S</title>    
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.1/css/bootstrap.min.css" integrity="sha512-6KY5s6UI5J7SVYuZB4S/CZMyPylqyyNZco376NM2Z8Sb8OxEdp02e1jkKk/wZxIEmjQ6DRCEBhni+gpr9c4tvA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <link rel="shortcut icon" type="imagex/png" href="img/icone.ico">
+    <?php include('modals/head.php'); ?>
   </head>
 <body class="bg-light">
-<nav class="navbar navbar-expand-lg navbar-light bg-primary">
-  <div class="container-fluid">
-    <a class="navbar-brand mx-auto" href="http://e2scertificadoradigital.com.br/" style="color: white;" target="_blank"><img src="img/logo.png" alt="" width="50" height="30" class="d-inline-block align-text-top">
-    AR E2S CORRETORA DE SEGUROS LTDA-ME</a>    
-    <ul class="navbar-nav mx-auto">
-      <li class="nav-item">
-      <a class="nav-link"><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#solicitarCertificado">Nova Solicitação</button></a>                   
-      </li>    
-      <li class="nav-item">          
-        <div class="nav-link">          
-          <div class="dropdown">
-            <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              Solicitações
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="solicitacoes_ativas.php">Ativas</a></li>
-              <li><a class="dropdown-item" href="solicitacoes_concluidas.php">Concluidas</a></li>
-            </ul>
-          </div>
-        </div> 
-      </li>
-      <li class="nav-item">
-        <a class="nav-link"><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#vencimentos">Vencimentos</button></a>                   
-      </li>   
-      <li class="nav-item">
-        <a class="nav-link" href="usuarios.php"><button type="button" class="btn btn-info">Usuários</button></a>          
-      </li>    
-      <li class="nav-item">
-        <a class="nav-link"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#sairSistema">Sair</button></a>  
-      </li>      
-    </ul>   
-  </div>
-</nav>
+<?php include('modals/navbar.php'); ?>
 <header class="py-4 text-center">
   <div class="usuario bg-primary d-flex mx-auto align-items-center rounded mb-4" style="max-width: 460px;height: 52px;">
     <h4 class="text-center text-white mx-auto">Olá, <strong><?php echo $logado; ?></strong>. Seja bem vindo(a).</h4>
@@ -112,22 +73,21 @@
       <tr>
         <td><?php echo base64_decode($rows_solicitacoes['nome']); ?></td>
         <td><?php echo $rows_solicitacoes['tipo_certificado']; ?></td>
+        <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#visualizarSolicitacao<?php echo $rows_solicitacoes['id']; ?>">Visualizar</button></td>
         <td><?php echo $rows_solicitacoes['data_solicitacao']; ?></td>                  
         <td><?php echo base64_decode($rows_solicitacoes['contador']); ?></td>
-        <td>                                     
-          <div class="dropdown navbar">
-            <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-              Ações
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <li><a class="dropdown-item" href="solicitacoes_ativas.php" data-bs-toggle="modal" data-bs-target="#visualizarSolicitacao<?php echo $rows_solicitacoes['id']; ?>">Informações</a></li>
-              <li><a class="dropdown-item" href="documentos/<?php echo base64_decode($rows_solicitacoes['documentos']); ?>">Documentos</a></li>
-              <li><button type="button" data-bs-toggle="modal" data-bs-target="#concluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>">Concluir</button></li>
-              <li><a class="dropdown-item" href="solicitacoes_concluidas.php">Excluir</a></li>
-            </ul>
-          </div>            
-        
-        </td>
+        <td><a href="documentos/<?php echo base64_decode($rows_solicitacoes['documentos']); ?>"><button type="button" class="btn btn-primary">Baixar</button></a></td>
+        <td><div class="d-flex align-items-center"><button type="button" class="btn btn-success mx-1" data-bs-toggle="modal" data-bs-target="#concluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>"><i class="bi bi-check2-circle"></i></button>
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#excluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>"><i class="bi bi-trash"></i></button></div>
+      
+        <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-white" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Usuários</a>
+        <ul class="dropdown-menu" aria-labelledby="dropdown04">
+          <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#cadastrarUsuario">Cadastrar Usuário</a></li>
+          <li><a class="dropdown-item" href="usuarios.php">Usuários de Sistema</a></li>
+        </ul>
+    </div>
+      </td>
       </tr>
   <!-- Janela Visualizar Informações Cliente -->
   <div class="modal fade" id="visualizarSolicitacao<?php echo $rows_solicitacoes['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="visualizarSolicitacaoLabel">
@@ -203,7 +163,6 @@
   </table>
 <?php include('modals/nova_solicitacao.php'); ?>
 <?php include('modals/vencimentos.php'); ?>
-<?php include('modals/sair_do_sistema.php'); ?>
 </main>
 </body>
 <script src="js/script.js"></script>

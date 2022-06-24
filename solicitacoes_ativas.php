@@ -20,39 +20,7 @@
     <?php include('modals/head.php'); ?>
   </head>
 <body class="bg-light">
-<nav class="navbar navbar-expand-lg navbar-light bg-primary">
-  <div class="container-fluid">
-    <a class="navbar-brand mx-auto" href="http://e2scertificadoradigital.com.br/" style="color: white;" target="_blank"><img src="img/logo.png" alt="" width="50" height="30" class="d-inline-block align-text-top">
-    AR E2S CORRETORA DE SEGUROS LTDA-ME</a>    
-    <ul class="navbar-nav mx-auto">
-      <li class="nav-item">
-      <a class="nav-link"><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#solicitarCertificado">Nova Solicitação</button></a>                   
-      </li>    
-      <li class="nav-item">          
-        <div class="nav-link">          
-          <div class="dropdown">
-            <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              Solicitações
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="solicitacoes_ativas.php">Ativas</a></li>
-              <li><a class="dropdown-item" href="solicitacoes_concluidas.php">Concluidas</a></li>
-            </ul>
-          </div>
-        </div> 
-      </li>
-      <li class="nav-item">
-        <a class="nav-link"><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#vencimentos">Vencimentos</button></a>                   
-      </li>   
-      <li class="nav-item">
-        <a class="nav-link" href="usuarios.php"><button type="button" class="btn btn-info">Usuários</button></a>          
-      </li>    
-      <li class="nav-item">
-        <a class="nav-link"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#sairSistema">Sair</button></a>  
-      </li>      
-    </ul>   
-  </div>
-</nav>
+<?php include('modals/navbar.php'); ?>
 <header class="py-4 text-center">
   <div class="usuario bg-primary d-flex mx-auto align-items-center rounded mb-4" style="max-width: 460px;height: 52px;">
     <h4 class="text-center text-white mx-auto">Olá, <strong><?php echo $logado; ?></strong>. Seja bem vindo(a).</h4>
@@ -96,23 +64,28 @@
       <tr>
         <th scope="col">Cliente</th>
         <th scope="col">Certificado</th>
-        <th scope="col">Informações</th>
         <th scope="col">Data</th>
         <th scope="col">Contador</th>
-        <th scope="col">Documentos</th>
         <th scope="col">Ação</th>
       </tr>
     </thead>
-    <tbody><?php while($rows_solicitacoes = mysqli_fetch_assoc($solicitacoes)){ ?>
+    <tbody>
       <tr>
-        <td><?php echo base64_decode($rows_solicitacoes['nome']); ?></td>
-        <td><?php echo $rows_solicitacoes['tipo_certificado']; ?></td>
-        <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#visualizarSolicitacao<?php echo $rows_solicitacoes['id']; ?>">Visualizar</button></td>
-        <td><?php echo $rows_solicitacoes['data_solicitacao']; ?></td>                  
-        <td><?php echo base64_decode($rows_solicitacoes['contador']); ?></td>
-        <td><a href="documentos/<?php echo base64_decode($rows_solicitacoes['documentos']); ?>"><button type="button" class="btn btn-primary">Baixar</button></a></td>
-        <td><div class="d-flex align-items-center"><button type="button" class="btn btn-success mx-1" data-bs-toggle="modal" data-bs-target="#concluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>"><i class="bi bi-check2-circle"></i></button>
-        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#excluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>"><i class="bi bi-trash"></i></button></div></td>
+        <td>RAFAEL CANDIDO LACERDA CARVALHO</td>
+        <td>E-CNPJ A1 MIDIA DIGITAL R$ 210,00</td>
+        <td>02/02/2022 15:44:55</td>                  
+        <td>GEONE</td>
+        <td>
+        <div class="nav-item dropdown">
+          <button type="button" class="btn btn-info dropdown-toggle text-white" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Ação</button>
+          <ul class="dropdown-menu" aria-labelledby="dropdown04">
+            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#visualizarSolicitacao<?php echo $rows_solicitacoes['id']; ?>">Informações</a></li>
+            <li><a class="dropdown-item" href="documentos/<?php echo base64_decode($rows_solicitacoes['documentos']); ?>">Documentos</a></li>
+            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#concluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>">Concluir</a></li>
+            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#excluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>">Excluir</a></li>
+          </ul>
+        </div>
+        </td>
       </tr>
   <!-- Janela Visualizar Informações Cliente -->
   <div class="modal fade" id="visualizarSolicitacao<?php echo $rows_solicitacoes['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="visualizarSolicitacaoLabel">
@@ -183,12 +156,11 @@
         </div>
       </div>
     </div>
-  </div><?php } ?>
+  </div>
   </tbody>
   </table>
 <?php include('modals/nova_solicitacao.php'); ?>
 <?php include('modals/vencimentos.php'); ?>
-<?php include('modals/sair_do_sistema.php'); ?>
 </main>
 </body>
 <script src="js/script.js"></script>
