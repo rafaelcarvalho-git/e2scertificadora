@@ -1,4 +1,4 @@
-<?php include('modals/verificar_acesso.php'); ?>
+<?php //include('modals/verificar_acesso.php'); ?>
 <?php
   include_once("conexao.php");
   $listar_usuarios = "SELECT * FROM usuarios ORDER BY id DESC";
@@ -39,8 +39,8 @@
         <td><?php echo $rows_usuarios['usuario']; ?></td>
         <td><?php echo $rows_usuarios['privilegio']; ?></td>         
         <td><?php echo $rows_usuarios['comissao']; ?>%</td>
-        <td><a href="https://api.whatsapp.com/send/?phone=55<?php echo base64_decode($rows_usuarios['telefone']); ?>&text&app_absent=0" target="_blank"><?php echo base64_decode($rows_usuarios['telefone']); ?></a></td>
-        <td><?php echo base64_decode($rows_usuarios['email']); ?></td>
+        <td><a href="https://api.whatsapp.com/send/?phone=55<?php echo $rows_usuarios['telefone']; ?>&text&app_absent=0" target="_blank"><?php echo $rows_usuarios['telefone']; ?></a></td>
+        <td><?php echo $rows_usuarios['email']; ?></td>
         <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#excluirUsuario<?php echo $rows_usuarios['id']; ?>" >X</button></td>                                                  
       </tr>
   <!-- Janela Confirma excluir Usuário -->

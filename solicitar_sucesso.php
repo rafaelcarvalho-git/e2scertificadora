@@ -49,16 +49,9 @@
                 }
             }
         }
-        $nome_cript = base64_encode($nome);
-        $cpf_cript = base64_encode($cpf);
-        $email_cript = base64_encode($email);
-        $telefone_cript = base64_encode($telefone);
-        $cep_cript = base64_encode($cep);
-        $endereco_cript = base64_encode($endereco);
-        $fileName_cript = base64_encode($fileName);
-        $insert_solicitacao = "INSERT INTO solicitacoes(tipo_certificado, nome, cpf, data_nascimento, email, telefone, cep, endereco, observacoes, data_solicitacao, contador, documentos) VALUES ('$tipo_certificado', '$nome_cript', '$cpf_cript', '$data_nascimento', '$email_cript', '$telefone_cript', '$cep_cript', '$endereco_cript', '$observacoes', NOW(), '$contador', '$fileName_cript')";
+        $insert_solicitacao = "INSERT INTO solicitacoes(tipo_certificado, nome, cpf, data_nascimento, email, telefone, cep, endereco, observacoes, data_solicitacao, contador, documentos) VALUES ('$tipo_certificado', '$nome', '$cpf', '$data_nascimento', '$email', '$telefone', '$cep', '$endereco', '$observacoes', NOW(), '$contador', '$fileName')";
         $insert_solicitacao_query= mysqli_query($connect, $insert_solicitacao);    
-        $insert_solicitacao_contador = "INSERT INTO solicitacoes_contadores(nome, tipo_certificado, data_solicitacao, contador) VALUES ('$nome_cript', '$tipo_certificado', NOW(), '$contador')";
+        $insert_solicitacao_contador = "INSERT INTO solicitacoes_contadores(nome, tipo_certificado, data_solicitacao, contador) VALUES ('$nome', '$tipo_certificado', NOW(), '$contador')";
         $insert_solicitacao_query_contador= mysqli_query($connect, $insert_solicitacao_contador);  
         if($_SESSION['privilegio'] == 'Administrador'){
             $_SESSION['solicitacaoSucesso'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>

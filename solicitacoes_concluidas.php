@@ -94,11 +94,11 @@
     </thead>
     <tbody><?php while($rows_solicitacoes = mysqli_fetch_assoc($solicitacoes)){ ?>
       <tr>
-        <td><?php echo base64_decode($rows_solicitacoes['nome']); ?></td>
+        <td><?php echo $rows_solicitacoes['nome']; ?></td>
         <td><?php echo $rows_solicitacoes['tipo_certificado']; ?></td>        
         <td><?php echo $rows_solicitacoes['data_solicitacao']; ?></td>   
         <td><?php echo $rows_solicitacoes['data_solicitacao']; ?></td>                        
-        <td><?php echo base64_decode($rows_solicitacoes['contador']); ?></td>
+        <td><?php echo $rows_solicitacoes['contador']; ?></td>
         <td><?php echo $rows_solicitacoes['data_conclusao'];?></td> 
       </tr><?php } ?>
     </tbody>

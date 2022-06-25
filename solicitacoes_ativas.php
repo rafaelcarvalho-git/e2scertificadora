@@ -80,7 +80,7 @@
           <button type="button" class="btn btn-info dropdown-toggle text-white" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Ação</button>
           <ul class="dropdown-menu" aria-labelledby="dropdown04">
             <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#visualizarSolicitacao<?php echo $rows_solicitacoes['id']; ?>">Informações</a></li>
-            <li><a class="dropdown-item" href="documentos/<?php echo base64_decode($rows_solicitacoes['documentos']); ?>">Documentos</a></li>
+            <li><a class="dropdown-item" href="documentos/<?php echo $rows_solicitacoes['documentos']; ?>">Documentos</a></li>
             <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#concluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>">Concluir</a></li>
             <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#excluirSolicitacao<?php echo $rows_solicitacoes['id']; ?>">Excluir</a></li>
           </ul>
@@ -97,20 +97,20 @@
         </div>
         <div class="modal-body">
           <h4><strong>Nome</strong></h4>
-          <h3 class="text-primary user-select-all"><?php echo base64_decode($rows_solicitacoes['nome']); ?></h3>
+          <h3 class="text-primary user-select-all"><?php echo $rows_solicitacoes['nome']; ?></h3>
           <h4><strong>CPF</strong></h4>
-          <h3 class="text-primary user-select-all"><?php echo base64_decode($rows_solicitacoes['cpf']); ?></h3>
+          <h3 class="text-primary user-select-all"><?php echo $rows_solicitacoes['cpf']; ?></h3>
           <h4><strong>Data de Nascimento</strong></h4>
           <h3 class="text-primary user-select-all"><?php echo date("d/m/Y",strtotime($rows_solicitacoes['data_nascimento'])); ?></h3>
           <h4><strong>E-mail</strong></h4>
-          <h3 class="text-primary user-select-all"><?php echo base64_decode($rows_solicitacoes['email']); ?></h3>
+          <h3 class="text-primary user-select-all"><?php echo $rows_solicitacoes['email']; ?></h3>
           <h4><strong>Telefone</strong></h4>
-          <h3 class="text-primary user-select-all"><?php echo base64_decode($rows_solicitacoes['telefone']); ?> <a href="https://api.whatsapp.com/send/?phone=55<?php echo base64_decode($rows_solicitacoes['telefone']); ?>&text&app_absent=0" target="_blank"><button type="button" class="btn btn-info text-white"><i class="bi bi-whatsapp"></i></button></a></h3>
+          <h3 class="text-primary user-select-all"><?php echo $rows_solicitacoes['telefone']; ?> <a href="https://api.whatsapp.com/send/?phone=55<?php echo $rows_solicitacoes['telefone']; ?>&text&app_absent=0" target="_blank"><button type="button" class="btn btn-info text-white"><i class="bi bi-whatsapp"></i></button></a></h3>
           <hr>
           <h4><strong>CEP</strong></h4>
-          <h3 class="text-primary user-select-all"><?php echo base64_decode($rows_solicitacoes['cep']); ?></h3>
+          <h3 class="text-primary user-select-all"><?php echo $rows_solicitacoes['cep']; ?></h3>
           <h4><strong>Endereço</strong></h4>
-          <h3 class="text-primary user-select-all"><?php echo base64_decode($rows_solicitacoes['endereco']); ?></h3>  
+          <h3 class="text-primary user-select-all"><?php echo $rows_solicitacoes['endereco']; ?></h3>  
           <hr>
           <h4><strong>Observações</strong></h4>
           <h3 class="text-primary"><?php echo $rows_solicitacoes['observacoes']; ?></h3>
@@ -129,7 +129,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          Deseja excluir a solicitação de <?php echo base64_decode($rows_solicitacoes['nome']); ?>? <br>
+          Deseja excluir a solicitação de <?php echo $rows_solicitacoes['nome']; ?>? <br>
           Esta ação será irreversível.
         </div>
         <div class="modal-footer">
@@ -148,7 +148,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          Deseja concluir a solicitação de <?php echo base64_decode($rows_solicitacoes['nome']); ?>? <br>
+          Deseja concluir a solicitação de <?php echo $rows_solicitacoes['nome']; ?>? <br>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

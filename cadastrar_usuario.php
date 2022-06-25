@@ -22,12 +22,8 @@
           $email = null;
           $telefone = null;
         }        
-        $senha_criptografada = password_hash($senha, PASSWORD_DEFAULT);
-        $usuario_cript = base64_encode($usuario);
-        $privilegio_cript = base64_encode($privilegio);
-        $email_cript = base64_encode($email);        
-        $telefone_cript = base64_encode($telefone);
-        $cadastrar_usuario = "INSERT INTO usuarios(usuario, senha, privilegio, comissao, telefone, email) VALUES ('$usuario', '$senha_criptografada', '$privilegio_cript', '$comissao', '$telefone_cript', '$email_cript')";
+        $senhaografada = password_hash($senha, PASSWORD_DEFAULT);
+        $cadastrar_usuario = "INSERT INTO usuarios(usuario, senha, privilegio, comissao, telefone, email) VALUES ('$usuario', '$senhaografada', '$privilegio', '$comissao', '$telefone', '$email')";
         $cadastrar = mysqli_query($connect, $cadastrar_usuario);  
       }      
     }
