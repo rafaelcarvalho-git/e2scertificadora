@@ -27,7 +27,7 @@
         $rua = strtoupper($rua);        
         $endereco = "{$rua}, {$num} - {$bairro}";        
         $observacoes = strtoupper($_POST["observacoes"]);
-        $contador = $_SESSION['usuario'];
+        $usuario = $_SESSION['usuario'];
         //documentos
         $diretorio = "documentos/";
         $cliente_documentos = $nome;
@@ -48,17 +48,19 @@
                     }                                         
                 }
             }
-        }
-        $nome_cript = base64_encode($nome);
-        $cpf_cript = base64_encode($cpf);
-        $email_cript = base64_encode($email);
-        $telefone_cript = base64_encode($telefone);
-        $cep_cript = base64_encode($cep);
-        $endereco_cript = base64_encode($endereco);
-        $contador_cript = base64_encode($contador);
-        $fileName_cript = base64_encode($fileName);
-        $result_solicitar = "INSERT INTO solicitacoes(tipo_certificado, nome, cpf, data_nascimento, email, telefone, cep, endereco, observacoes, data_solicitacao, contador, documentos) VALUES ('$tipo_certificado', '$nome_cript', '$cpf_cript', '$data_nascimento', '$email_cript', '$telefone_cript', '$cep_cript', '$endereco_cript', '$observacoes', NOW(), '$contador_cript', '$fileName_cript')";
-        $resultado_solicitar= mysqli_query($connect, $result_solicitar);    
+        }/*
+        $nome= base64_encode($nome);
+        $cpf = base64_encode($cpf);
+        $email = base64_encode($email);
+        $telefone = base64_encode($telefone);
+        $cep = base64_encode($cep);
+        $endereco = base64_encode($endereco);
+        $usuario = base64_encode($usuario);
+        $fileName = base64_encode($fileName);*/
+        $solicitar = "INSERT INTO solicitacoes(tipo_certificado, nome, cpf, data_nascimento, email, telefone, cep, endereco, observacoes, data_solicitacao, usuario, documentos) VALUES ('$tipo_certificado', '$nome', '$cpf', '$data_nascimento', '$email', '$telefone', '$cep', '$endereco', '$observacoes', NOW(), '$usuario', '$fileName')";
+        $sql_solicitar= mysqli_query($connect, $solicitar);  
+        $solicitar2 = "INSERT INTO solicitacoes_usuarios(nome, tipo_certificado, data_solicitacao, usuario) VALUES ('$nome', '$tipo_certificado', NOW(), '$usuario')";
+        $sql_solicitar2= mysqli_query($connect, $solicitar2);   
         if($_SESSION['privilegio'] == 'Administrador'){
             $_SESSION['solicitacaoSucesso'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
             Certificado Digital solicitado com sucesso! Iremos realizar o cadastro do cliente e o atendimento. Aguarde nosso contato.<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";  

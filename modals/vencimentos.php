@@ -60,7 +60,7 @@
                 </div>
               </div>
             </div>
-          </div><?php } ?>
+          </div>
           </tbody>
           </table>
     </div>

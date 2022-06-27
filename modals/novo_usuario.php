@@ -16,26 +16,26 @@
               <input type="text" class="form-control" name="senha" required>
               <label>Senha</label>
             </div><br>
-            <div id="iscontador">
+            <div id="isusuario">
               <section class="d-flex py-2">
                 <div class="form-floating mx-auto">
                   <input type="number" class="form-control" name="comissao">
                   <label>Comissão</label>
                 </div><br>
                 <div class="form-floating mx-auto">
-                  <input type="text" class="form-control" name="telefone-contador">
+                  <input type="text" class="form-control" name="telefone-usuario">
                   <label>Telefone</label>
                 </div><br>
               </section><br>
               <div class="form-floating">
-                <input type="email" class="form-control" name="email-contador">
+                <input type="email" class="form-control" name="email-usuario">
                 <label>E-mail</label>
               </div><br>
             </div>          
             <div class="form-floating">              
               <select id="privilegio" class="form-select" name="privilegio" required>
                 <option value="Administrador">Administrador</option>
-                <option value="Contador">Contador</option>
+                <option value="usuario">usuario</option>
               </select>
               <label class="form-label">Privilégio de Sistema</label>
             </div><br>          

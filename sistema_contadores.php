@@ -23,27 +23,20 @@
   if(!empty($_GET['search'])) {
     $mes = $_GET['search'];
     $ano = date("Y");
-    $solicitar_dados = "SELECT * FROM solicitacoes WHERE contador = '$logado' AND MONTH(data_solicitacao) = '$mes' AND YEAR(data_solicitacao) = '$ano' ORDER BY id DESC";
+    $solicitacoes_usuarios = "SELECT * FROM solicitacoes WHERE usuario= '$logado' AND MONTH(data_solicitacao) = '$mes' AND YEAR(data_solicitacao) = '$ano' ORDER BY MONTH(data_solicitacao) DESC";
   }
   else {
-    $solicitar_dados = "SELECT * FROM solicitacoes WHERE contador = '$logado' ORDER BY id DESC";
+    $solicitacoes_usuarios = "SELECT * FROM solicitacoes WHERE usuario= '$logado' ORDER BY MONTH(data_solicitacao) DESC";
   }
-  $solicitacoes = mysqli_query($connect, $solicitar_dados);
-  if($solicitacoes === FALSE) { 
+  $sol_usuarios= mysqli_query($connect, $solicitacoes_usuarios);
+  if($sol_usuarios=== FALSE) { 
     die(mysqli_error($connect));
   }
 ?>
 <!doctype html>
 <html lang="pt-br">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>E2S</title>    
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <link rel="shortcut icon" type="imagex/png" href="img/icone.ico">
+<?php include('modals/head.php'); ?>
 </head>
 <body class="bg-light">
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
@@ -61,9 +54,7 @@
   </div>
 </nav>
 <header class="py-4 text-center">
-  <div class="usuario bg-primary d-flex mx-auto align-items-center rounded mb-4" style="max-width: 460px;height: 52px;">
-    <h4 class="text-center text-white mx-auto">Olá, <strong><?php echo $logado; ?></strong>. Seja bem vindo(a).</h4>
-  </div>     
+  <h3 class="text-center mx-auto pb-1">Olá, <strong><?php echo $logado; ?></strong>. Seja bem vindo(a).</h3>     
   <h2>Solicitar Certificado Digital</h2>
   <p class="lead">Faça a solicitação do certificado digital para seus clientes e acompanhe todas as solicitações feitas por você.</p>        
 </header>
@@ -100,15 +91,13 @@
   <table class="table table-hover">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">Id</th>
         <th scope="col">Cliente</th>
         <th scope="col">Certificado</th>
         <th scope="col">Data da solicitação</th>
       </tr>
     </thead>
-    <tbody><?php while($rows_solicitacoes = mysqli_fetch_assoc($solicitacoes)){ ?>
+    <tbody><?php while($rows_solicitacoes = mysqli_fetch_assoc($sol_usuarios)){ ?>
       <tr>
-        <td><?php echo $rows_solicitacoes['id']; ?></td>
         <td><?php echo $rows_solicitacoes['nome']; ?></td>
         <td><?php echo $rows_solicitacoes['tipo_certificado']; ?></td>        
         <td><?php echo $rows_solicitacoes['data_solicitacao']; ?></td>                        
@@ -151,151 +140,14 @@
     </div>
   </div>
 </div>
-<!-- Janela Nova Solicitação -->
-<div class="modal fade" id="solicitarCertificado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Solicitar Certificado Digital</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form class="needs-validation" method="post" action="solicitar_sucesso.php" enctype="multipart/form-data" novalidate>
-            <!--ESCOLHAS PARA O TIPO E VALOR DO CERTIFICADO SELECIONADO-->
-            <section class="d-flex py-2">          
-              <div class="col-sm-12 mx-auto text-center">
-                <label for="type-cpf" class="form-label">Tipo do Certificado</label>
-                <select name="tipo-certificado" class="form-select" id="type-cpf" required>
-                  <option value="">Escolha o certificado</option>
-                  <option>R$ 135,00 E-CPF A1 Mídia Digital</option>
-                  <option>R$ 190,00 E-CPF A3 Cartão 1 ano</option>
-                  <option>R$ 230,00 E-CPF A3 Cartão 2 anos</option>
-                  <option>R$ 265,00 E-CPF A3 Cartão 3 anos</option>
-                  <option>R$ 300,00 E-CPF A3 Cartão + Leitora 1 ano</option>
-                  <option>R$ 330,00 E-CPF A3 Cartão + Leitora 2 anos</option>
-                  <option>R$ 365,00 E-CPF A3 Cartão + Leitora 3 anos</option>
-                  <option>R$ 135,00 E-CPF A3 sem mídia 1 ano</option>
-                  <option>R$ 175,00 E-CPF A3 sem mídia 2 anos</option>
-                  <option>R$ 210,00 E-CPF A3 sem mídia 3 anos</option>
-                  <option>R$ 210,00 E-CNPJ A1 Mídia Digital</option>
-                  <option>R$ 190,00 E-CNPJ A3 Cartão 1 ano</option>
-                  <option>R$ 230,00 E-CNPJ A3 Cartão 2 anos</option>
-                  <option>R$ 265,00 E-CNPJ A3 Cartão 3 anos</option>
-                  <option>R$ 300,00 E-CNPJ A3 Cartão + Leitora 1 ano</option>
-                  <option>R$ 330,00 E-CNPJ A3 Cartão + Leitora 2 anos</option>
-                  <option>R$ 365,00 E-CNPJ A3 Cartão + Leitora 3 anos</option>
-                  <option>R$ 135,00 E-CNPJ A3 sem mídia 1 ano</option>
-                  <option>R$ 175,00 E-CNPJ A3 sem mídia 2 anos</option>
-                  <option>R$ 210,00 E-CNPJ A3 sem mídia 3 anos</option>
-                </select><div class="invalid-feedback">Selecione um tipo de certificado.</div>
-              </div>
-            </section>
-            
-            <section class="d-flex py-2">
-              <div class="col-sm-12 mx-auto"><!--NOME DO CLIENTE-->
-                <label for="nome-cliente" class="form-label">Nome Completo</label>
-                <input name="nome" type="text" class="form-control" id="nome-cliente" required>
-                <div class="invalid-feedback">Insira o nome do cliente.</div>
-              </div>
-            </section>
-
-            <section class="d-flex py-2">
-              <div class="col-sm-5 mx-auto"><!--CPF DO CLIENTE-->
-                <label for="cpf-cliente" class="form-label">CPF</label>
-                <input name="cpf" type="text" class="form-control" id="cpf-cliente" required>
-                <div class="invalid-feedback">Insira o CPF do cliente.</div>
-              </div>
-      
-              <div class="col-sm-5 mx-auto"><!--DATA NASCIMENTO DO CLIENTE-->
-                <label for="data-cliente" class="form-label">Data Nascimento</label>
-                <input name="data-nascimento" type="date" class="form-control" id="data-cliente" required>
-                <div class="invalid-feedback">Insira a data de nascimento do cliente.</div>
-              </div>
-            </section>
-        
-            <section class="d-flex py-2">
-              <div class="col-sm-7 mx-auto"><!--EMAIL DO CLIENTE-->
-                <label for="email-cliente" class="form-label">Email</label>
-                <input name="email" type="email" class="form-control" id="email-cliente" required>
-                <div class="invalid-feedback">Insira o email do cliente.</div>
-              </div>
-      
-              <div class="col-sm-4 mx-auto"><!--TELEFONE DO CLIENTE-->
-                <label for="endereco-cliente" class="form-label">Telefone</label>
-                <input name="telefone" type="text" class="form-control" id="telefone-cliente" required>
-                <div class="invalid-feedback">Insira o telefone do cliente.</div>
-              </div>
-            </section>
-      
-            <section class="d-flex py-2">
-              <div class="col-sm-5 mx-auto"><!--CEP DO CLIENTE-->
-                <label for="cep-cliente" class="form-label">CEP<span class="text-muted"></span></label>
-                <input name="cep" type="text" id="cep" class="form-control" value="" size="10" maxlength="9"
-                        onblur="pesquisacep(this.value);" required/>   
-                <div class="invalid-feedback">Insira um CEP válido.</div>
-              </div>
-        
-              <div class="col-sm-5 mx-auto"><!--BAIRRO DO CLIENTE-->
-                <label for="bairro-cliente" class="form-label">Bairro<span class="text-muted"></span></label>
-                <input name="bairro" type="text" id="bairro" class="form-control" size="40" required/>
-                <div class="invalid-feedback">Insira o Bairro.</div>
-              </div>
-            </section>
-        
-            <section class="d-flex py-2">
-              <div class="col-sm-9 mx-auto"><!--RUA DO CLIENTE-->
-                <label for="rua-cliente" class="form-label">Rua (Logradouro)</label>
-                <input name="rua" type="text" id="rua" class="form-control" size="80" required/>    
-                <div class="invalid-feedback">Insira a rua do cliente.</div>
-              </div>
-      
-              <div class="col-sm-2 mx-auto" id="num"><!--NUM DO CLIENTE-->
-                <label for="num-cliente" class="form-label">N°<span class="text-muted"></span></label>
-                <input name="num" type="number" class="form-control" id="num-cliente" min='0' required>
-                <div class="invalid-feedback">Insira o número.</div>
-              </div>        
-            </section>
-                  
-            <section class="d-flex py-2">        
-              <div class="col-sm-12 mx-auto"><!--OBSERVACOES CLIENTE-->
-                <label for="obs-cliente" class="form-label">OBSERVAÇÕES</label>
-                <input name="observacoes" type="textarea" class="form-control" id="obs-cliente">
-              </div>
-            </section>
-            
-            <section class="d-flex py-2">
-              <div class="col-sm-12 mx-auto text-center"><!--DOC. PESSOAL DO CLIENTE-->
-                <label for="doc-cliente" class="form-label">Anexar documento pessoal (CNH, RG ou DNI).</label>
-                <label for="doc-cliente" class="form-label">E documentos da empresa ou pessoa jurídica (E-CNPJ).</label>
-                <input type="file" name="documentos[]" multiple="multiple" class="form-control" id="doc-cliente" name="sendDocs" required>
-                <div class="invalid-feedback">É necessário anexar os documentos do cliente.</div>
-              </div>                      
-            </section><hr class="my-4">
-            <input class="w-100 btn btn-lg btn-primary" type="submit" name="btnSolicitar" value="Solicitar Certificado">
-        </form>
-      </div>
-    </div>
-  </div>
+<?php include('modals/nova_solicitacao.php'); ?>
+<?php include('modals/sair_do_sistema.php'); ?>
 </div>
-<!-- Janela Confirma Sair do Sistema (logout) -->
-<div class="modal fade" id="sairSistema" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Sair do Sistema</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Deseja sair do sistema e ir para tela de login? <br>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <a href="sair.php"><button type='button' class='btn btn-primary'>Sair</button></a> 
-      </div>
-    </div>
-  </div>
-</div>  
-</div>
+<footer class="text-center py-4">
+  <h6>Contatos</h6>
+  <h7><i class="bi bi-whatsapp"></i> Edval Silvino: <a href="https://api.whatsapp.com/send/?phone=5588996444627&text&app_absent=0" target="_blank">(88) 99644-4627</a></h7><br>  
+  <h7><i class="bi bi-whatsapp"></i> E2S Certificadora Digital <a href="https://api.whatsapp.com/send/?phone=5588999628489&text&app_absent=0" target="_blank">(88) 99962-8489</a></h7>        
+</footer>
 </body>
 <script src="js/script.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

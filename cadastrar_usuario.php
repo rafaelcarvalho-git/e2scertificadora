@@ -12,10 +12,10 @@
         $usuario = strtoupper($_POST['usuario']);
         $senha = $_POST['senha'];
         $privilegio = $_POST['privilegio'];	
-        if((isset($_POST['comissao'])==true) and (isset($_POST['telefone-contador'])==true) and (isset($_POST['email-contador'])==true)) {
+        if((isset($_POST['comissao'])==true) and (isset($_POST['telefone-usuario'])==true) and (isset($_POST['email-usuario'])==true)) {
           $comissao = $_POST['comissao'];
-          $email = strtolower($_POST['email-contador']);
-          $telefone = $_POST['telefone-contador'];
+          $email = strtolower($_POST['email-usuario']);
+          $telefone = $_POST['telefone-usuario'];
           $telefone = preg_replace("/[^0-9]()/", "", $telefone);
         }else {
           $comissao = null;

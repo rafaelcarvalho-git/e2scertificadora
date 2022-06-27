@@ -1,16 +1,16 @@
-<?php //include('modals/verificar_acesso.php'); ?>
+<?php include('modals/verificar_acesso.php'); ?>
 <?php
   include_once("conexao.php");      
   if(!empty($_GET['search'])) {
     $mes = $_GET['search'];
     $ano = date("Y");
-    $solicitar_dados = "SELECT * FROM solicitacoes_concluidas WHERE MONTH(data_solicitacao) = '$mes' AND YEAR(data_solicitacao) = '$ano' ORDER BY MONTH(data_solicitacao) DESC";
+    $solicitacoes_concluidas = "SELECT * FROM solicitacoes_concluidas WHERE MONTH(data_solicitacao) = '$mes' AND YEAR(data_solicitacao) = '$ano' ORDER BY MONTH(data_solicitacao) DESC";
   }
   else {
-    $solicitar_dados = "SELECT * FROM solicitacoes_concluidas ORDER BY MONTH(data_solicitacao) DESC";
+    $solicitacoes_concluidas = "SELECT * FROM solicitacoes_concluidas ORDER BY MONTH(data_solicitacao) DESC";
   }
-  $solicitacoes = mysqli_query($connect, $solicitar_dados);
-  if($solicitacoes === FALSE) { 
+  $concluidas= mysqli_query($connect, $solicitacoes_concluidas);
+  if($concluidas=== FALSE) { 
     die(mysqli_error($connect));
   }
 ?>
@@ -22,9 +22,7 @@
 <body class="bg-light">
   <?php include('modals/navbar.php'); ?>
 <header class="py-4 text-center">
-  <div class="usuario bg-primary d-flex mx-auto align-items-center rounded mb-4" style="max-width: 460px;height: 52px;">
-    <h4 class="text-center text-white mx-auto">Olá, <strong><?php echo $logado; ?></strong>. Seja bem vindo(a).</h4>
-  </div>      
+  <h3 class="text-center mx-auto pb-1">Olá, <strong><?php echo $logado; ?></strong>. Seja bem vindo(a).</h3>        
   <h2>Solicitações Concluídas</h2>
   <p class="lead">Lista com todas as solicitações que ja foram emitidas e concluídas.</p>        
 </header>
@@ -59,12 +57,12 @@
         <th scope="col">Data da conclusão</th>
       </tr>
     </thead>
-    <tbody><?php while($rows_solicitacoes = mysqli_fetch_assoc($solicitacoes)){ ?>
+    <tbody><?php while($rows_solicitacoes = mysqli_fetch_assoc($concluidas)){ ?>
       <tr>
         <td><?php echo $rows_solicitacoes['nome'];?></td>
         <td><?php echo $rows_solicitacoes['tipo_certificado'];?></td>        
         <td><?php echo $rows_solicitacoes['data_solicitacao'];?></td>                           
-        <td><?php echo $rows_solicitacoes['contador'];?></td>
+        <td><?php echo $rows_solicitacoes['usuario'];?></td>
         <td><?php echo $rows_solicitacoes['data_solicitacao'];?></td>   
       </tr><?php } ?>
     </tbody>

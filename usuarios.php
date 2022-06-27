@@ -1,4 +1,4 @@
-<?php //include('modals/verificar_acesso.php'); ?>
+<?php include('modals/verificar_acesso.php'); ?>
 <?php
   include_once("conexao.php");
   $listar_usuarios = "SELECT * FROM usuarios ORDER BY id DESC";
@@ -15,9 +15,7 @@
 <body class="bg-light">
 <?php include('modals/navbar.php'); ?>
 <header class="py-4 text-center">
-  <div class="usuario bg-primary d-flex mx-auto align-items-center rounded mb-4" style="max-width: 460px;height: 52px;">
-    <h4 class="text-center text-white mx-auto">Olá, <strong><?php echo $logado; ?></strong>. Seja bem vindo(a).</h4>
-  </div>     
+  <h3 class="text-center mx-auto pb-1">Olá, <strong><?php echo $logado; ?></strong>. Seja bem vindo(a).</h3>   
   <h2>Usuários do Sistema</h2>
   <p class="lead">Lista de usuários do sistema, cria e exclui usuários, define o tipo de acesso (privilégio).</p>
     <p><strong>Contador:</strong> Apenas faz solicitações de certificados digitais.<br><strong>Administrador:</strong> Tem acesso a todas as funções do sistema.</p>       
@@ -26,7 +24,6 @@
   <table class="table table-hover">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">Id</th>
         <th scope="col">Usuário</th>
         <th scope="col">Privilégio</th>
         <th scope="col">Comissão</th>
@@ -37,7 +34,6 @@
     </thead>
     <tbody><?php while($rows_usuarios = mysqli_fetch_assoc($usuarios)){ ?>
       <tr>
-        <td><?php echo $rows_usuarios['id']; ?></td>
         <td><?php echo $rows_usuarios['usuario']; ?></td>
         <td><?php echo $rows_usuarios['privilegio']; ?></td>         
         <td><?php echo $rows_usuarios['comissao']; ?>%</td>
