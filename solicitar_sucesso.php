@@ -3,10 +3,10 @@
     include_once('conexao.php');
     if((!isset($_SESSION['usuario']) == true) or (!isset($_SESSION['senha']) == true) or (!isset($_SESSION['privilegio']) == true)) {
         unset($_SESSION['usuario'], $_SESSION['senha'], $_SESSION['privilegio']);
-        header('Location: index.php');
+        header('Location: login.php');
     }else {
         if(!isset($_POST["tipo-certificado"])){
-            header("Location: index.php");
+            header("Location: login.php");
         }
         $tipo_certificado = $_POST["tipo-certificado"];
         $nome = strtoupper($_POST["nome"]);
@@ -49,10 +49,16 @@
                 }
             }
         }
-        $insert_solicitacao = "INSERT INTO solicitacoes(tipo_certificado, nome, cpf, data_nascimento, email, telefone, cep, endereco, observacoes, data_solicitacao, contador, documentos) VALUES ('$tipo_certificado', '$nome', '$cpf', '$data_nascimento', '$email', '$telefone', '$cep', '$endereco', '$observacoes', NOW(), '$contador', '$fileName')";
-        $insert_solicitacao_query= mysqli_query($connect, $insert_solicitacao);    
-        $insert_solicitacao_contador = "INSERT INTO solicitacoes_contadores(nome, tipo_certificado, data_solicitacao, contador) VALUES ('$nome', '$tipo_certificado', NOW(), '$contador')";
-        $insert_solicitacao_query_contador= mysqli_query($connect, $insert_solicitacao_contador);  
+        $nome_cript = base64_encode($nome);
+        $cpf_cript = base64_encode($cpf);
+        $email_cript = base64_encode($email);
+        $telefone_cript = base64_encode($telefone);
+        $cep_cript = base64_encode($cep);
+        $endereco_cript = base64_encode($endereco);
+        $contador_cript = base64_encode($contador);
+        $fileName_cript = base64_encode($fileName);
+        $result_solicitar = "INSERT INTO solicitacoes(tipo_certificado, nome, cpf, data_nascimento, email, telefone, cep, endereco, observacoes, data_solicitacao, contador, documentos) VALUES ('$tipo_certificado', '$nome_cript', '$cpf_cript', '$data_nascimento', '$email_cript', '$telefone_cript', '$cep_cript', '$endereco_cript', '$observacoes', NOW(), '$contador_cript', '$fileName_cript')";
+        $resultado_solicitar= mysqli_query($connect, $result_solicitar);    
         if($_SESSION['privilegio'] == 'Administrador'){
             $_SESSION['solicitacaoSucesso'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
             Certificado Digital solicitado com sucesso! Iremos realizar o cadastro do cliente e o atendimento. Aguarde nosso contato.<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";  

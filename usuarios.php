@@ -26,6 +26,7 @@
   <table class="table table-hover">
     <thead class="thead-dark">
       <tr>
+        <th scope="col">Id</th>
         <th scope="col">Usuário</th>
         <th scope="col">Privilégio</th>
         <th scope="col">Comissão</th>
@@ -36,6 +37,7 @@
     </thead>
     <tbody><?php while($rows_usuarios = mysqli_fetch_assoc($usuarios)){ ?>
       <tr>
+        <td><?php echo $rows_usuarios['id']; ?></td>
         <td><?php echo $rows_usuarios['usuario']; ?></td>
         <td><?php echo $rows_usuarios['privilegio']; ?></td>         
         <td><?php echo $rows_usuarios['comissao']; ?>%</td>
@@ -63,10 +65,7 @@
   </div><?php } ?>
   </tbody>
   </table>
+<?php include('modals/sair_do_sistema.php'); ?>
 </main>
 </body>
-<script src="js/script.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.1/js/bootstrap.min.js" integrity="sha512-ewfXo9Gq53e1q1+WDTjaHAGZ8UvCWq0eXONhwDuIoaH8xz2r96uoAYaQCm1oQhnBfRXrvJztNXFsTloJfgbL5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </html>
