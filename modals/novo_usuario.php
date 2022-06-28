@@ -35,7 +35,7 @@
             <div class="form-floating">              
               <select id="privilegio" class="form-select" name="privilegio" required>
                 <option value="Administrador">Administrador</option>
-                <option value="usuario">usuario</option>
+                <option value="Contador">Contador</option>
               </select>
               <label class="form-label">Privilégio de Sistema</label>
             </div><br>          

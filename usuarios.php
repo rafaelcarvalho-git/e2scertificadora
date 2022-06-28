@@ -1,6 +1,6 @@
-<?php include('modals/verificar_acesso.php'); ?>
+<?php include('verificar_acesso.php'); ?>
 <?php
-  include_once("conexao.php");
+  include_once("modals/conexao.php");
   $listar_usuarios = "SELECT * FROM usuarios ORDER BY id DESC";
   $usuarios = mysqli_query($connect, $listar_usuarios);
   if($usuarios === FALSE) { 

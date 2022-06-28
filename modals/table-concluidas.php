@@ -13,7 +13,7 @@
     die(mysqli_error($connect));
   }
 ?>
-<table id="table-concluidas" class="table table-hover" style="display: none;">
+<table id="table-concluidas" class="table table-hover table-responsive" style="display: none;">
     <thead class="thead-dark">
       <tr>
         <th scope="col">Cliente</th>

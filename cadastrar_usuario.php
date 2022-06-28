@@ -1,6 +1,6 @@
 <?php
   session_start();
-  include_once("conexao.php");/*  
+  include_once("modals/conexao.php");/*  
   if((!isset($_SESSION['usuario']) == true) or (!isset($_SESSION['senha']) == true) or (!isset($_SESSION['privilegio']) == true)) {
     unset($_SESSION['usuario'], $_SESSION['senha'], $_SESSION['privilegio']);
     header('Location: login.php');
@@ -23,11 +23,11 @@
           $telefone = null;
         }        
         $senha_criptografada = password_hash($senha, PASSWORD_DEFAULT);
-        $usuario_cript = base64_encode($usuario);
-        $privilegio_cript = base64_encode($privilegio);
-        $email_cript = base64_encode($email);        
-        $telefone_cript = base64_encode($telefone);
-        $cadastrar_usuario = "INSERT INTO usuarios(usuario, senha, privilegio, comissao, telefone, email) VALUES ('$usuario', '$senha_criptografada', '$privilegio_cript', '$comissao', '$telefone_cript', '$email_cript')";
+        /*$usuario= base64_encode($usuario);
+        $privilegio= base64_encode($privilegio);
+        $email= base64_encode($email);        
+        $telefone= base64_encode($telefone);*/
+        $cadastrar_usuario = "INSERT INTO usuarios(usuario, senha, privilegio, comissao, telefone, email) VALUES ('$usuario', '$senha_criptografada', '$privilegio', '$comissao', '$telefone', '$email')";
         $cadastrar = mysqli_query($connect, $cadastrar_usuario);  
      // }      
   //  }

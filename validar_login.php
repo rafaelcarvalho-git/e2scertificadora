@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	include_once("conexao.php");
+	include_once("modals/conexao.php");
 	$btnLogin = filter_input(INPUT_POST, 'btnLogin', FILTER_SANITIZE_STRING);
 	if($btnLogin){
 		$usuario = filter_input(INPUT_POST, 'usuario', FILTER_SANITIZE_STRING);

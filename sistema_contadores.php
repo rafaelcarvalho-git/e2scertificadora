@@ -1,6 +1,6 @@
-<?php/*
+<?php
     session_start();
-    include_once('conexao.php');
+    include_once('modals/conexao.php');
     if(isset($_SESSION['privilegio']) != 'Contador'){
       $_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show mx-auto' role='alert' style='width: 400px;'>Acesso somente para Contadores! <br> Realize o login para entrar no sistema.<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
       header("Location: login.php");
@@ -16,10 +16,10 @@
       }else {
         $logado = $_SESSION['usuario'];
       }      
-    }    */
+    }    
 ?>
 <?php
-  include_once("conexao.php");
+  include_once("modals/conexao.php");
   if(!empty($_GET['search'])) {
     $mes = $_GET['search'];
     $ano = date("Y");

@@ -13,7 +13,7 @@
     die(mysqli_error($connect));
   }
 ?>
-  <table id="table-ativas" class="table table-hover">
+<table id="table-ativas" class="table table-hover table-responsive">
     <thead class="thead-dark">
       <tr>
         <th scope="col">Cliente</th>
@@ -43,4 +43,4 @@
       </tr>
   <?php include('modals/acoes_solicitacao.php');?><?php } ?>
   </tbody>
-  </table>
+  </table><style>@media(max-width:800px){.container{overflow:auto;}}</style>

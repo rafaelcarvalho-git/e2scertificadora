@@ -1,4 +1,4 @@
-<?php// include('verificar_acesso.php'); ?>
+<?php include('verificar_acesso.php'); ?>
 <!doctype html>
 <html lang="pt-br">
 <head>
@@ -11,7 +11,7 @@
   <h2>Solicitações de Certificados Digitais</h2>
   <p class="lead">Lista com todas as solicitações em edição, processamento, emitidas ou concluídas feitas por contadores, AGRs ou administradores de sistema.</p>        
 </header>
-<main class="container overflow-auto">
+<main class="container">
   <?php
     if(isset($_SESSION['excluirSolicitacao'])){
       echo $_SESSION['excluirSolicitacao'];

@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    include_once('conexao.php');
+    include_once('modals/conexao.php');
     if((!isset($_SESSION['usuario']) == true) or (!isset($_SESSION['senha']) == true) or (!isset($_SESSION['privilegio']) == true)) {
         unset($_SESSION['usuario'], $_SESSION['senha'], $_SESSION['privilegio']);
         header('Location: login.php');

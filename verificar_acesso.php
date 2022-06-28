@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include_once('conexao.php');
+    include_once('modals/conexao.php');
     if(isset($_SESSION['privilegio']) == true and $_SESSION['privilegio'] != 'Administrador'){
       header("Location: login.php");
     }
