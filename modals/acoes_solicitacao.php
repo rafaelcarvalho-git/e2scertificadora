@@ -59,8 +59,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          Deseja concluir a solicitação de <?php echo $rows_solicitacoes['nome']; ?>? <br>
-          <div class="d-flex">Renovar a solicitação em <input class="form-control mx-2" type="number" min=1 max=3 style="width:75px"> anos.</div>
+          Deseja concluir a solicitação de <?php echo $rows_solicitacoes['nome']; ?>? <br>          
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
