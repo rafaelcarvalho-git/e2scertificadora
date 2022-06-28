@@ -10,8 +10,7 @@
             <a class="nav-link text-white dropdown-toggle" href="#" id="dropdownSolicitacoes" data-bs-toggle="dropdown" aria-expanded="false">Solicitações</a>
             <ul class="dropdown-menu" aria-labelledby="dropdownSolicitacoes">
               <li><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#solicitarCertificado">Nova Solicitação</a></li>
-              <li><a class="dropdown-item" href="solicitacoes_ativas.php">Solicitações Ativas</a></li>
-              <li><a class="dropdown-item" href="solicitacoes_concluidas.php">Solicitações Concluidas</a></li>
+              <li><a class="dropdown-item" href="solicitacoes.php">Listar Solicitações</a></li>   
             </ul>
           </li>
           <li class="nav-item">

@@ -1,4 +1,3 @@
-<?php// include('verificar_acesso.php'); ?>
 <?php
   include_once("modals/conexao.php");  
   if(!empty($_GET['search'])) {
@@ -14,31 +13,7 @@
     die(mysqli_error($connect));
   }
 ?>
-<!doctype html>
-<html lang="pt-br">
-<head>
-  <?php include('modals/head.php'); ?>
-</head>
-<body class="bg-light">
-  <?php include('modals/navbar.php'); ?>
-<header class="container py-4 text-center">
-  <h3 class="text-center mx-auto pb-1">Olá, <strong><?php echo $logado; ?></strong>. Seja bem vindo(a).</h3>     
-  <h2>Solicitações de Certificados Digitais Ativas</h2>
-  <p class="lead">Lista com todas as solicitações em edição ou processamento feitas por contadores, AGRs ou administradores de sistema.</p>        
-</header>
-<main class="container overflow-auto">
-  <?php
-    if(isset($_SESSION['excluirSolicitacao'])){
-      echo $_SESSION['excluirSolicitacao'];
-      unset($_SESSION['excluirSolicitacao']);
-    }
-    if(isset($_SESSION['concluirSolicitacao'])){
-      echo $_SESSION['concluirSolicitacao'];
-      unset($_SESSION['concluirSolicitacao']);
-    }
-  ?>
-  <?php include('modals/filtro_consulta.php');?>
-  <table class="table table-hover">
+  <table id="table-ativas" class="table table-hover">
     <thead class="thead-dark">
       <tr>
         <th scope="col">Cliente</th>
@@ -69,6 +44,3 @@
   <?php include('modals/acoes_solicitacao.php');?><?php } ?>
   </tbody>
   </table>
-</main>
-</body>
-</html>

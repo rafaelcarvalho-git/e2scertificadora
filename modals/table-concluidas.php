@@ -1,6 +1,5 @@
-<?php //include('modals/verificar_acesso.php'); ?>
 <?php
-  include_once("conexao.php");      
+  include_once("modals/conexao.php");      
   if(!empty($_GET['search'])) {
     $mes = $_GET['search'];
     $ano = date("Y");
@@ -14,21 +13,7 @@
     die(mysqli_error($connect));
   }
 ?>
-<!doctype html>
-<html lang="pt-br">
-<head>
-  <?php include('modals/head.php'); ?>
-</head>
-<body class="bg-light">
-  <?php include('modals/navbar.php'); ?>
-<header class="py-4 text-center">
-  <h3 class="text-center mx-auto pb-1">Olá, <strong><?php echo $logado; ?></strong>. Seja bem vindo(a).</h3>        
-  <h2>Solicitações Concluídas</h2>
-  <p class="lead">Lista com todas as solicitações que ja foram emitidas e concluídas.</p>        
-</header>
-<main class="container overflow-auto"> 
-  <?php include('modals/filtro_consulta.php');?>
-  <table class="table table-hover">
+<table id="table-concluidas" class="table table-hover" style="display: none;">
     <thead class="thead-dark">
       <tr>
         <th scope="col">Cliente</th>
@@ -36,6 +21,8 @@
         <th scope="col">Data da solicitação</th>
         <th scope="col">Usuário</th>
         <th scope="col">Data da conclusão</th>
+        <th scope="col">Validade</th>
+        <th scope="col">Data do vencimento</th>
       </tr>
     </thead>
     <tbody><?php while($rows_solicitacoes = mysqli_fetch_assoc($concluidas)){ ?>
@@ -45,9 +32,8 @@
         <td><?php echo $rows_solicitacoes['data_solicitacao'];?></td>                           
         <td><?php echo $rows_solicitacoes['usuario'];?></td>
         <td><?php echo $rows_solicitacoes['data_solicitacao'];?></td>   
+        <td><?php echo $rows_solicitacoes['validade'];?> Anos</td>
+        <td><?php echo $rows_solicitacoes['data_vencimento'];?></td>  
       </tr><?php } ?>
     </tbody>
-  </table>
-</main>
-</body>
-</html>
+</table>

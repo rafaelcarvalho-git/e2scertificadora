@@ -16,7 +16,7 @@
 					$_SESSION['senha'] = $row_usuario['senha'];
 					$_SESSION['privilegio'] = $row_usuario['privilegio'];
 					if($_SESSION['privilegio'] == 'Administrador'){
-						header("Location: solicitacoes_ativas.php");
+						header("Location: solicitacoes.php");
 					}else {
 						header("Location: sistema_contadores.php");
 					}

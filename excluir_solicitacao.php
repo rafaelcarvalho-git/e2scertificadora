@@ -22,9 +22,9 @@
         $_SESSION['excluirSolicitacao'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
           Solicitação excluida com sucesso!
           <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
-        header("Location: solicitacoes_ativas.php");       
+        header("Location: solicitacoes.php");       
       }
     }
-    header("Location: solicitacoes_ativas.php");
+    header("Location: solicitacoes.php");
   }
 ?>
