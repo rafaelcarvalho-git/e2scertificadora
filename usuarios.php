@@ -14,13 +14,13 @@
   </head>
 <body class="bg-light">
 <?php include('modals/navbar.php'); ?>
-<header class="py-4 text-center">
+<header class="container py-4 text-center">
   <h3 class="text-center mx-auto pb-1">Olá, <strong><?php echo $logado; ?></strong>. Seja bem vindo(a).</h3>   
   <h2>Usuários do Sistema</h2>
   <p class="lead">Lista de usuários do sistema, cria e exclui usuários, define o tipo de acesso (privilégio).</p>
     <p><strong>Contador:</strong> Apenas faz solicitações de certificados digitais.<br><strong>Administrador:</strong> Tem acesso a todas as funções do sistema.</p>       
 </header>
-<main class="container">
+<main class="container overflow-auto">
   <table class="table table-hover">
     <thead class="thead-dark">
       <tr>

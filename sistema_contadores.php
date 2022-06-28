@@ -39,18 +39,22 @@
 <?php include('modals/head.php'); ?>
 </head>
 <body class="bg-light">
-<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" aria-label="Fourth navbar example">
   <div class="container-fluid">
-    <a class="navbar-brand mx-auto" href="http://e2scertificadoradigital.com.br/" style="color: white;" target="_blank"><img src="img/logo.png" alt="" width="50" height="30" class="d-inline-block align-text-top">
-    AR E2S CORRETORA DE SEGUROS LTDA-ME</a>    
-    <ul class="navbar-nav mx-auto">
-      <li class="nav-item">
-        <a class="nav-link"><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#solicitarCertificado">Nova Solicitação</button></a>         
-      </li>    
-      <li class="nav-item">
-        <a class="nav-link"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#sairSistema">Sair</button></a>  
-      </li>      
-    </ul>   
+    <img src="css/logo.png" alt="" width="50" height="30" class="d-inline-block align-text-top ms-5"><a class="navbar-brand mx-auto ms-2" href="http://e2scertificadoradigital.com.br/" target="_blank"> AR E2S CORRETORA DE SEGUROS LTDA-ME</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button><style>@media(max-width:585px){.navbar-brand{display:none;}}</style>
+    <div class="collapse navbar-collapse" id="navbarsExample04">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="" data-bs-toggle="modal" data-bs-target="#solicitarCertificado">Nova Solicitação</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="" data-bs-toggle="modal" data-bs-target="#sairSistema">Sair</a>  
+        </li>  
+      </ul>
+    </div>
   </div>
 </nav>
 <header class="py-4 text-center">
@@ -58,7 +62,7 @@
   <h2>Solicitar Certificado Digital</h2>
   <p class="lead">Faça a solicitação do certificado digital para seus clientes e acompanhe todas as solicitações feitas por você.</p>        
 </header>
-<main class="container">
+<main class="container overflow-auto">
 <?php
   if (isset($_SESSION['solicitacaoSucesso'])) {
       echo $_SESSION['solicitacaoSucesso'];
@@ -124,7 +128,7 @@
 <?php include('modals/nova_solicitacao.php'); ?>
 <?php include('modals/sair_do_sistema.php'); ?>
 </div>
-<footer class="text-center py-4">
+<footer class="container overflow-auto text-center py-4">
   <h6>Contatos</h6>
   <h7><i class="bi bi-whatsapp"></i> Edval Silvino: <a href="https://api.whatsapp.com/send/?phone=5588996444627&text&app_absent=0" target="_blank">(88) 99644-4627</a></h7><br>  
   <h7><i class="bi bi-whatsapp"></i> E2S Certificadora Digital <a href="https://api.whatsapp.com/send/?phone=5588999628489&text&app_absent=0" target="_blank">(88) 99962-8489</a></h7>        

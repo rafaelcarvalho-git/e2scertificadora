@@ -21,12 +21,12 @@
 </head>
 <body class="bg-light">
   <?php include('modals/navbar.php'); ?>
-<header class="py-4 text-center">
+<header class="container py-4 text-center">
   <h3 class="text-center mx-auto pb-1">Olá, <strong><?php echo $logado; ?></strong>. Seja bem vindo(a).</h3>     
   <h2>Solicitações de Certificados Digitais Ativas</h2>
   <p class="lead">Lista com todas as solicitações em edição ou processamento feitas por contadores, AGRs ou administradores de sistema.</p>        
 </header>
-<main class="container">
+<main class="container overflow-auto">
   <?php
     if(isset($_SESSION['excluirSolicitacao'])){
       echo $_SESSION['excluirSolicitacao'];

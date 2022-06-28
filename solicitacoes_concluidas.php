@@ -26,7 +26,7 @@
   <h2>Solicitações Concluídas</h2>
   <p class="lead">Lista com todas as solicitações que ja foram emitidas e concluídas.</p>        
 </header>
-<main class="container"> 
+<main class="container overflow-auto"> 
   <?php include('modals/filtro_consulta.php');?>
   <table class="table table-hover">
     <thead class="thead-dark">
