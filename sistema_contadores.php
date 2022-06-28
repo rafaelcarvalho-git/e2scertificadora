@@ -23,10 +23,10 @@
   if(!empty($_GET['search'])) {
     $mes = $_GET['search'];
     $ano = date("Y");
-    $solicitacoes_usuarios = "SELECT * FROM solicitacoes WHERE usuario= '$logado' AND MONTH(data_solicitacao) = '$mes' AND YEAR(data_solicitacao) = '$ano' ORDER BY MONTH(data_solicitacao) DESC";
+    $solicitacoes_usuarios = "SELECT * FROM solicitacoes_usuarios WHERE usuario= '$logado' AND MONTH(data_solicitacao) = '$mes' AND YEAR(data_solicitacao) = '$ano' ORDER BY MONTH(data_solicitacao) DESC";
   }
   else {
-    $solicitacoes_usuarios = "SELECT * FROM solicitacoes WHERE usuario= '$logado' ORDER BY MONTH(data_solicitacao) DESC";
+    $solicitacoes_usuarios = "SELECT * FROM solicitacoes_usuarios WHERE usuario= '$logado' ORDER BY id DESC";
   }
   $sol_usuarios= mysqli_query($connect, $solicitacoes_usuarios);
   if($sol_usuarios=== FALSE) { 

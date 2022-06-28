@@ -18,7 +18,7 @@
       <tr>
         <th scope="col">Cliente</th>
         <th scope="col">Certificado</th>
-        <th scope="col">Data</th>
+        <th scope="col">Data da Solicitação</th>
         <th scope="col">Usuário</th>
         <th scope="col">Ação</th>
       </tr>
