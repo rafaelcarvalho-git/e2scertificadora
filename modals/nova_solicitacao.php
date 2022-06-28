@@ -14,26 +14,26 @@
             <label for="type-cpf" class="form-label">Tipo do Certificado</label>
             <select name="tipo-certificado" class="form-select" id="type-cpf" required>
                 <option value="">Escolha o certificado</option>
-                <option>R$ 135,00 E-CPF A1 Mídia Digital</option>
-                <option>R$ 190,00 E-CPF A3 Cartão 1 ano</option>
-                <option>R$ 230,00 E-CPF A3 Cartão 2 anos</option>
-                <option>R$ 265,00 E-CPF A3 Cartão 3 anos</option>
-                <option>R$ 300,00 E-CPF A3 Cartão + Leitora 1 ano</option>
-                <option>R$ 330,00 E-CPF A3 Cartão + Leitora 2 anos</option>
-                <option>R$ 365,00 E-CPF A3 Cartão + Leitora 3 anos</option>
-                <option>R$ 135,00 E-CPF A3 sem mídia 1 ano</option>
-                <option>R$ 175,00 E-CPF A3 sem mídia 2 anos</option>
-                <option>R$ 210,00 E-CPF A3 sem mídia 3 anos</option>
-                <option>R$ 210,00 E-CNPJ A1 Mídia Digital</option>
-                <option>R$ 190,00 E-CNPJ A3 Cartão 1 ano</option>
-                <option>R$ 230,00 E-CNPJ A3 Cartão 2 anos</option>
-                <option>R$ 265,00 E-CNPJ A3 Cartão 3 anos</option>
-                <option>R$ 300,00 E-CNPJ A3 Cartão + Leitora 1 ano</option>
-                <option>R$ 330,00 E-CNPJ A3 Cartão + Leitora 2 anos</option>
-                <option>R$ 365,00 E-CNPJ A3 Cartão + Leitora 3 anos</option>
-                <option>R$ 135,00 E-CNPJ A3 sem mídia 1 ano</option>
-                <option>R$ 175,00 E-CNPJ A3 sem mídia 2 anos</option>
-                <option>R$ 210,00 E-CNPJ A3 sem mídia 3 anos</option>
+                <option>E-CPF A1 Mídia Digital</option>
+                <option>E-CPF A3 Cartão 1 ano</option>
+                <option>E-CPF A3 Cartão 2 anos</option>
+                <option>E-CPF A3 Cartão 3 anos</option>
+                <option>E-CPF A3 Cartão + Leitora 1 ano</option>
+                <option>E-CPF A3 Cartão + Leitora 2 anos</option>
+                <option>E-CPF A3 Cartão + Leitora 3 anos</option>
+                <option>E-CPF A3 sem mídia 1 ano</option>
+                <option>E-CPF A3 sem mídia 2 anos</option>
+                <option>E-CPF A3 sem mídia 3 anos</option>
+                <option>E-CNPJ A1 Mídia Digital</option>
+                <option>E-CNPJ A3 Cartão 1 ano</option>
+                <option>E-CNPJ A3 Cartão 2 anos</option>
+                <option>E-CNPJ A3 Cartão 3 anos</option>
+                <option>E-CNPJ A3 Cartão + Leitora 1 ano</option>
+                <option>E-CNPJ A3 Cartão + Leitora 2 anos</option>
+                <option>E-CNPJ A3 Cartão + Leitora 3 anos</option>
+                <option>E-CNPJ A3 sem mídia 1 ano</option>
+                <option>E-CNPJ A3 sem mídia 2 anos</option>
+                <option>E-CNPJ A3 sem mídia 3 anos</option>
             </select><div class="invalid-feedback">Selecione um tipo de certificado.</div>
             </div>
         </section>

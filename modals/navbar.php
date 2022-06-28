@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
   <div class="container-fluid">
-    <a class="navbar-brand mx-auto" href="http://e2scertificadoradigital.com.br/" style="color: white;" target="_blank"><img src="img/logo.png" alt="" width="50" height="30" class="d-inline-block align-text-top">
+    <a class="navbar-brand mx-auto" href="http://e2scertificadoradigital.com.br/" style="color: white;" target="_blank"><img src="css/logo.png" alt="" width="50" height="30" class="d-inline-block align-text-top">
     AR E2S CORRETORA DE SEGUROS LTDA-ME</a>    
     <ul class="navbar-nav mx-auto">   
       <li class="nav-item">          
@@ -46,4 +46,3 @@
 <?php include('modals/sair_do_sistema.php'); ?>
 <?php include('modals/novo_usuario.php'); ?>
 <script src="js/bootstrap.bundle.js"></script>
-<script src="js/script.js"></script>

@@ -1,4 +1,4 @@
-<?php
+<?php/*
     session_start();
     include_once('conexao.php');
     if(isset($_SESSION['privilegio']) != 'Contador'){
@@ -16,7 +16,7 @@
       }else {
         $logado = $_SESSION['usuario'];
       }      
-    }    
+    }    */
 ?>
 <?php
   include_once("conexao.php");
@@ -67,26 +67,7 @@
 ?>
   <div class="componentes-contadores d-flex flex-row align-items-center mx-auto">
     <button type="button" class="btn btn-primary mx-auto mb-4" data-bs-toggle="modal" data-bs-target="#orientacoes">Orientações Importantes</button>      
-    <section class="d-flex flex-row text-center mx-auto mb-4">       
-      <div class="d-flex mx-auto">          
-        <select name="mes-consulta" class="form-select me-2" id="mes" style="width:150px;">
-          <option value="">Período</option>
-          <option value="01">Janeiro</option>
-          <option value="02">Feveireiro</option>
-          <option value="03">Março</option>
-          <option value="04">Abril</option>
-          <option value="05">Maio</option>
-          <option value="06">Junho</option>
-          <option value="07">Julho</option>
-          <option value="08">Agosto</option>
-          <option value="09">Setembro</option>
-          <option value="10">Outubro</option>
-          <option value="11">Novembro</option>
-          <option value="12">Dezembro</option>            
-        </select>          
-        <button class="btn btn-primary" onclick="searchDataAtivas()"><i class="bi bi-search"></i></button>
-      </div>               
-    </section>
+    <?php include('modals/filtro_consulta.php');?>
   </div>
   <table class="table table-hover">
     <thead class="thead-dark">
@@ -149,8 +130,5 @@
   <h7><i class="bi bi-whatsapp"></i> E2S Certificadora Digital <a href="https://api.whatsapp.com/send/?phone=5588999628489&text&app_absent=0" target="_blank">(88) 99962-8489</a></h7>        
 </footer>
 </body>
-<script src="js/script.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.1/js/bootstrap.min.js" integrity="sha512-ewfXo9Gq53e1q1+WDTjaHAGZ8UvCWq0eXONhwDuIoaH8xz2r96uoAYaQCm1oQhnBfRXrvJztNXFsTloJfgbL5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="js/bootstrap.bundle.js"></script>
 </html>

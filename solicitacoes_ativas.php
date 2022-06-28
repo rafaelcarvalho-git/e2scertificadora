@@ -1,6 +1,6 @@
-<?php include('modals/verificar_acesso.php'); ?>
+<?php// include('verificar_acesso.php'); ?>
 <?php
-  include_once("conexao.php");  
+  include_once("modals/conexao.php");  
   if(!empty($_GET['search'])) {
     $mes = $_GET['search'];
     $ano = date("Y");
@@ -37,26 +37,7 @@
       unset($_SESSION['concluirSolicitacao']);
     }
   ?>
-  <section class="d-flex flex-row text-center mx-auto mb-4">       
-    <div class="d-flex mx-auto">          
-      <select name="mes-consulta" class="form-select me-2" id="mes" style="width:150px;">
-        <option value="">Período</option>
-        <option value="01">Janeiro</option>
-        <option value="02">Feveireiro</option>
-        <option value="03">Março</option>
-        <option value="04">Abril</option>
-        <option value="05">Maio</option>
-        <option value="06">Junho</option>
-        <option value="07">Julho</option>
-        <option value="08">Agosto</option>
-        <option value="09">Setembro</option>
-        <option value="10">Outubro</option>
-        <option value="11">Novembro</option>
-        <option value="12">Dezembro</option>            
-      </select>          
-      <button class="btn btn-primary" onclick="searchDataAtivas()"><i class="bi bi-search"></i></button>
-    </div><script src="js/script.js"></script>     
-  </section>
+  <?php include('modals/filtro_consulta.php');?>
   <table class="table table-hover">
     <thead class="thead-dark">
       <tr>
