@@ -1,6 +1,6 @@
 <?php
   session_start();
-  include_once("modals/conexao.php");/*  
+  include_once("conexao.php");
   if((!isset($_SESSION['usuario']) == true) or (!isset($_SESSION['senha']) == true) or (!isset($_SESSION['privilegio']) == true)) {
     unset($_SESSION['usuario'], $_SESSION['senha'], $_SESSION['privilegio']);
     header('Location: login.php');
@@ -8,7 +8,7 @@
     if(isset($_SESSION['privilegio']) == true and $_SESSION['privilegio'] != 'Administrador'){
       header("Location: login.php");
     }else {
-      if((isset($_POST['usuario'])==true) and (isset($_POST['senha'])==true) and (isset($_POST['privilegio'])==true)) {*/
+      if((isset($_POST['usuario'])==true) and (isset($_POST['senha'])==true) and (isset($_POST['privilegio'])==true)) {
         $usuario = strtoupper($_POST['usuario']);
         $senha = $_POST['senha'];
         $privilegio = $_POST['privilegio'];	
@@ -29,8 +29,8 @@
         $telefone= base64_encode($telefone);*/
         $cadastrar_usuario = "INSERT INTO usuarios(usuario, senha, privilegio, comissao, telefone, email) VALUES ('$usuario', '$senha_criptografada', '$privilegio', '$comissao', '$telefone', '$email')";
         $cadastrar = mysqli_query($connect, $cadastrar_usuario);  
-     // }      
-  //  }
-    header("Location: usuarios.php");    
-  //}
+      }      
+    }
+    header("Location: ../usuarios.php");    
+  }
 ?>

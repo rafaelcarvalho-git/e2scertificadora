@@ -10,7 +10,7 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <a href="sair.php"><button type='button' class='btn btn-primary'>Sair</button></a> 
+        <a href="modals/sair.php"><button type='button' class='btn btn-primary'>Sair</button></a> 
     </div>
     </div>
   </div>

@@ -1,4 +1,4 @@
-<!-- Janela Nova Solicitação -->
+<!-- Janela Nova Solicitaçao -->
 <div class="modal fade" id="solicitarCertificado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog">
     <div class="modal-content">
@@ -14,23 +14,23 @@
             <label for="type-cpf" class="form-label">Tipo do Certificado</label>
             <select name="tipo-certificado" class="form-select" id="type-cpf" required>
                 <option value="">Escolha o certificado</option>
-                <option>E-CPF A1 Mídia Digital</option>
-                <option>E-CPF A3 Cartão 1 ano</option>
-                <option>E-CPF A3 Cartão 2 anos</option>
-                <option>E-CPF A3 Cartão 3 anos</option>
-                <option>E-CPF A3 Cartão + Leitora 1 ano</option>
-                <option>E-CPF A3 Cartão + Leitora 2 anos</option>
-                <option>E-CPF A3 Cartão + Leitora 3 anos</option>
+                <option>E-CPF A1 Mídia Digital 1 ano</option>
+                <option>E-CPF A3 Cartao 1 ano</option>
+                <option>E-CPF A3 Cartao 2 anos</option>
+                <option>E-CPF A3 Cartao 3 anos</option>
+                <option>E-CPF A3 Cartao + Leitora 1 ano</option>
+                <option>E-CPF A3 Cartao + Leitora 2 anos</option>
+                <option>E-CPF A3 Cartao + Leitora 3 anos</option>
                 <option>E-CPF A3 sem mídia 1 ano</option>
                 <option>E-CPF A3 sem mídia 2 anos</option>
                 <option>E-CPF A3 sem mídia 3 anos</option>
-                <option>E-CNPJ A1 Mídia Digital</option>
-                <option>E-CNPJ A3 Cartão 1 ano</option>
-                <option>E-CNPJ A3 Cartão 2 anos</option>
-                <option>E-CNPJ A3 Cartão 3 anos</option>
-                <option>E-CNPJ A3 Cartão + Leitora 1 ano</option>
-                <option>E-CNPJ A3 Cartão + Leitora 2 anos</option>
-                <option>E-CNPJ A3 Cartão + Leitora 3 anos</option>
+                <option>E-CNPJ A1 Mídia Digital 1 ano</option>
+                <option>E-CNPJ A3 Cartao 1 ano</option>
+                <option>E-CNPJ A3 Cartao 2 anos</option>
+                <option>E-CNPJ A3 Cartao 3 anos</option>
+                <option>E-CNPJ A3 Cartao + Leitora 1 ano</option>
+                <option>E-CNPJ A3 Cartao + Leitora 2 anos</option>
+                <option>E-CNPJ A3 Cartao + Leitora 3 anos</option>
                 <option>E-CNPJ A3 sem mídia 1 ano</option>
                 <option>E-CNPJ A3 sem mídia 2 anos</option>
                 <option>E-CNPJ A3 sem mídia 3 anos</option>

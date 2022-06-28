@@ -3,12 +3,12 @@
   if(!empty($_GET['search'])) {
     $mes = $_GET['search'];
     $ano = date("Y");
-    $solicitar_vencimentos = "SELECT * FROM solicitacoes_concluidas WHERE MONTH(data_solicitacao) = '$mes' AND YEAR(data_solicitacao) = '$ano' ORDER BY id DESC";
+    $solicitar_vencimentos = "SELECT * FROM solicitacoes_concluidas WHERE MONTH(data_solicitacao) = '$mes' AND YEAR(data_solicitacao) = '$ano' AND renovado = 0 ORDER BY id DESC";
   }
   else {
     $mes = date("m");
     $ano = date("Y");
-    $solicitar_vencimentos = "SELECT * FROM solicitacoes_concluidas where validade = 1 and year(data_vencimento) = '$ano' and month(data_vencimento) = '$mes' ORDER BY id DESC";
+    $solicitar_vencimentos = "SELECT * FROM solicitacoes_concluidas where validade = 1 and year(data_vencimento) = '$ano' and month(data_vencimento) = '$mes' AND renovado = 0 ORDER BY id DESC";
   }
   $vencimentos = mysqli_query($connect, $solicitar_vencimentos);
   if($vencimentos === FALSE) { 
@@ -43,22 +43,22 @@
                 <td><?php echo $rows_vencimentos['data_conclusao'];?></td>                  
                 <td><?php echo $rows_vencimentos['usuario']; ?></td>
                 <td><?php echo $rows_vencimentos['data_vencimento'];?></td>                  
-                <td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#concluirSolicitacao"><i class="bi bi-check2-circle"></i></button></td>
+                <td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#renovarSolicitacao<?php echo $rows_vencimentos['id']; ?>"><i class="bi bi-check2-circle"></i></button></td>
               </tr>
           <!-- Janela Confirma Renovar Solicitação -->
-          <div class="modal fade" id="concluirSolicitacao<?php echo $rows_vencimentos['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="renovarSolicitacao<?php echo $rows_vencimentos['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Concluir Solicitação</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">Renovar Solicitação</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  Deseja concluir a solicitação de <?php echo $rows_vencimentos['nome']; ?>? <br>
+                  A solicitação de <?php echo $rows_vencimentos['nome']; ?> foi renovada? <br>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                  <?php echo "<a href='concluir_solicitacao.php?id=" . $rows_vencimentos['id'] . "' style='color: white;'><button type='button' class='btn btn-primary'>Concluir</button></a>";?>
+                  <?php echo "<a href='modals/renovar_solicitacao.php?id=" . $rows_vencimentos['id'] . "' style='color: white;'><button type='button' class='btn btn-primary'>Concluir</button></a>";?>
                 </div>
               </div>
             </div>

@@ -6,7 +6,7 @@
     $solicitacoes_concluidas = "SELECT * FROM solicitacoes_concluidas WHERE MONTH(data_solicitacao) = '$mes' AND YEAR(data_solicitacao) = '$ano' ORDER BY MONTH(data_solicitacao) DESC";
   }
   else {
-    $solicitacoes_concluidas = "SELECT * FROM solicitacoes_concluidas ORDER BY MONTH(data_solicitacao) DESC";
+    $solicitacoes_concluidas = "SELECT * FROM solicitacoes_concluidas ORDER BY id DESC";
   }
   $concluidas= mysqli_query($connect, $solicitacoes_concluidas);
   if($concluidas=== FALSE) { 
@@ -32,7 +32,7 @@
         <td><?php echo $rows_solicitacoes['data_solicitacao'];?></td>                           
         <td><?php echo $rows_solicitacoes['usuario'];?></td>
         <td><?php echo $rows_solicitacoes['data_solicitacao'];?></td>   
-        <td><?php echo $rows_solicitacoes['validade'];?> Anos</td>
+        <td><?php echo $rows_solicitacoes['validade'];?> Ano(s)</td>
         <td><?php echo $rows_solicitacoes['data_vencimento'];?></td>  
       </tr><?php } ?>
     </tbody>

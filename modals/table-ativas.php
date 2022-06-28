@@ -6,7 +6,7 @@
     $solicitacoes_ativas = "SELECT * FROM solicitacoes WHERE MONTH(data_solicitacao) = '$mes' AND YEAR(data_solicitacao) = '$ano' ORDER BY id DESC";
   }
   else {
-    $solicitacoes_ativas = "SELECT * FROM solicitacoes ORDER BY MONTH(data_solicitacao) DESC";
+    $solicitacoes_ativas = "SELECT * FROM solicitacoes ORDER BY id DESC";
   }
   $ativas= mysqli_query($connect, $solicitacoes_ativas);
   if($ativas=== FALSE) { 

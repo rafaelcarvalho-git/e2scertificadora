@@ -1,4 +1,4 @@
-<?php include('verificar_acesso.php'); ?>
+<?php include('modals/verificar_acesso.php'); ?>
 <?php
   include_once("modals/conexao.php");
   $listar_usuarios = "SELECT * FROM usuarios ORDER BY id DESC";
@@ -54,7 +54,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <?php echo "<a href='excluir_usuario.php?id=" . $rows_usuarios['id'] . "' data-confirm='Tem certeza de que deseja excluir o item selecionado?' style='color: white;'><button type='button' class='btn btn-primary'>Excluir</button></a>";?>
+          <?php echo "<a href='modals/excluir_usuario.php?id=" . $rows_usuarios['id'] . "' data-confirm='Tem certeza de que deseja excluir o item selecionado?' style='color: white;'><button type='button' class='btn btn-primary'>Excluir</button></a>";?>
         </div>
       </div>
     </div>

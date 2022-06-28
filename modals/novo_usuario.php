@@ -7,7 +7,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form method="post" action="cadastrar_usuario.php">
+          <form method="post" action="modals/cadastrar_usuario.php">
             <div class="form-floating">
               <input type="text" class="form-control" name="usuario" required>
               <label>Nome Usuario</label>

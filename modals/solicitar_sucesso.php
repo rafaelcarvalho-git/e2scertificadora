@@ -3,10 +3,10 @@
     include_once('modals/conexao.php');
     if((!isset($_SESSION['usuario']) == true) or (!isset($_SESSION['senha']) == true) or (!isset($_SESSION['privilegio']) == true)) {
         unset($_SESSION['usuario'], $_SESSION['senha'], $_SESSION['privilegio']);
-        header('Location: login.php');
+        header('Location: ../login.php');
     }else {
         if(!isset($_POST["tipo-certificado"])){
-            header("Location: login.php");
+            header("Location: ../login.php");
         }
         $tipo_certificado = $_POST["tipo-certificado"];
         $nome = strtoupper($_POST["nome"]);
@@ -64,11 +64,11 @@
         if($_SESSION['privilegio'] == 'Administrador'){
             $_SESSION['solicitacaoSucesso'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
             Certificado Digital solicitado com sucesso! Iremos realizar o cadastro do cliente e o atendimento. Aguarde nosso contato.<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";  
-            header("Location: solicitacoes.php");
+            header("Location: ../solicitacoes.php");
         }else {
             $_SESSION['solicitacaoSucesso'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
             Certificado Digital solicitado com sucesso!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";  
-            header("Location: sistema_contadores.php");
+            header("Location: ../sistema_contadores.php");
         }  
     }    
 ?>
