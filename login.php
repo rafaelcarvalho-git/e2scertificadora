@@ -17,7 +17,7 @@ session_start();
   </div><style>@media(max-width:480px){.navbar-brand{display:none;}.container-fluid img{margin:auto;}}</style>
 </nav>
   <h1 class="mt-5 mb-4">Sistema para solicitar Certificados Digitais</h1>
-  <form class="container mx-auto" method="post" action="modals/validar_login.php">
+  <form class="container mx-auto" method="post" action="validar_login.php">
     <?php
         if(isset($_SESSION['msgLogin'])){
           echo $_SESSION['msgLogin'];

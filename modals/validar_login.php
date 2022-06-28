@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	include_once("conexao.php");
+	include_once("modals/conexao.php");
 	$btnLogin = filter_input(INPUT_POST, 'btnLogin', FILTER_SANITIZE_STRING);
 	if($btnLogin){
 		$usuario = filter_input(INPUT_POST, 'usuario', FILTER_SANITIZE_STRING);
@@ -16,20 +16,20 @@
 					$_SESSION['senha'] = $row_usuario['senha'];
 					$_SESSION['privilegio'] = $row_usuario['privilegio'];
 					if($_SESSION['privilegio'] == 'Administrador'){
-						header("Location: ../solicitacoes.php");
+						header("Location: solicitacoes.php");
 					}else {
-						header("Location: ../sistema_contadores.php");
+						header("Location: sistema_contadores.php");
 					}
 				}else{
 					$_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show mx-auto' role='alert' style='width: 400px;'>Login ou senha incorretos!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
-					header("Location: ../login.php");
+					header("Location: login.php");
 				}
 			}
 		}else{
 			$_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show mx-auto' role='alert' style='width: 400px;'>Login ou senha incorretos!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
-			header("Location: ../login.php");
+			header("Location: login.php");
 		}
 	}else{
-		header("Location: ../login.php");
+		header("Location: login.php");
 	}
 ?>

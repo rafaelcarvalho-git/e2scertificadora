@@ -20,7 +20,7 @@
             <a class="nav-link text-white dropdown-toggle" href="#" id="dropdownUsuarios" data-bs-toggle="dropdown" aria-expanded="false">Usuários</a>
             <ul class="dropdown-menu" aria-labelledby="dropdownUsuarios">
               <li><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#cadastrarUsuario">Cadastrar Usuário</a></li>
-              <li><a class="dropdown-item" href="../usuarios.php">Listar Usuários</a></li>
+              <li><a class="dropdown-item" href="usuarios.php">Listar Usuários</a></li>
             </ul>
           </li>
           <li class="nav-item">
