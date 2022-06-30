@@ -14,26 +14,26 @@
             <label for="type-cpf" class="form-label">Tipo do Certificado</label>
             <select name="tipo-certificado" class="form-select" id="type-cpf" required>
                 <option value="">Escolha o certificado</option>
-                <option>E-CPF A1 Mídia Digital 1 ano</option>
+                <option>E-CPF A1 Midia Digital 1 ano</option>
                 <option>E-CPF A3 Cartao 1 ano</option>
                 <option>E-CPF A3 Cartao 2 anos</option>
                 <option>E-CPF A3 Cartao 3 anos</option>
                 <option>E-CPF A3 Cartao + Leitora 1 ano</option>
                 <option>E-CPF A3 Cartao + Leitora 2 anos</option>
                 <option>E-CPF A3 Cartao + Leitora 3 anos</option>
-                <option>E-CPF A3 sem mídia 1 ano</option>
-                <option>E-CPF A3 sem mídia 2 anos</option>
-                <option>E-CPF A3 sem mídia 3 anos</option>
-                <option>E-CNPJ A1 Mídia Digital 1 ano</option>
+                <option>E-CPF A3 sem midia 1 ano</option>
+                <option>E-CPF A3 sem midia 2 anos</option>
+                <option>E-CPF A3 sem midia 3 anos</option>
+                <option>E-CNPJ A1 Midia Digital 1 ano</option>
                 <option>E-CNPJ A3 Cartao 1 ano</option>
                 <option>E-CNPJ A3 Cartao 2 anos</option>
                 <option>E-CNPJ A3 Cartao 3 anos</option>
                 <option>E-CNPJ A3 Cartao + Leitora 1 ano</option>
                 <option>E-CNPJ A3 Cartao + Leitora 2 anos</option>
                 <option>E-CNPJ A3 Cartao + Leitora 3 anos</option>
-                <option>E-CNPJ A3 sem mídia 1 ano</option>
-                <option>E-CNPJ A3 sem mídia 2 anos</option>
-                <option>E-CNPJ A3 sem mídia 3 anos</option>
+                <option>E-CNPJ A3 sem midia 1 ano</option>
+                <option>E-CNPJ A3 sem midia 2 anos</option>
+                <option>E-CNPJ A3 sem midia 3 anos</option>
             </select><div class="invalid-feedback">Selecione um tipo de certificado.</div>
             </div>
         </section>
@@ -113,7 +113,7 @@
         <section class="d-flex py-2">
             <div class="col-sm-12 mx-auto text-center"><!--DOC. PESSOAL DO CLIENTE-->
             <label for="doc-cliente" class="form-label">Anexar documento pessoal (CNH, RG ou DNI).</label>
-            <label for="doc-cliente" class="form-label">E documentos da empresa ou pessoa jurídica (E-CNPJ).</label>
+            <label for="doc-cliente" class="form-label">E documentos da empresa ou pessoa juridica (E-CNPJ).</label>
             <input type="file" name="documentos[]" multiple="multiple" class="form-control" id="doc-cliente" name="sendDocs" required>
             <div class="invalid-feedback">É necessário anexar os documentos do cliente.</div>
             </div>                      
