@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    include_once('modals/conexao.php');
+    include_once('conexao.php');
     if((!isset($_SESSION['usuario']) == true) or (!isset($_SESSION['senha']) == true) or (!isset($_SESSION['privilegio']) == true)) {
         unset($_SESSION['usuario'], $_SESSION['senha'], $_SESSION['privilegio']);
         header('Location: ../login.php');
@@ -68,7 +68,7 @@
         }else {
             $_SESSION['solicitacaoSucesso'] = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
             Certificado Digital solicitado com sucesso!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";  
-            header("Location: ../sistema_contadores.php");
+            header("Location: ../parceiros.php");
         }  
     }    
 ?>

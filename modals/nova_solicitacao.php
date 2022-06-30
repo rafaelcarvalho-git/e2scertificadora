@@ -7,7 +7,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
-        <form class="needs-validation" method="post" action="solicitar_sucesso.php" enctype="multipart/form-data" novalidate>
+        <form class="needs-validation" method="post" action="modals/solicitar_sucesso.php" enctype="multipart/form-data" novalidate>
         <!--ESCOLHAS PARA O TIPO E VALOR DO CERTIFICADO SELECIONADO-->
         <section class="d-flex py-2">          
             <div class="col-sm-12 mx-auto text-center">

@@ -17,13 +17,8 @@ session_start();
   </div><style>@media(max-width:480px){.navbar-brand{display:none;}.container-fluid img{margin:auto;}}</style>
 </nav>
   <h1 class="mt-5 mb-4">Sistema para solicitar Certificados Digitais</h1>
-  <form class="container mx-auto" method="post" action="validar_login.php">
-    <?php
-        if(isset($_SESSION['msgLogin'])){
-          echo $_SESSION['msgLogin'];
-          unset($_SESSION['msgLogin']);
-        }
-    ?>
+  <form class="container mx-auto" method="post" action="modals/validar_login.php">
+    <?php if(isset($_SESSION['msgLogin'])){echo $_SESSION['msgLogin'];unset($_SESSION['msgLogin']);}?>
     <h2 class="py-1">Login</h2>
     <div class="form-floating mx-auto" style="min-width: 300px;max-width: 380px;">
       <input type="text" class="form-control"  name="usuario" required>
@@ -35,6 +30,5 @@ session_start();
     </div><br>
     <input id="btnLogin" class="btn btn-lg btn-primary mt-3" type="submit" name="btnLogin" value="Acessar" style="min-width: 300px;max-width: 380px;">
   </form>
-</body>
-<script src="js/bootstrap.bundle.js"></script>
+</body><script src="js/bootstrap.bundle.js"></script>
 </html>
