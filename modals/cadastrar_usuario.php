@@ -24,8 +24,8 @@
           $telefone = null;
         }       
         $senha_criptografada = password_hash($senha, PASSWORD_DEFAULT);
-        $usuario= base64_encode($usuario);
-        /*$privilegio= base64_encode($privilegio);
+        /*$usuario= base64_encode($usuario);
+        $privilegio= base64_encode($privilegio);
         $email= base64_encode($email);        
         $telefone= base64_encode($telefone);*/
         $cadastrar_usuario = "INSERT INTO usuarios(usuario, senha, privilegio, comissao, telefone, email) VALUES ('$usuario', '$senha_criptografada', '$privilegio', '$comissao', '$telefone', '$email')";
