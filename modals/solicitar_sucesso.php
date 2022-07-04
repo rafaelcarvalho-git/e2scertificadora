@@ -29,14 +29,14 @@
         $observacoes = strtoupper($_POST["observacoes"]);
         $usuario = $_SESSION['usuario'];
         //documentos
-        $diretorio = "documentos/";
+        $diretorio = "../documentos/";
         $cliente_documentos = $nome;
         if(!is_dir($diretorio)){ 
             echo "Pasta $diretorio nao existe";
         }else{
             $documentos = isset($_FILES['documentos']) ? $_FILES['documentos'] : FALSE;
             for ($controle = 0; $controle < count($documentos['name']); $controle++){		
-                $destino = "documentos/".$documentos['name'][$controle];
+                $destino = "../documentos/".$documentos['name'][$controle];
                 if(move_uploaded_file($documentos['tmp_name'][$controle], $destino)){
                     $zip = new ZipArchive();
                     $fileName= $cliente_documentos.'.zip';

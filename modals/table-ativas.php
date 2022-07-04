@@ -1,9 +1,10 @@
 <?php
   include_once("modals/conexao.php");  
-  if(!empty($_GET['search'])) {
-    $mes = $_GET['search'];
-    $ano = date("Y");
-    $solicitacoes_ativas = "SELECT * FROM solicitacoes WHERE MONTH(data_solicitacao) = '$mes' AND YEAR(data_solicitacao) = '$ano' ORDER BY id DESC";
+  if(!empty($_GET['start'])) {
+    $start = $_GET['start'];
+    $end = $_GET['end'];
+    //$ano = date("Y")
+    $solicitacoes_ativas = "SELECT * FROM solicitacoes WHERE data_solicitacao BETWEEN '{$start} 00:00:00' AND '{$end} 23:59:59' ORDER BY id DESC";
   }
   else {
     $solicitacoes_ativas = "SELECT * FROM solicitacoes ORDER BY id DESC";

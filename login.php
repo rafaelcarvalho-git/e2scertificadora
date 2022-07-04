@@ -12,9 +12,9 @@ session_start();
 </head>
 <body class="text-center bg-light">
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-  <div class="container-fluid text-center mx-auto">
-    <img src="css/logo.png" alt="" width="50" height="30" class="d-inline-block align-text-top mx-auto"><a class="navbar-brand mx-auto text-white" href="http://e2scertificadoradigital.com.br/" target="_blank"> AR E2S CORRETORA DE SEGUROS LTDA-ME</a>    
-  </div><style>@media(max-width:480px){.navbar-brand{display:none;}.container-fluid img{margin:auto;}}</style>
+  <div class="container-fluid mx-auto d-flex">
+    <img src="css/logo.png" alt="" width="50" height="30" class="d-inline-block align-text-top me-1 ms-auto"><a class="navbar-brand text-white me-auto ms-1" href="http://e2scertificadoradigital.com.br/" target="_blank"> AR E2S CORRETORA DE SEGUROS LTDA-ME</a>    
+  </div><style>@media(max-width:480px){.navbar-brand{display:none;}}</style>
 </nav>
   <h1 class="mt-5 mb-4">Sistema para solicitar Certificados Digitais</h1>
   <form class="container mx-auto" method="post" action="modals/validar_login.php">

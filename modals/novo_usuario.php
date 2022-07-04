@@ -19,7 +19,7 @@
             <div id="isusuario">
               <section class="d-flex py-2">
                 <div class="form-floating mx-auto">
-                  <input type="number" class="form-control" name="comissao">
+                  <input type="number" class="form-control" name="comissao" min=0 max=100>
                   <label>Comissão</label>
                 </div><br>
                 <div class="form-floating mx-auto">

@@ -24,15 +24,15 @@
           $telefone = null;
         }       
         $senha_criptografada = password_hash($senha, PASSWORD_DEFAULT);
-        /*$usuario= base64_encode($usuario);
-        $privilegio= base64_encode($privilegio);
+        $usuario= base64_encode($usuario);
+        /*$privilegio= base64_encode($privilegio);
         $email= base64_encode($email);        
         $telefone= base64_encode($telefone);*/
         $cadastrar_usuario = "INSERT INTO usuarios(usuario, senha, privilegio, comissao, telefone, email) VALUES ('$usuario', '$senha_criptografada', '$privilegio', '$comissao', '$telefone', '$email')";
         $cadastrar = mysqli_query($connect, $cadastrar_usuario);  
       }      
     }
-    $_SESSION['teste'] = "<div class='alert alert-danger alert-dismissible fade show mx-auto overflow-hidden' role='alert' style='width: 360px;'>$usuario Acesso $senha somente $senha_criptografada para $cadastrar_usuario Parceiros!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
+    //$_SESSION['teste'] = "<div class='alert alert-danger alert-dismissible fade show mx-auto overflow-hidden' role='alert' style='width: 360px;'>$usuario Acesso $senha somente $senha_criptografada para $cadastrar_usuario Parceiros!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
     header("Location: ../usuarios.php");
   }
 ?>

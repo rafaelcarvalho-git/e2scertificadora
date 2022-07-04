@@ -2,17 +2,17 @@
     session_start();
     include_once('modals/conexao.php');
     if(isset($_SESSION['privilegio']) != 'Contador'){
-      $_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show mx-auto overflow-hidden' role='alert' style='width: 360px;'>Acesso somente para Parceiros! <br> Realize o login para entrar no sistema.<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
-      header("Location: ../login.php");
+      $_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show mx-auto' role='alert' style='width: 360px;'>Acesso somente para Parceiros! <br> Realize o login para entrar no sistema.<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
+      header("Location: login.php");
     }
     if((!isset($_SESSION['usuario']) == true) or (!isset($_SESSION['senha']) == true) or (!isset($_SESSION['privilegio']) == true)) {
       unset($_SESSION['usuario'], $_SESSION['senha'], $_SESSION['privilegio']);        
       $_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show mx-auto' role='alert' style='width: 360px;'>Acesso restrito!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
-      header('Location: ../login.php');        
+      header('Location: login.php');        
     }else {
       if(isset($_SESSION['privilegio']) == true and $_SESSION['privilegio'] != 'Contador'){
-        $_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show mx-auto overflow-hidden' role='alert' style='width: 360px;'>Acesso somente para Parceiros!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
-        header("Location: ../login.php");
+        $_SESSION['msgLogin'] = "<div class='alert alert-danger alert-dismissible fade show mx-auto' role='alert' style='width: 360px;'>Acesso somente para Parceiros!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"; 
+        header("Location: login.php");
       }else {
         $logado = $_SESSION['usuario'];
       }      
@@ -20,10 +20,11 @@
 ?>
 <?php
   include_once("modals/conexao.php");
-  if(!empty($_GET['search'])) {
-    $mes = $_GET['search'];
-    $ano = date("Y");
-    $solicitacoes_usuarios = "SELECT * FROM solicitacoes_usuarios WHERE usuario= '$logado' AND MONTH(data_solicitacao) = '$mes' AND YEAR(data_solicitacao) = '$ano' ORDER BY MONTH(data_solicitacao) DESC";
+  if(!empty($_GET['start'])) {
+    $start = $_GET['start'];
+    $end = $_GET['end'];
+    //$ano = date("Y")
+    $solicitacoes_usuarios = "SELECT * FROM solicitacoes_usuarios WHERE usuario= '$logado' AND data_solicitacao BETWEEN '{$start} 00:00:00' AND '{$end} 23:59:59' ORDER BY id DESC";
   }
   else {
     $solicitacoes_usuarios = "SELECT * FROM solicitacoes_usuarios WHERE usuario= '$logado' ORDER BY id DESC";
