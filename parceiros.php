@@ -24,10 +24,10 @@
     $start = $_GET['start'];
     $end = $_GET['end'];
     //$ano = date("Y")
-    $solicitacoes_usuarios = "SELECT * FROM solicitacoes_usuarios WHERE usuario= '$logado' AND data_solicitacao BETWEEN '{$start} 00:00:00' AND '{$end} 23:59:59' ORDER BY id DESC";
+    $solicitacoes_usuarios = "SELECT * FROM solicitacoes_usuarios WHERE usuario= '$logado' AND data_solicitacao BETWEEN '{$start} 00:00:00' AND '{$end} 23:59:59' ORDER BY data_solicitacao DESC";
   }
   else {
-    $solicitacoes_usuarios = "SELECT * FROM solicitacoes_usuarios WHERE usuario= '$logado' ORDER BY id DESC";
+    $solicitacoes_usuarios = "SELECT * FROM solicitacoes_usuarios WHERE usuario= '$logado' ORDER BY data_solicitacao DESC";
   }
   $sol_usuarios= mysqli_query($connect, $solicitacoes_usuarios);
   if($sol_usuarios=== FALSE) { 

@@ -23,9 +23,14 @@
     }
   ?>
   <?php include('modals/filtro_consulta.php');?>
-  <div class="d-flex mx-auto justify-content-evenly my-3">
+  <div class="options d-flex mx-auto justify-content-evenly my-3">
     <button class="btn btn-info" onclick="ativas()">Solicitações Ativas</button>
     <button class="btn btn-info" onclick="concluidas()">Solicitações Concluidas</button>
+    <style>
+      @media (max-width:435px){.options, .filtros{display:flex;flex-direction:column;}
+        #data-inicio, #data-fim, .options button{margin:auto auto 10px auto;width:85vw;}
+      }@media(min-width:436px){#data-inicio{margin-right:10px;}#data-fim{margin-left:10px;margin-right:10px;}}
+    </style>
     <script>
       function ativas() {
         document.getElementById("table-ativas").style.display = "table";
@@ -37,8 +42,10 @@
       }
     </script>
   </div>
+  <div class="container">
   <?php include('modals/table-ativas.php');?>
   <?php include('modals/table-concluidas.php');?>
+  </div>
 </main>
 </body>
 </html>

@@ -7,7 +7,7 @@
       <div class="collapse navbar-collapse" id="navbarsExample04">
         <ul class="navbar-nav mx-auto">
           <li class="nav-item dropdown">
-            <a class="nav-link text-white dropdown-toggle" href="#" id="dropdownSolicitacoes" data-bs-toggle="dropdown" aria-expanded="false">Solicitações</a>
+            <a class="nav-link text-white dropdown-toggle" href="" id="dropdownSolicitacoes" data-bs-toggle="dropdown" aria-expanded="false">Solicitações</a>
             <ul class="dropdown-menu" aria-labelledby="dropdownSolicitacoes">
               <li><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#solicitarCertificado">Nova Solicitação</a></li>
               <li><a class="dropdown-item" href="solicitacoes.php">Listar Solicitações</a></li>   
@@ -17,7 +17,7 @@
             <a class="nav-link text-white" href="" data-bs-toggle="modal" data-bs-target="#vencimentos">Vencimentos</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link text-white dropdown-toggle" href="#" id="dropdownUsuarios" data-bs-toggle="dropdown" aria-expanded="false">Usuários</a>
+            <a class="nav-link text-white dropdown-toggle" href="" id="dropdownUsuarios" data-bs-toggle="dropdown" aria-expanded="false">Usuários</a>
             <ul class="dropdown-menu" aria-labelledby="dropdownUsuarios">
               <li><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#cadastrarUsuario">Cadastrar Usuário</a></li>
               <li><a class="dropdown-item" href="usuarios.php">Listar Usuários</a></li>

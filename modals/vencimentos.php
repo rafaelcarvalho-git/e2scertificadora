@@ -23,6 +23,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
+      <div class="table-responsive">
       <table class="table table-hover">
             <thead class="thead-dark">
               <tr>
@@ -39,7 +40,7 @@
               <tr>
                 <td><?php echo $rows_vencimentos['nome']; ?></td>
                 <td><?php echo $rows_vencimentos['tipo_certificado'];?></td>
-                <td><a href=""><?php echo $rows_vencimentos['telefone'];?></a></td>
+                <td><a href="https://api.whatsapp.com/send/?phone=55<?php echo $rows_vencimentos['telefone']; ?>&text&app_absent=0" target="_blank"><?php echo $rows_vencimentos['telefone'];?></a></td>
                 <td><?php echo $rows_vencimentos['data_conclusao'];?></td>                  
                 <td><?php echo $rows_vencimentos['usuario']; ?></td>
                 <td><?php echo $rows_vencimentos['data_vencimento'];?></td>                  
@@ -65,6 +66,7 @@
           </div><?php } ?>
           </tbody>
       </table>
+      </div>
     </div>
   </div>
 </div>

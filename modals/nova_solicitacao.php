@@ -18,6 +18,9 @@
                 <option>E-CPF A3 Cartao 1 ano</option>
                 <option>E-CPF A3 Cartao 2 anos</option>
                 <option>E-CPF A3 Cartao 3 anos</option>
+              	<option>E-CPF A3 Token 1 ano</option>
+                <option>E-CPF A3 Token 2 anos</option>
+                <option>E-CPF A3 Token 3 anos</option>
                 <option>E-CPF A3 Cartao + Leitora 1 ano</option>
                 <option>E-CPF A3 Cartao + Leitora 2 anos</option>
                 <option>E-CPF A3 Cartao + Leitora 3 anos</option>
@@ -28,12 +31,16 @@
                 <option>E-CNPJ A3 Cartao 1 ano</option>
                 <option>E-CNPJ A3 Cartao 2 anos</option>
                 <option>E-CNPJ A3 Cartao 3 anos</option>
+              	<option>E-CNPJ A3 Token 1 ano</option>
+                <option>E-CNPJ A3 Token 2 anos</option>
+                <option>E-CNPJ A3 Token 3 anos</option>
                 <option>E-CNPJ A3 Cartao + Leitora 1 ano</option>
                 <option>E-CNPJ A3 Cartao + Leitora 2 anos</option>
                 <option>E-CNPJ A3 Cartao + Leitora 3 anos</option>
                 <option>E-CNPJ A3 sem midia 1 ano</option>
                 <option>E-CNPJ A3 sem midia 2 anos</option>
                 <option>E-CNPJ A3 sem midia 3 anos</option>
+              	<option>(Outro tipo) 1 ano</option>
             </select><div class="invalid-feedback">Selecione um tipo de certificado.</div>
             </div>
         </section>
