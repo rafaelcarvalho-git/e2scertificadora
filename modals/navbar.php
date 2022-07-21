@@ -14,7 +14,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="" data-bs-toggle="modal" data-bs-target="#vencimentos">Vencimentos</a>
+            <a class="nav-link text-white position-relative" href="" data-bs-toggle="modal" data-bs-target="#vencimentos">Vencimentos</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link text-white dropdown-toggle" href="" id="dropdownUsuarios" data-bs-toggle="dropdown" aria-expanded="false">Usuários</a>

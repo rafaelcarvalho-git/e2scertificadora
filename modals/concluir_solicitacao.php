@@ -13,7 +13,7 @@
         $select_documentos = "SELECT * FROM `solicitacoes` WHERE id='$id'";
         $documentos = mysqli_query($connect, $select_documentos);
         $doc = mysqli_fetch_assoc($documentos);
-        $destino = "documentos/".$doc['documentos'];
+        $destino = "../documentos/".$doc['documentos'];
         if(file_exists($destino)) {
           unlink($destino);
         }        
